@@ -9,9 +9,9 @@ Existen distintas maneras de configurar el ambiente de desarrollo:
 - [Nativo](./Nativo.md)
 - [Docker](./Docker.md)
 
-### Diagramas
+## Diagramas
 
-[Plantuml](https://plantuml.com/) soporta un mecanísmo que les facilitará la generación y posterior mantenimiento de los diagramas de clase, secuencia, estado y paquetes. Para mayor información referir [guía de PlantUML](./docs/PLANTUML.md)
+[Plantuml](https://plantuml.com/) soporta un mecanísmo que les facilitará la generación y posterior mantenimiento de los diagramas de clase, secuencia, estado y paquetes. Para mayor información referir [guía de PlantUML](./PlantUML.md)
 
 ## Empaquetado
 

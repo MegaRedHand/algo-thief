@@ -74,7 +74,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.6</version>
                 <configuration>
-                    <mainClass>${main-class}</mainClass>
+                    <mainClass>edu.fiuba.algo3/${main-class}</mainClass>
                 </configuration>
             </plugin>
             <plugin>

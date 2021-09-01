@@ -22,7 +22,7 @@ Este script inspecciona la carpeta `diagrams/`.
 Forma de ejecución:
 
 ```bash
-scripts/render_diagrams.sh 
+$ scripts/render_diagrams.sh 
 ```
 
 **Nota 1:** 
@@ -58,7 +58,7 @@ Existen múltiples plugins para interpretar estos archivos
         
 Esto les permitiría definir sus clases (una única vez) y utilizarlas en la definición de sus relaciones. 
 
-Aquí pueden econtrar un ejemplo [ejemplo](../diagrams/)
+Aquí pueden encontrar un ejemplo [ejemplo](../diagrams/)
 
 **Sugerencia:**
 
