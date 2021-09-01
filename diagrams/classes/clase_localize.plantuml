@@ -1,0 +1,11 @@
+@startuml
+
+class Localize {
+    # esContent : String
+    # usContent : String
+
+    + Localize(String esContent, String usContent)
+    + String greet(String lang) : String
+}
+
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+
+class Mensaje {
+    + Mensaje(String esContent, String usContent)
+    + String greet() : String
+}
+
+@enduml
