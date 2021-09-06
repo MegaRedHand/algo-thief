@@ -1,11 +1,23 @@
 @startuml
 
-class Localize {
-    # esContent : String
-    # usContent : String
+package Model {
+        class Localize {
+                # esContent : String
+                # usContent : String
 
-    + Localize(String esContent, String usContent)
-    + String greet(String lang) : String
+                + Localize(String esContent, String usContent)
+                + String greet(String lang) : String
+        }
+}
+
+@enduml
+@startuml(id=WITHOUTATTRIBUTES)
+
+package Model {
+        class Localize {
+                + Localize(String esContent, String usContent)
+                + String greet(String lang) : String
+        }
 }
 
 @enduml

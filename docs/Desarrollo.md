@@ -13,6 +13,10 @@ Existen distintas maneras de configurar el ambiente de desarrollo:
 
 [Plantuml](https://plantuml.com/) soporta un mecanísmo que les facilitará la generación y posterior mantenimiento de los diagramas de clase, secuencia, estado y paquetes. Para mayor información referir [guía de PlantUML](./PlantUML.md)
 
+### Paquetes
+
+![modelo_paquete](../diagrams/packages/paquete_modelo_dependencias.png)
+
 ## Empaquetado
 
 Cuando se genera un **tag** que comienza con `v` (ejemplo `v0.0.1`) automáticamente se produce un [release](https://github.com/fiuba/algo3_proyecto_base_tp2/releases) con la aplicación empaquetada. Para el nombre de la versión se recomienda utilizar [versionado semántico](https://semver.org/lang/es/), por ejemplo:

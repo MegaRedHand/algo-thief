@@ -24,3 +24,12 @@ note left of Mensaje
         diagramas uml.
 end note
 @enduml
+@startuml(id=WITHOUTNOTES)
+
+!include ../variables.txt
+!include clase_localize.plantuml!WITHOUTATTRIBUTES
+!include clase_mensaje.plantuml
+
+Localize <|-- Mensaje
+
+@enduml
