@@ -11,11 +11,7 @@ Existen distintas maneras de configurar el ambiente de desarrollo:
 
 ## Diagramas
 
-[Plantuml](https://plantuml.com/) soporta un mecanísmo que les facilitará la generación y posterior mantenimiento de los diagramas de clase, secuencia, estado y paquetes. Para mayor información referir [guía de PlantUML](./PlantUML.md)
-
-### Paquetes
-
-![modelo_paquete](../diagrams/packages/paquete_modelo_dependencias.png)
+[Plantuml](https://plantuml.com/) soporta un mecanísmo que facilita la generación y posterior mantenimiento de los diagramas de clase, secuencia, estado y paquetes. Para mayor información referir a la [guía de PlantUML](./PlantUML.md).
 
 ## Empaquetado
 

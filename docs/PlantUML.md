@@ -1,11 +1,10 @@
 # Diagramas UML
 
-
 **Recomendamos la utilización de PlantUML por las siguientes razones**:
 
-- Se pueden versionar los distintos diagramas
-- Existen herramientas que lo interpretan y no requiere la instalación de un software. Ver [aquí](#editor-online)
-- La utilización de `include` y *variables* facilita la actualización de los diagramas
+- Se pueden versionar los distintos diagramas.
+- Existen herramientas que lo interpretan y no requiere la instalación de un software. Ver [aquí](#editor-online).
+- Permite la utilización de `include` y *variables*, lo cual facilita la actualización de los diagramas.
 
 ## Herramientas
 
@@ -64,10 +63,13 @@ Aquí pueden encontrar un ejemplo [ejemplo](../diagrams/)
 
 Les recomendamos implementar esta herramienta para mitigar los errores de inconsistencia en los diagramas uml.
 
+## Paquetes
+
+![modelo_paquete](../diagrams/packages/paquete_modelo_dependencias.png)
+
 [external_vscode]: https://code.visualstudio.com/Download
 [external_idea]: https://www.jetbrains.com/idea/
 [external_emacs]: https://www.gnu.org/software/emacs/
 [external_iplantuml]: https://plugins.jetbrains.com/plugin/7017-plantuml-integration
 [external_pplantuml]: https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml
 [external_emacs_plugin]: https://plantuml.com/emacs
-
