@@ -7,7 +7,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 ## Grupo {N}
 
 * **Tomás Grüner** - [MegaRedHand](https://github.com/MegaRedHand)
-* **Integrante 2** - [integrante2](https://github.com/integrante2)
+* **Camila Codina** - [camicodina](https://github.com/camicodina)
 * **Integrante 3** - [integrante3](https://github.com/integrante3)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
 * **Integrante 5** - [integrante5](https://github.com/integrante5)
