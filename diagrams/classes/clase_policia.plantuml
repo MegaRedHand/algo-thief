@@ -1,10 +1,23 @@
 @startuml
 
-class Policia
+class Policia {
+    + visitarEdificio(nombreEdificio: String)
+    - entrarAlEdificio(edificio: Edificio)
+}
+
+Policia "1" -> "1" Cronometro
+
+interface Cronometro {
+    + {abstract} restarTiempo(cantTiempo)
+}
+
+class CronometroComun implements Cronometro
 
 Policia "1" --> "1" Rango
 
-interface Rango
+interface Rango {
+    + {abstract}obtenerPista(edificio: Edificio)
+}
 
 class Novato implements Rango
 class Detective implements Rango

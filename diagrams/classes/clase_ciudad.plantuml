@@ -1,12 +1,18 @@
 @startuml
 
-class Ciudad
+class Ciudad {
+    + buscarEdificio(nombre: String): Edificio
+}
 
 class Testigo {
     + pistas: List<Pista>
 }
 
-interface Edificio
+interface Edificio {
+    + {abstract}obtenerPistaFacil(): Pista
+    + {abstract}obtenerPistaMedia(): Pista
+    + {abstract}obtenerPistaDificil(): Pista
+}
 
 class Banco implements Edificio
 class Museo implements Edificio

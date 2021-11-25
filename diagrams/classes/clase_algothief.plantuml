@@ -1,6 +1,8 @@
 @startuml
 
-class AlgoThief
+class AlgoThief {
+    + visitarEdificio(nombreEdificio: String)
+}
 
 AlgoThief "1" --> "4..7" Ciudad
 AlgoThief "1" --> "1" Ladron
