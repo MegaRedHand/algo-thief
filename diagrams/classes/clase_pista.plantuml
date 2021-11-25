@@ -1,0 +1,15 @@
+@startuml
+
+class Testigo
+
+abstract class Pista {
+    + origen: Ciudad
+}
+
+Testigo "1" --> "1..*" Pista
+
+class Facil extends Pista
+class Media extends Pista
+class Dificil extends Pista
+
+@enduml

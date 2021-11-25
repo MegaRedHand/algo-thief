@@ -1,0 +1,9 @@
+@startuml
+
+class AlgoThief
+
+AlgoThief "1" --> "4..7" Ciudad
+AlgoThief "1" --> "1" Ladron
+AlgoThief "1" --> "1" Policia
+
+@enduml

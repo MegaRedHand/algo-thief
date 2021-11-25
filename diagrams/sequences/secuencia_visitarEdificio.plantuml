@@ -1,0 +1,44 @@
+@startuml
+
+'autonumber'
+
+title "Policia visita un edificio"
+
+!$notaObtenerPista = '\
+la X en "obtenerPistaX" representa la \n\
+dificultad de la pista y dependerá del \n\
+implementor de Rango'
+
+participant ":AlgoThief" as algo
+participant ":Ciudad" as ciudad
+participant ":Cronometro" as cron
+participant ":Policia" as policia
+participant ":Rango" as rango
+participant "edificio:Edificio" as edificio
+participant ":Testigo" as testigo
+
+ -> algo: visitarEdificio(nombreEdificio)
+ activate algo
+ algo -> policia: visitarEdificio(nombreEdificio)
+    activate policia
+    policia -> ciudad: buscarEdificio(nombreEdificio)
+        activate ciudad
+        return edificio
+    policia -> policia: entrarAlEdificio(edificio)
+        activate policia
+        policia -> cron: restarTiempo(cantTiempo)
+        deactivate policia
+    policia -> rango: obtenerPista(edificio)
+    note over edificio, testigo: $notaObtenerPista
+        activate rango
+        rango -> edificio: obtenerPistaX()
+
+            activate edificio
+            edificio -> testigo: obtenerPistaX()
+                activate testigo
+                return pista
+            return pista
+        return pista
+
+
+@enduml

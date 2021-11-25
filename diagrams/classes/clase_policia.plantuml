@@ -1,0 +1,14 @@
+@startuml
+
+class Policia
+
+Policia "1" --> "1" Rango
+
+interface Rango
+
+class Novato implements Rango
+class Detective implements Rango
+class Investigador implements Rango
+class Sargento implements Rango
+
+@enduml

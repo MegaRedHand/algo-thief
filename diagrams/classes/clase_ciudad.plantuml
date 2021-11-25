@@ -1,0 +1,18 @@
+@startuml
+
+class Ciudad
+
+class Testigo {
+    + pistas: List<Pista>
+}
+
+interface Edificio
+
+class Banco implements Edificio
+class Museo implements Edificio
+class Puerto implements Edificio
+
+Ciudad "1" --> "1..*" Edificio
+Edificio -> Testigo
+
+@enduml
