@@ -4,7 +4,7 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 8
 
 * **Alan Nicolas Toulouse** - [alant7799](https://github.com/alant7799)
 * **Camila Codina** - [camicodina](https://github.com/camicodina)
@@ -12,7 +12,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Santiago Vaccarelli** - [SantiagoVaccarelli](https://github.com/SantiagoVaccarelli)
 * **Tomás Grüner** - [MegaRedHand](https://github.com/MegaRedHand)
 
-Corrector: **{Corrector}**
+Corrector: **Maia**
 
 ## Aplicación
 
