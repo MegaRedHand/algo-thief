@@ -4,10 +4,6 @@
 
 title "Policia visita un edificio"
 
-!$notaObtenerPista = '\
-la X en "obtenerPistaX" representa la \n\
-dificultad de la pista y dependerá del \n\
-implementor de Rango'
 
 participant ":AlgoThief" as algo
 participant ":Ciudad" as ciudad
@@ -29,7 +25,7 @@ participant ":Testigo" as testigo
         policia -> cron: restarTiempo(cantTiempo)
         deactivate policia
     policia -> rango: obtenerPista(edificio)
-    note over edificio, testigo: $notaObtenerPista
+    note over edificio, testigo: 'la X en "obtenerPistaX" representa la \ndificultad de la pista y dependerá del \nimplementor de Rango'
         activate rango
         rango -> edificio: obtenerPistaX()
 
