@@ -16,28 +16,47 @@ public class Entrega1Test {
      *   - Se despliega una pista.
      */
     @Test
-    public void detectiveNovatoEmpiezaEnMontrealYAlVisitarBancoDespliegaUnaPista() {
-        Ciudad ciudad = new Ciudad("Montreal");
-        InterfazDeUsuario interfazMock = mock(InterfazDeUsuario.class);
-        Detective detective = new Detective(ciudad);
+    public void test01detectiveNovatoEmpiezaEnMontrealYAlVisitarBancoDespliegaUnaPista() {
 
-        detective.visitar("Banco", interfazMock);
+        Rango rango = new Novato();
+        Detective detective = new Detective(rango);
+        Banco banco = new Banco("Banco Nacional");
+        Ciudad ciudad = new Ciudad("Montreal", banco);
+        detective.cambiarCiudad(ciudad);
+        detective.visitar(banco);
 
-        // faltaría que reciba una pista
-        verify(interfazMock).desplegar();
     }
 
-//    /**Caso de uso 2
-//     * - Detective novato comienza en Montreal.
-//     * - Visita un Banco (nuevamente):
-//     *   - Se despliega una pista
-//     * - Visita una Biblioteca:
-//     *   -Se despliega una pista.
-//     */
-//     @Test
-//    public void detectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
-//         assertEquals(1, 1);
-//    }
+    /**Caso de uso 2
+     * - Detective novato comienza en Montreal.
+     * - Visita un Banco (nuevamente):
+     *   - Se despliega una pista
+     * - Visita una Biblioteca:
+     *   -Se despliega una pista.
+     */
+
+    @Test
+    public void detectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
+        Ciudad ciudad = new Ciudad("Montreal");
+        Rango rango = new Novato();
+        Detective detective = new Detective(ciudad, rango);
+
+        Pista pista1 = Facil("Un string");
+        Pista pista2 = Facil("Otro string");
+
+        Testigo testigo1 = new Testigo(pista1);
+        Testigo testigo2 = new Testigo(pista2);
+
+        Edificio banco = new Edificio(testigo1);
+        Edificio biblioteca = new Edificio(testigo2);
+
+        ciudad.añadirEdificio(banco);
+        ciudad.añadirEdificio(biblioteca);
+
+        detective.visitar("Banco");
+        detective.visitar("Biblioteca");
+        assert(true);
+    }
 
 //    /**Caso de uso 3
 //     * - Detective viaja de Montreal a México
