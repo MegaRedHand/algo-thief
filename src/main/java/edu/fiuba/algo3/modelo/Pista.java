@@ -4,6 +4,7 @@ public class Pista {
     public String descripcion;
 
     public Pista(String descripcion) {
+
         this.descripcion = descripcion;
     }
 }

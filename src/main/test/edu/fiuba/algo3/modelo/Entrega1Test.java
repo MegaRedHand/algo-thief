@@ -19,12 +19,14 @@ public class Entrega1Test {
     public void test01detectiveNovatoEmpiezaEnMontrealYAlVisitarBancoDespliegaUnaPista() {
 
         Rango rango = new Novato();
-        Detective detective = new Detective(rango);
-        Banco banco = new Banco("Banco Nacional");
+        Comun objeto = new Comun("Tesoro Nacional de Montreal");
+        Ladron ladron = new Ladron(objeto,"F");
+        Facil pista = new Facil("esta es la pista");
+        Banco banco = new Banco("Banco Nacional", pista);
         Ciudad ciudad = new Ciudad("Montreal", banco);
-        detective.cambiarCiudad(ciudad);
-        detective.visitar(banco);
 
+        Detective detective = new Detective(ciudad, rango);
+        assertEquals(pista, detective.visitar(banco));
     }
 
     /**Caso de uso 2
@@ -35,6 +37,7 @@ public class Entrega1Test {
      *   -Se despliega una pista.
      */
 
+        /*
     @Test
     public void detectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
         Ciudad ciudad = new Ciudad("Montreal");
@@ -57,6 +60,8 @@ public class Entrega1Test {
         detective.visitar("Biblioteca");
         assert(true);
     }
+
+         */
 
 //    /**Caso de uso 3
 //     * - Detective viaja de Montreal a México

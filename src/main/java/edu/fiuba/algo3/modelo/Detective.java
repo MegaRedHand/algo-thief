@@ -9,8 +9,10 @@ public class Detective {
         this.rango = rango;
     }
 
-    public void visitar(String nombreEdificio, InterfazDeUsuario interfaz) {
-        interfaz.desplegar();
-        rango.visitarEdificio(nombreEdificio);
+    public Pista visitar(Banco banco) {
+        return banco.obtenerPista();
+    }
+
+    public void cambiarCiudad(Ciudad ciudad) {
     }
 }
