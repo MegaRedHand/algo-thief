@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 public class Banco {
-
+    /*
     private String nombre ;
     private Pista pista;
 
@@ -14,4 +14,6 @@ public class Banco {
     public Pista obtenerPista() {
         return pista;
     }
+
+     */
 }

@@ -9,7 +9,7 @@ public class Detective {
         this.rango = rango;
     }
 
-    public Pista visitar(Banco banco) {
+    public Pista visitar(Edificio banco) {
         return banco.obtenerPista();
     }
 

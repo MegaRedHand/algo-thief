@@ -3,6 +3,9 @@ package edu.fiuba.algo3.modelo;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -22,8 +25,10 @@ public class Entrega1Test {
         Comun objeto = new Comun("Tesoro Nacional de Montreal");
         Ladron ladron = new Ladron(objeto,"F");
         Facil pista = new Facil("esta es la pista");
-        Banco banco = new Banco("Banco Nacional", pista);
-        Ciudad ciudad = new Ciudad("Montreal", banco);
+        List<Edificio> edificios = new ArrayList<>();
+        Edificio banco = new Edificio("Banco Nacional", pista);
+        edificios.add(banco);
+        Ciudad ciudad = new Ciudad("Montreal",edificios );
 
         Detective detective = new Detective(ciudad, rango);
         assertEquals(pista, detective.visitar(banco));
@@ -37,31 +42,24 @@ public class Entrega1Test {
      *   -Se despliega una pista.
      */
 
-        /*
-    @Test
-    public void detectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
-        Ciudad ciudad = new Ciudad("Montreal");
+
+    @Test public void test02detectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
         Rango rango = new Novato();
+
+        Facil pistaBanco = new Facil("esta es la pista del banco");
+        Facil pistaBiblioteca = new Facil("esta es la pista del biblioteca");
+        List<Edificio> edificios = new ArrayList<>();
+        Edificio banco = new Edificio("Banco Nacional", pistaBanco);
+        Edificio biblioteca = new Edificio("Biblioteca de Montreal", pistaBiblioteca);
+        edificios.add(banco);
+        edificios.add(biblioteca);
+        Ciudad ciudad = new Ciudad("Montreal", edificios);
+
         Detective detective = new Detective(ciudad, rango);
-
-        Pista pista1 = Facil("Un string");
-        Pista pista2 = Facil("Otro string");
-
-        Testigo testigo1 = new Testigo(pista1);
-        Testigo testigo2 = new Testigo(pista2);
-
-        Edificio banco = new Edificio(testigo1);
-        Edificio biblioteca = new Edificio(testigo2);
-
-        ciudad.añadirEdificio(banco);
-        ciudad.añadirEdificio(biblioteca);
-
-        detective.visitar("Banco");
-        detective.visitar("Biblioteca");
-        assert(true);
+        assertEquals(pistaBanco, detective.visitar(banco));
+        assertEquals(pistaBiblioteca, detective.visitar(biblioteca));
     }
 
-         */
 
 //    /**Caso de uso 3
 //     * - Detective viaja de Montreal a México

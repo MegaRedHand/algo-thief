@@ -1,16 +1,16 @@
 package edu.fiuba.algo3.modelo;
 
 public class Edificio {
-    /*
-    private Testigo testigo;
+    private String nombre ;
+    private Pista pista;
 
-    public Edificio(Testigo testigo) {
-        this.testigo = testigo;
+    public Edificio (String nombreEdificio, Pista pistaAsignada){
+        this.nombre = nombreEdificio;
+        this.pista = pistaAsignada;
     }
 
-    public void visitar() {
-        testigo.desplegarPista();
-    }
 
-     */
+    public Pista obtenerPista() {
+        return pista;
+    }
 }
