@@ -61,13 +61,15 @@ public class Entrega1Test {
     }
 
 
-//    /**Caso de uso 3
-//     * - Detective viaja de Montreal a México
-//     */
-//    @Test
-//    public void detectiveViajaDeMontrealAMexico() {
-//        assertEquals(1, 1);
-//    }
+   /*
+    *Caso de uso 3
+    * - Detective viaja de Montreal a México
+    */
+   @Test
+    public void test03detectiveViajaDeMontrealAMexico() {
+
+
+}
 
 //    /**Caso de uso 4
 //     * - Visita un Aeropuerto (3 veces):
