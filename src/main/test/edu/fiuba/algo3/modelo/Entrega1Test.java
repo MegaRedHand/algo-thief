@@ -18,7 +18,7 @@ public class Entrega1Test {
     @Test
     public void test01DetectiveNovatoEmpiezaEnMontrealYAlVisitarBancoDespliegaUnaPista() {
 
-        Cronometro cronometro = mock(Cronometro.class);
+        Cronometro cronometro = new Cronometro();
         Rango rango = new Novato();
         Comun objeto = new Comun("Tesoro Nacional de Montreal");
         Ladron ladron = new Ladron(objeto,"F");
@@ -28,7 +28,9 @@ public class Entrega1Test {
         Ciudad montreal = new Ciudad("Montreal", banco);
 
         Detective detective = new Detective(cronometro, montreal, rango);
+
         assertEquals(pista, detective.visitar(banco));
+        assertEquals(1, cronometro.tiempo());
     }
 
 
@@ -39,9 +41,10 @@ public class Entrega1Test {
      * - Visita una Biblioteca:
      *   -Se despliega una pista.
      */
-    @Test public void test02DetectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
+    @Test
+    public void test02DetectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
 
-        Cronometro cronometro = mock(Cronometro.class);
+        Cronometro cronometro = new Cronometro();
         Rango rango = new Novato();
 
         Facil pistaBanco = new Facil("esta es la pista del banco");
@@ -56,6 +59,8 @@ public class Entrega1Test {
 
         assertEquals(pistaBanco, detective.visitar(banco));
         assertEquals(pistaBiblioteca, detective.visitar(biblioteca));
+
+        assertEquals(2, cronometro.tiempo());
     }
 
 
@@ -66,7 +71,7 @@ public class Entrega1Test {
     @Test
     public void test03DetectiveViajaDeMontrealAMexico() {
 
-        Cronometro cronometro = mock(Cronometro.class);
+        Cronometro cronometro = new Cronometro();
 
         Rango rango = new Novato();
 
@@ -77,7 +82,9 @@ public class Entrega1Test {
 
         detective.viajar(montreal);
 
-        verify(cronometro).restar(8);
+        int distanciaEntreCiudades = 3800; // km
+        int tiempoEsperado = distanciaEntreCiudades / 900 /*velocidad novato*/;
+        assertEquals(4, cronometro.tiempo());
     }
 
 
@@ -118,13 +125,24 @@ public class Entrega1Test {
         assertEquals(168, cronometro.tiempo());
     }
 
-//    /**Caso de uso 5
-//     * - Detective sufre una herida de cuchillo.
-//     * - Detective duerme.
-//     */
-//    @Test
-//    public void detectiveSufreHeridaDeCuchilloYDuerme() {
-//        assertEquals(1, 1);
-//    }
+    /**Caso de uso 5
+     * - Detective sufre una herida de cuchillo.
+     * - Detective duerme.
+     */
+    @Test
+    public void detectiveSufreHeridaDeCuchilloYDuerme() {
+        Cronometro cronometro = new Cronometro();
+
+        Rango rango = new Novato();
+
+        Ciudad montreal = new Ciudad("Montreal");
+
+        Detective detective = new Detective(cronometro, montreal, rango);
+
+        detective.recibirHeridaDeCuchillo();
+        detective.dormir();
+
+        assertEquals(10, cronometro.tiempo());
+    }
 
 }

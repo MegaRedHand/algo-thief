@@ -9,6 +9,7 @@ public class Detective {
     private Ciudad ciudadActual;
     private Rango rango;
     private final Map<Edificio, Integer> visitasPorEdificio = new HashMap<>();
+    private int cantidadDeHeridasDeCuchillo = 0;
 
     public Detective(Cronometro cronometro, Ciudad ciudad, Rango rango) {
         this.cronometro = cronometro;
@@ -26,7 +27,20 @@ public class Detective {
     }
 
     public void viajar(Ciudad ciudad) {
-        cronometro.restar(8);
+        cronometro.restar(rango.tiempoDeViaje(3800));
         ciudadActual = ciudad;
+    }
+
+    public void recibirHeridaDeCuchillo() {
+        if (cantidadDeHeridasDeCuchillo == 0) {
+            cronometro.restar(2);
+        } else {
+            cronometro.restar(1);
+        }
+        ++cantidadDeHeridasDeCuchillo;
+    }
+
+    public void dormir() {
+        cronometro.restar(8);
     }
 }

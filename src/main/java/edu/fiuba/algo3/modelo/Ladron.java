@@ -10,6 +10,4 @@ public class Ladron {
         this.genero = genero;
         this.objetoRobado = objetoRobado;
     }
-
-
 }

@@ -14,11 +14,8 @@ public class Ciudad {
         this.edificios = new ArrayList<>(List.of(edificios));
     }
 
-    /*
-    public void visitarEdificio (String nombreEdificio) {
-        Edificio edificio = self.buscarEdificio(nombreEdificio);
-        edificio.visitar();
+    public Edificio obtenerEdificio(String nombreEdificio) {
+        return edificios.stream().filter(e -> e.es(nombreEdificio)).findAny().orElseThrow();
     }
 
-     */
 }

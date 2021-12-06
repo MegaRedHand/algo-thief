@@ -13,4 +13,8 @@ public class Edificio {
     public Pista obtenerPista() {
         return pista;
     }
+
+    public boolean es(String nombreEdificio) {
+        return nombre.equals(nombreEdificio);
+    }
 }
