@@ -2,13 +2,13 @@ package edu.fiuba.algo3.modelo;
 
 public class Ladron {
 
-    private String genero;
-    private Comun objetoRobado;
+    private final String genero;
+    private final Comun objetoRobado;
 
-    public Ladron(Comun objeto, String genero) {
+    public Ladron(Comun objetoRobado, String genero) {
 
         this.genero = genero;
-        this.objetoRobado = objeto;
+        this.objetoRobado = objetoRobado;
     }
 
 

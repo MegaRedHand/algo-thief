@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
 public class Edificio {
-    private String nombre ;
-    private Pista pista;
+    private final String nombre ;
+    private final Pista pista;
 
-    public Edificio (String nombreEdificio, Pista pistaAsignada){
-        this.nombre = nombreEdificio;
-        this.pista = pistaAsignada;
+    public Edificio (String nombre, Pista pista) {
+        this.nombre = nombre;
+        this.pista = pista;
     }
 
 

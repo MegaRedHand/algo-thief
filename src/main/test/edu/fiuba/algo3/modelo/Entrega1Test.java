@@ -2,14 +2,12 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class Entrega1Test {
+
     /**Caso de uso 1
      * - Robaron el tesoro Nacional de Montreal.
      * - Sospechoso femenino.
@@ -24,15 +22,15 @@ public class Entrega1Test {
         Rango rango = new Novato();
         Comun objeto = new Comun("Tesoro Nacional de Montreal");
         Ladron ladron = new Ladron(objeto,"F");
-        Facil pista = new Facil("esta es la pista");
-        List<Edificio> edificios = new ArrayList<>();
-        Edificio banco = new Edificio("Banco Nacional", pista);
-        edificios.add(banco);
-        Ciudad ciudad = new Ciudad("Montreal",edificios );
 
-        Detective detective = new Detective(cronometro, ciudad, rango);
+        Facil pista = new Facil("esta es la pista");
+        Edificio banco = new Edificio("Banco Nacional", pista);
+        Ciudad montreal = new Ciudad("Montreal", banco);
+
+        Detective detective = new Detective(cronometro, montreal, rango);
         assertEquals(pista, detective.visitar(banco));
     }
+
 
     /**Caso de uso 2
      * - Detective novato comienza en Montreal.
@@ -48,14 +46,14 @@ public class Entrega1Test {
 
         Facil pistaBanco = new Facil("esta es la pista del banco");
         Facil pistaBiblioteca = new Facil("esta es la pista del biblioteca");
-        List<Edificio> edificios = new ArrayList<>();
+
         Edificio banco = new Edificio("Banco Nacional", pistaBanco);
         Edificio biblioteca = new Edificio("Biblioteca de Montreal", pistaBiblioteca);
-        edificios.add(banco);
-        edificios.add(biblioteca);
-        Ciudad ciudad = new Ciudad("Montreal", edificios);
 
-        Detective detective = new Detective(cronometro, ciudad, rango);
+        Ciudad montreal = new Ciudad("Montreal", banco, biblioteca);
+
+        Detective detective = new Detective(cronometro, montreal, rango);
+
         assertEquals(pistaBanco, detective.visitar(banco));
         assertEquals(pistaBiblioteca, detective.visitar(biblioteca));
     }
@@ -72,8 +70,8 @@ public class Entrega1Test {
 
         Rango rango = new Novato();
 
-        Ciudad montreal = new Ciudad("Montreal", new ArrayList<>());
-        Ciudad mexico = new Ciudad("México", new ArrayList<>());
+        Ciudad montreal = new Ciudad("Montreal");
+        Ciudad mexico = new Ciudad("México");
 
         Detective detective = new Detective(cronometro, montreal, rango);
 
@@ -81,6 +79,7 @@ public class Entrega1Test {
 
         verify(cronometro).restar(8);
     }
+
 
     /**Caso de uso 4
      * - Visita un Aeropuerto (3 veces):
@@ -96,13 +95,12 @@ public class Entrega1Test {
         Rango rango = new Novato();
 
         Facil pistaAeropuerto = new Facil("esta es la pista del aeropuerto");
-        Facil pistaPuerto = new Facil("esta es la pista de la biblioteca pero en el puerto (?)");
-        List<Edificio> edificios = new ArrayList<>();
+        Facil pistaPuerto = new Facil("esta es la pista del puerto");
+
         Edificio aeropuerto = new Edificio("Banco Nacional", pistaAeropuerto);
         Edificio puerto = new Edificio("Biblioteca de Montreal", pistaPuerto);
-        edificios.add(aeropuerto);
-        edificios.add(puerto);
-        Ciudad montreal = new Ciudad("Montreal", edificios);
+
+        Ciudad montreal = new Ciudad("Montreal", aeropuerto, puerto);
 
         Detective detective = new Detective(cronometro, montreal, rango);
 

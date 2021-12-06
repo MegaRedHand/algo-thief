@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Ciudad {
 
-    private List<Edificio> edificios = new ArrayList<>();
-    private String nombre;
+    private final String nombre;
+    private final List<Edificio> edificios;
 
-    public Ciudad(String nombre, List<Edificio> edificiosRecibidos ) {
+    public Ciudad(String nombre, Edificio... edificios) {
 
         this.nombre = nombre;
-        this.edificios = edificiosRecibidos;
+        this.edificios = new ArrayList<>(List.of(edificios));
     }
 
     /*

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Detective {
+
     private final Cronometro cronometro;
     private Ciudad ciudadActual;
     private Rango rango;
