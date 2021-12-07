@@ -18,7 +18,6 @@ public class Detective {
     }
 
     public Pista visitar(Edificio edificio) {
-
         int cantidadDeVisitas = visitasPorEdificio.getOrDefault(edificio, 0) + 1;
         visitasPorEdificio.put(edificio, cantidadDeVisitas);
         int horas = Integer.min(cantidadDeVisitas, 3);
