@@ -1,0 +1,53 @@
+@startuml
+
+title "Detective Al Visitar Aeropuerto Se Despliega Pista Y Al Visitar Puerto Se Despliega Pista"
+
+participant ":TestCase" as testcase
+participant ":Cronometro" as crono
+participant "novato:Rango" as rango
+
+participant "PistaAereopuerto:Facil" as pistaAeropuerto
+participant "PistaPuerto:Facil" as pistaPuerto
+
+participant "Aereopuerto: Edificio" as aereopuerto
+participant "Puerto: Edificio" as puerto
+
+participant "Montreal: Ciudad" as ciudad
+participant ":Detective" as detective
+
+testcase -> crono: new Cronometro()
+    activate crono
+testcase -> rango: new Rango()
+    activate rango
+testcase -> pistaAeropuerto: new Facil()
+    activate pistaAeropuerto
+testcase -> pistaPuerto: new Facil()
+    activate pistaPuerto
+testcase -> aereopuerto: new Edificio("aereopuerto")
+    activate aereopuerto
+testcase -> puerto: new Edificio("puerto")
+    activate puerto
+testcase -> ciudad: new Ciudad("montreal,aereopuerto, puerto)
+    activate ciudad
+testcase -> detective: new Detective(cronometro, Montreal, novato)
+    activate detective
+loop 2 times
+    testcase -> detective: visitar(aeropuerto)
+        detective -> crono: restar(2)
+            detective -> aereopuerto: obtenerPista()
+            detective <- aereopuerto: una pista
+end
+loop 54 times
+    testcase -> ciudad: visitar(aeropuerto)
+        detective -> crono: restar(2)
+            detective -> puerto: obtenerPista()
+            detective <- puerto: una pista
+end
+
+testcase -> testcase: assertEquals(pistaAeropuerto, detective.visitar(aereopuerto))
+testcase -> testcase: assertEquals(pistaAeropuerto, detective.visitar(puerto))
+testcase-> testcase: assertEquals(168, cronometro.tiempo())
+
+
+
+@enduml
