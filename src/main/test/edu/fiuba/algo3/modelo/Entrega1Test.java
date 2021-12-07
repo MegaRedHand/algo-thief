@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,7 +8,45 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class Entrega1Test {
+    Cronometro cronometro;
+    Rango rango;
+    Comun objeto;
+    Ladron ladron;
 
+    Facil pistaBanco;
+    Facil pistaBiblioteca;
+    Facil pistaAeropuerto;
+    Facil pistaPuerto;
+
+    Edificio banco;
+    Edificio biblioteca;
+    Edificio aeropuerto;
+    Edificio puerto;
+
+    Ciudad montreal;
+    Ciudad mexico;
+
+
+    @BeforeEach
+    void setUp() {
+        cronometro = new Cronometro();
+        rango = new Novato();
+        objeto = new Comun("Tesoro Nacional de Montreal");
+        ladron = new Ladron(objeto,"F");
+
+        pistaBanco = new Facil("esta es la pista del banco");
+        pistaBiblioteca = new Facil("esta es la pista del biblioteca");
+        pistaAeropuerto = new Facil("pista del aeropuerto");
+        pistaPuerto = new Facil("pista del puerto");
+
+        banco = new Edificio("Banco Nacional", pistaBanco);
+        biblioteca = new Edificio("Biblioteca de Montreal", pistaBiblioteca);
+        aeropuerto = new Edificio("Banco Nacional", pistaAeropuerto);
+        puerto = new Edificio("Biblioteca de Montreal", pistaPuerto);
+
+        montreal = new Ciudad("Montreal", banco, biblioteca);
+        mexico = new Ciudad("México", aeropuerto, puerto);
+    }
     /**Caso de uso 1
      * - Robaron el tesoro Nacional de Montreal.
      * - Sospechoso femenino.
@@ -18,18 +57,9 @@ public class Entrega1Test {
     @Test
     public void test01DetectiveNovatoEmpiezaEnMontrealYAlVisitarBancoDespliegaUnaPista() {
 
-        Cronometro cronometro = new Cronometro();
-        Rango rango = new Novato();
-        Comun objeto = new Comun("Tesoro Nacional de Montreal");
-        Ladron ladron = new Ladron(objeto,"F");
-
-        Facil pista = new Facil("esta es la pista");
-        Edificio banco = new Edificio("Banco Nacional", pista);
-        Ciudad montreal = new Ciudad("Montreal", banco);
-
         Detective detective = new Detective(cronometro, montreal, rango);
 
-        assertEquals(pista, detective.visitar(banco));
+        assertEquals(pistaBanco, detective.visitar(banco));
         assertEquals(1, cronometro.tiempo());
     }
 
@@ -43,17 +73,6 @@ public class Entrega1Test {
      */
     @Test
     public void test02DetectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
-
-        Cronometro cronometro = new Cronometro();
-        Rango rango = new Novato();
-
-        Facil pistaBanco = new Facil("esta es la pista del banco");
-        Facil pistaBiblioteca = new Facil("esta es la pista del biblioteca");
-
-        Edificio banco = new Edificio("Banco Nacional", pistaBanco);
-        Edificio biblioteca = new Edificio("Biblioteca de Montreal", pistaBiblioteca);
-
-        Ciudad montreal = new Ciudad("Montreal", banco, biblioteca);
 
         Detective detective = new Detective(cronometro, montreal, rango);
 
@@ -71,20 +90,13 @@ public class Entrega1Test {
     @Test
     public void test03DetectiveViajaDeMontrealAMexico() {
 
-        Cronometro cronometro = new Cronometro();
-
-        Rango rango = new Novato();
-
-        Ciudad montreal = new Ciudad("Montreal");
-        Ciudad mexico = new Ciudad("México");
-
         Detective detective = new Detective(cronometro, montreal, rango);
 
-        detective.viajar(montreal);
+        detective.viajar(mexico);
 
         int distanciaEntreCiudades = 3800; // km
         int tiempoEsperado = distanciaEntreCiudades / 900 /*velocidad novato*/;
-        assertEquals(4, cronometro.tiempo());
+        assertEquals(tiempoEsperado, cronometro.tiempo());
     }
 
 
@@ -97,19 +109,7 @@ public class Entrega1Test {
     @Test
     public void test04DetectiveAlVisitaAeropuertoSeDespliegaPistaYAlVisitarPuertoSeDespliegaPista() {
 
-        Cronometro cronometro = new Cronometro();
-
-        Rango rango = new Novato();
-
-        Facil pistaAeropuerto = new Facil("esta es la pista del aeropuerto");
-        Facil pistaPuerto = new Facil("esta es la pista del puerto");
-
-        Edificio aeropuerto = new Edificio("Banco Nacional", pistaAeropuerto);
-        Edificio puerto = new Edificio("Biblioteca de Montreal", pistaPuerto);
-
-        Ciudad montreal = new Ciudad("Montreal", aeropuerto, puerto);
-
-        Detective detective = new Detective(cronometro, montreal, rango);
+        Detective detective = new Detective(cronometro, mexico, rango);
 
         for (int i = 0; i < 2; i++) {
             detective.visitar(aeropuerto);
@@ -131,18 +131,12 @@ public class Entrega1Test {
      */
     @Test
     public void detectiveSufreHeridaDeCuchilloYDuerme() {
-        Cronometro cronometro = new Cronometro();
 
-        Rango rango = new Novato();
-
-        Ciudad montreal = new Ciudad("Montreal");
-
-        Detective detective = new Detective(cronometro, montreal, rango);
+        Detective detective = new Detective(cronometro, mexico, rango);
 
         detective.recibirHeridaDeCuchillo();
         detective.dormir();
 
         assertEquals(10, cronometro.tiempo());
     }
-
 }
