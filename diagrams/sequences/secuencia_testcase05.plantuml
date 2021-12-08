@@ -5,21 +5,36 @@ title "Detective sufre herida de cuchillo"
 participant ":TestCase" as testcase
 participant ":Cronometro" as crono
 participant "novato:Rango" as rango
-participant "Montreal:Ciudad" as ciudad
+participant "montreal:Ciudad" as ciudad
 participant ":Detective" as detective
 
-testcase -> crono: new Cronometro()
-    activate crono
-testcase -> rango: new novato()
-    activate rango
-testcase -> ciudad: new ciudad("Montreal")
-    activate ciudad
-testcase -> detective: new detective(cronometro,Montreal, novato)
+activate testcase
+create crono
+testcase -> crono: <<create>> Cronometro()
+create rango
+testcase -> rango: <<create>> novato()
+create ciudad
+testcase -> ciudad: <<create>> ciudad("Montreal")
+create detective
+testcase -> detective: <<create>> Detective(cronometro,Montreal, novato)
+
+testcase -> detective: recibirHeridaDeCuchillo()
     activate detective
-detective -> detective: recibirHeridaDeCuchillo()
-detective -> crono: restar(2)
-detective -> detective: dormir()
-testcase -> testcase: assertEquals(10, cronometro.tiempo())
+    detective -> crono: restar(2)
+    deactivate detective
+
+testcase -> detective: dormir()
+    activate detective
+    detective -> crono: restar(8)
+    deactivate detective
+
+testcase -> crono: tiempo()
+    activate crono
+    return tiempo
+
+testcase -> testcase: assertEquals(10, tiempo)
+activate testcase
+deactivate testcase
 
 
 @enduml

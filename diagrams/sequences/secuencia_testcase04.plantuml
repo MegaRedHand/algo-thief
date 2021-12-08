@@ -3,51 +3,65 @@
 title "Detective Al Visitar Aeropuerto Se Despliega Pista Y Al Visitar Puerto Se Despliega Pista"
 
 participant ":TestCase" as testcase
+participant ":Detective" as detective
+participant "Puerto:Edificio" as puerto
+participant "Aeropuerto\n:Edificio" as aeropuerto
 participant ":Cronometro" as crono
 participant "novato:Rango" as rango
+participant "PistaAeropuerto\n:Facil" as pistaAeropuerto
+participant "PistaPuerto\n:Facil" as pistaPuerto
+participant "Montreal:Ciudad" as ciudad
 
-participant "PistaAereopuerto:Facil" as pistaAeropuerto
-participant "PistaPuerto:Facil" as pistaPuerto
+activate testcase
+create crono
+testcase -> crono: <<create>> Cronometro()
+create rango
+testcase -> rango: <<create>> Rango()
+create pistaAeropuerto
+testcase -> pistaAeropuerto: <<create>> Facil(descripcion)
+create pistaPuerto
+testcase -> pistaPuerto: <<create>> Facil(descripcion)
+create aeropuerto
+testcase -> aeropuerto: <<create>> Edificio("aeropuerto")
+create puerto
+testcase -> puerto: <<create>> Edificio("puerto")
+create ciudad
+testcase -> ciudad: <<create>> Ciudad("Montreal", aeropuerto, puerto)
+create detective
+testcase -> detective: <<create>> Detective(cronometro, montreal, novato)
 
-participant "Aereopuerto: Edificio" as aereopuerto
-participant "Puerto: Edificio" as puerto
 
-participant "Montreal: Ciudad" as ciudad
-participant ":Detective" as detective
-
-testcase -> crono: new Cronometro()
-    activate crono
-testcase -> rango: new Rango()
-    activate rango
-testcase -> pistaAeropuerto: new Facil()
-    activate pistaAeropuerto
-testcase -> pistaPuerto: new Facil()
-    activate pistaPuerto
-testcase -> aereopuerto: new Edificio("aereopuerto")
-    activate aereopuerto
-testcase -> puerto: new Edificio("puerto")
-    activate puerto
-testcase -> ciudad: new Ciudad("montreal,aereopuerto, puerto)
-    activate ciudad
-testcase -> detective: new Detective(cronometro, Montreal, novato)
-    activate detective
-loop 2 times
+loop 3 times
     testcase -> detective: visitar(aeropuerto)
-        detective -> crono: restar(2)
-            detective -> aereopuerto: obtenerPista()
-            detective <- aereopuerto: una pista
-end
-loop 54 times
-    testcase -> ciudad: visitar(aeropuerto)
-        detective -> crono: restar(2)
-            detective -> puerto: obtenerPista()
-            detective <- puerto: una pista
+        activate detective
+        detective -> crono: restar(tiempo)
+        detective -> aeropuerto: obtenerPista()
+            activate aeropuerto
+            return pistaDevueltaAeropuerto
+        return pistaDevueltaAeropuerto
 end
 
-testcase -> testcase: assertEquals(pistaAeropuerto, detective.visitar(aereopuerto))
-testcase -> testcase: assertEquals(pistaAeropuerto, detective.visitar(puerto))
+loop 55 times
+    testcase -> detective: visitar(puerto)
+        activate detective
+        detective -> crono: restar(tiempo)
+        detective -> puerto: obtenerPista()
+            activate puerto
+            return pistaDevueltaPuerto
+        return pistaDevueltaPuerto
+end
+
+
+testcase -> testcase: assertEquals(pistaAeropuerto, pistaDevueltaAeropuerto)
+activate testcase
+deactivate testcase
+
+testcase -> testcase: assertEquals(pistaPuerto, pistaDevueltaPuerto)
+activate testcase
+deactivate testcase
+
 testcase-> testcase: assertEquals(168, cronometro.tiempo())
-
-
+activate testcase
+deactivate testcase
 
 @enduml
