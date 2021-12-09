@@ -6,11 +6,11 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo 8
 
-* **Alan Nicolas Toulouse** - [alant7799](https://github.com/alant7799)
 * **Camila Codina** - [camicodina](https://github.com/camicodina)
-* **Lucía Lourengo Caridade** - [LuLourengo](https://github.com/LuLourengo)
-* **Santiago Vaccarelli** - [SantiagoVaccarelli](https://github.com/SantiagoVaccarelli)
 * **Tomás Grüner** - [MegaRedHand](https://github.com/MegaRedHand)
+* **Lucía Lourengo Caridade** - [LuLourengo](https://github.com/LuLourengo)
+* **Alan Nicolas Toulouse** - [alant7799](https://github.com/alant7799)
+* **Santiago Vaccarelli** - [SantiagoVaccarelli](https://github.com/SantiagoVaccarelli)
 
 Corrector: **Maia**
 
