@@ -10,13 +10,13 @@ participant ":Detective" as detective
 
 activate testcase
 create crono
-testcase -> crono: <<create>> Cronometro()
+testcase ->> crono: <<create>>\n Cronometro()
 create rango
-testcase -> rango: <<create>> novato()
+testcase ->> rango: <<create>>\n novato()
 create ciudad
-testcase -> ciudad: <<create>> ciudad("Montreal")
+testcase ->> ciudad: <<create>>\n ciudad("Montreal")
 create detective
-testcase -> detective: <<create>> Detective(cronometro,Montreal, novato)
+testcase ->> detective: <<create>>\n Detective(cronometro,Montreal, novato)
 
 testcase -> detective: recibirHeridaDeCuchillo()
     activate detective

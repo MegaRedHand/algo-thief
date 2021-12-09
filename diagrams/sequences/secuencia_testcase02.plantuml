@@ -14,21 +14,21 @@ participant "montreal:Ciudad" as montreal
 
 activate testcase
 create cron
-testcase -> cron: <<create>> Cronometro()
+testcase ->> cron: <<create>>\n Cronometro()
 create novato
-testcase -> novato: <<create>> Novato()
+testcase ->> novato: <<create>>\n Novato()
 create pistaBanco
-testcase -> pistaBanco: <<create>> Facil("esta es la pista del banco")
+testcase ->> pistaBanco: <<create>>\n Facil("esta es la pista del banco")
 create pistaBiblioteca
-testcase -> pistaBiblioteca: <<create>> Facil("esta es la pista de la biblioteca")
+testcase ->> pistaBiblioteca: <<create>>\n Facil("esta es la pista de la biblioteca")
 create banco
-testcase -> banco: <<create>> Edificio("Banco Nacional", pistaBanco)
+testcase ->> banco: <<create>>\n Edificio("Banco Nacional", pistaBanco)
 create biblioteca
-testcase -> biblioteca: <<create>> Edificio("Biblioteca de Montreal", pistaBiblioteca)
+testcase ->> biblioteca: <<create>>\n Edificio("Biblioteca de Montreal", pistaBiblioteca)
 create montreal
-testcase -> montreal: <<create>> Ciudad("Montreal", banco, biblioteca)
+testcase ->> montreal: <<create>>\n Ciudad("Montreal", banco, biblioteca)
 create detective
-testcase -> detective: <<create>> Detective(cronometro, montreal, novato)
+testcase ->> detective: <<create>>\n Detective(cronometro, montreal, novato)
 
 testcase -> detective: visitar(banco)
     activate detective

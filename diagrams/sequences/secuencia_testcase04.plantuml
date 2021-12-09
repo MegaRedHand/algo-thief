@@ -14,21 +14,21 @@ participant "Montreal:Ciudad" as ciudad
 
 activate testcase
 create crono
-testcase -> crono: <<create>> Cronometro()
+testcase ->> crono: <<create>>\n Cronometro()
 create rango
-testcase -> rango: <<create>> Rango()
+testcase ->> rango: <<create>>\n Rango()
 create pistaAeropuerto
-testcase -> pistaAeropuerto: <<create>> Facil(descripcion)
+testcase ->> pistaAeropuerto: <<create>>\n Facil(descripcion)
 create pistaPuerto
-testcase -> pistaPuerto: <<create>> Facil(descripcion)
+testcase ->> pistaPuerto: <<create>>\n Facil(descripcion)
 create aeropuerto
-testcase -> aeropuerto: <<create>> Edificio("aeropuerto")
+testcase ->> aeropuerto: <<create>>\n Edificio("aeropuerto")
 create puerto
-testcase -> puerto: <<create>> Edificio("puerto")
+testcase ->> puerto: <<create>>\n Edificio("puerto")
 create ciudad
-testcase -> ciudad: <<create>> Ciudad("Montreal", aeropuerto, puerto)
+testcase ->> ciudad: <<create>>\n Ciudad("Montreal", aeropuerto, puerto)
 create detective
-testcase -> detective: <<create>> Detective(cronometro, montreal, novato)
+testcase ->> detective: <<create>>\n Detective(cronometro, montreal, novato)
 
 
 loop 3 times

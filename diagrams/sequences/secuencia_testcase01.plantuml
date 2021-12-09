@@ -14,21 +14,21 @@ participant ":Ladron" as ladron
 
 activate testcase
 create cron
-testcase -> cron: <<create>> Cronometro()
+testcase ->> cron: <<create>>\n Cronometro()
 create novato
-testcase -> novato: <<create>> Novato()
+testcase ->> novato: <<create>>\n Novato()
 create objeto
-testcase -> objeto: <<create>> Comun("Tesoro Nacional")
+testcase ->> objeto: <<create>>\n Comun("Tesoro Nacional")
 create ladron
-testcase -> ladron: <<create>> Ladron(objeto, "F")
+testcase ->> ladron: <<create>>\n Ladron(objeto, "F")
 create pista
-testcase -> pista: <<create>> Facil("esta es la pista")
+testcase ->> pista: <<create>>\n Facil("esta es la pista")
 create edificio
-testcase -> edificio: <<create>> Edificio("Banco Nacional", pista)
+testcase ->> edificio: <<create>>\n Edificio("Banco Nacional", pista)
 create montreal
-testcase -> montreal: <<create>> Ciudad("Montreal", banco)
+testcase ->> montreal: <<create>>\n Ciudad("Montreal", banco)
 create detective
-testcase -> detective: <<create>> Detective(cronometro, montreal, novato)
+testcase ->> detective: <<create>>\n Detective(cronometro, montreal, novato)
 
 testcase -> detective: visitar(banco)
     activate detective
