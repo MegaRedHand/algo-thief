@@ -1,0 +1,40 @@
+@startuml
+
+title "Caso de uso 3"
+
+participant ":Testcase3" as testcase
+participant "cronometro\n:Cronometro" as cron
+participant "novato:Novato" as novato
+participant "montreal:Ciudad" as montreal
+participant "mexico:Ciudad" as mexico
+participant ":Detective" as detective
+
+activate testcase
+create cron
+testcase ->> cron: <<create>>\n Cronometro()
+create novato
+testcase ->> novato: <<create>>\n Novato()
+create montreal
+testcase ->> montreal: <<create>>\n Ciudad("Montreal")
+create mexico
+testcase ->> mexico: <<create>>\n Ciudad("Mexico")
+create detective
+testcase ->> detective: <<create>>\n Detective(cronometro, montreal, novato)
+
+testcase -> detective: viajar(mexico)
+    activate detective
+    detective -> novato: tiempoDeViaje(distancia)
+        activate novato
+        return 3800 / 900
+    detective -> cron: restar(4)
+    deactivate detective
+
+testcase -> cron: tiempo()
+    activate cron
+    return horas
+
+testcase -> testcase: assertEquals(4, horas)
+activate testcase
+deactivate testcase
+
+@enduml

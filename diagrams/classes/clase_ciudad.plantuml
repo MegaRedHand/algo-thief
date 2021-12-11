@@ -8,15 +8,13 @@ class Testigo {
     + pistas: List<Pista>
 }
 
-interface Edificio {
-    + {abstract}obtenerPistaFacil(): Pista
-    + {abstract}obtenerPistaMedia(): Pista
-    + {abstract}obtenerPistaDificil(): Pista
+class Edificio {
+    +
 }
 
-class Banco implements Edificio
-class Museo implements Edificio
-class Puerto implements Edificio
+'class Banco implements Edificio
+'class Museo implements Edificio
+'class Puerto implements Edificio
 
 Ciudad "1" --> "1..*" Edificio
 Edificio -> Testigo

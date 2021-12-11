@@ -1,0 +1,8 @@
+@startuml
+
+!include clase_algothief.plantuml
+!include clase_pista.plantuml
+!include clase_ladron.plantuml
+!include clase_policia.plantuml
+
+@enduml

@@ -1,6 +1,8 @@
 @startuml
 
-class Ladron
+class Ladron {
+    - genero: String
+}
 
 interface ObjetoRobado
 

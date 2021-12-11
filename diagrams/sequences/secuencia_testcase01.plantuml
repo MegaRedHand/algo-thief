@@ -1,0 +1,53 @@
+@startuml
+
+title "Caso de uso 1"
+
+participant ":Testcase1" as testcase
+participant "cronometro:Cronometro" as cron
+participant "novato:Novato" as novato
+participant "pista:Facil" as pista
+participant "banco:Edificio" as edificio
+participant "montreal:Ciudad" as montreal
+participant ":Detective" as detective
+participant "objeto:Comun" as objeto
+participant ":Ladron" as ladron
+
+activate testcase
+create cron
+testcase ->> cron: <<create>>\n Cronometro()
+create novato
+testcase ->> novato: <<create>>\n Novato()
+create objeto
+testcase ->> objeto: <<create>>\n Comun("Tesoro Nacional")
+create ladron
+testcase ->> ladron: <<create>>\n Ladron(objeto, "F")
+create pista
+testcase ->> pista: <<create>>\n Facil("esta es la pista")
+create edificio
+testcase ->> edificio: <<create>>\n Edificio("Banco Nacional", pista)
+create montreal
+testcase ->> montreal: <<create>>\n Ciudad("Montreal", banco)
+create detective
+testcase ->> detective: <<create>>\n Detective(cronometro, montreal, novato)
+
+testcase -> detective: visitar(banco)
+    activate detective
+        detective -> cron: restar(horas)
+        detective -> edificio: obtenerPista()
+            activate edificio
+            return pistaDevuelta
+    return pistaDevuelta
+
+testcase -> testcase: assertEquals(pista, pistaDevuelta)
+activate testcase
+deactivate testcase
+
+testcase -> cron: tiempo()
+    activate cron
+    return horas
+
+testcase -> testcase: assertEquals(1, horas)
+activate testcase
+deactivate testcase
+
+@enduml

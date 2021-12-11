@@ -1,12 +1,22 @@
 @startuml
 
-class Testigo
-
-abstract class Pista {
-    + origen: Ciudad
+class Ciudad {
+    + obtenerEdificio(nombre: String): Edificio
 }
 
-Testigo "1" --> "1..*" Pista
+
+class Edificio {
+    + es(nombreEdificio: String) : boolean
+    + obtenerPista(): Pista
+}
+
+Ciudad "1" --> "*" Edificio
+
+abstract class Pista {
+    - Descripcion: String
+}
+
+Edificio "1" --> "1" Pista
 
 class Facil extends Pista
 class Media extends Pista
