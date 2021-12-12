@@ -9,7 +9,6 @@ public class Edificio {
         this.pista = pista;
     }
 
-
     public Pista obtenerPista() {
         return pista;
     }
