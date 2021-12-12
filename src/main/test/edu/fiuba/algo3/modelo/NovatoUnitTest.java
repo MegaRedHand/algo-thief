@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class NovatoTest {
+public class NovatoUnitTest {
 
     @Test
     public void test01TiempoDeViajePara3800kmsEsCorrecta() {

@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Detective {
+public class Detective {  // TODO: cambiar nombre a Policía (hay un rango Detective)
 
     private final Cronometro cronometro;
     private Ciudad ciudadActual;
@@ -14,7 +14,7 @@ public class Detective {
     public Detective(Cronometro cronometro, Ciudad ciudad, Rango rango) {
         this.cronometro = cronometro;
         this.ciudadActual = ciudad;
-        this.rango = rango;
+        this.rango = rango; // TODO: debería recibir un ContadorDeDificultad
     }
 
     public Pista visitar(Edificio edificio) {
@@ -46,4 +46,5 @@ public class Detective {
     public Pista visitar(String nombreEdificio) {
         return this.visitar(ciudadActual.obtenerEdificio(nombreEdificio));
     }
+
 }

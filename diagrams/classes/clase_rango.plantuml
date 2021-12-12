@@ -1,0 +1,39 @@
+@startuml
+
+class Detective {
+    + registrarArresto()
+}
+
+class ContadorDeDificultad {
+    - cantidadDeArrestos : int
+    + registrarArresto()
+}
+
+Detective o- ContadorDeDificultad
+ContadorDeDificultad o- Rango
+
+interface Rango {
+    + {abstract}tiempoParaViaje(kms: int): int
+    + {abstract}actualizar(cantidadDeArrestos: int): Rango
+}
+
+class Novato implements Rango
+class DetectiveRango implements Rango
+class Investigador implements Rango
+class Sargento implements Rango
+
+Novato -> DetectiveRango
+DetectiveRango -> Investigador
+Investigador -> Sargento
+
+note right of Rango::actualizar
+// para el caso de Novato
+actualizar(cantidadDeArrestos) {
+    if (arrestos >= 5) {
+        return siguiente();
+    }
+    return this;
+}
+end note
+
+@enduml

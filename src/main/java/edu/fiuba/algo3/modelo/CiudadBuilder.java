@@ -15,11 +15,12 @@ public class CiudadBuilder {
 
     public CiudadBuilder yEdificios(String nombreEdificio) {
         Pista pista = new Facil("Descripción de la pista");
-        edificiosDeLaCiudad.add(new Edificio(nombreEdificio, pista)); // TODO: generar pista
+        edificiosDeLaCiudad.add(new Edificio(nombreEdificio, pista));
         return this;
     }
 
     public Ciudad construir() {
+        // TODO: generar pista
         return new Ciudad(nombreCiudad, edificiosDeLaCiudad);
     }
 }
