@@ -7,14 +7,14 @@ public class Detective {  // TODO: cambiar nombre a Policía (hay un rango Detec
 
     private final Cronometro cronometro;
     private Ciudad ciudadActual;
-    private Rango rango;
+    private final ContadorDeDificultad contador;
     private final Map<Edificio, Integer> visitasPorEdificio = new HashMap<>();
     private int cantidadDeHeridasDeCuchillo = 0;
 
-    public Detective(Cronometro cronometro, Ciudad ciudad, Rango rango) {
+    public Detective(Cronometro cronometro, Ciudad ciudad, ContadorDeDificultad contador) {
         this.cronometro = cronometro;
         this.ciudadActual = ciudad;
-        this.rango = rango; // TODO: debería recibir un ContadorDeDificultad
+        this.contador = contador;
     }
 
     public Pista visitar(Edificio edificio) {
@@ -26,7 +26,7 @@ public class Detective {  // TODO: cambiar nombre a Policía (hay un rango Detec
     }
 
     public void viajar(Ciudad ciudad) {
-        cronometro.restar(rango.tiempoDeViaje(3800));
+        cronometro.restar(contador.rango().tiempoDeViaje(3800));
         ciudadActual = ciudad;
     }
 
@@ -45,6 +45,10 @@ public class Detective {  // TODO: cambiar nombre a Policía (hay un rango Detec
 
     public Pista visitar(String nombreEdificio) {
         return this.visitar(ciudadActual.obtenerEdificio(nombreEdificio));
+    }
+
+    public void registrarArresto() {
+        contador.registrarArresto();
     }
 
 }

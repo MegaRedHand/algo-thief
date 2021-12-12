@@ -3,8 +3,6 @@ package edu.fiuba.algo3.modelo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 public class Entrega1Test {
 
@@ -20,7 +18,7 @@ public class Entrega1Test {
 
         Algothief algothief = new Algothief();
 
-        algothief.asignarDetective(0);
+        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
         EscenarioBuilder builder = new EscenarioBuilder();
 
@@ -48,7 +46,7 @@ public class Entrega1Test {
 
         Algothief algothief = new Algothief();
 
-        algothief.asignarDetective(0);
+        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
         EscenarioBuilder builder = new EscenarioBuilder();
 
@@ -87,13 +85,13 @@ public class Entrega1Test {
         Ciudad montreal = new Ciudad("Montreal");
         Ciudad mexico = new Ciudad("México");
 
-        Detective detective = new Detective(cronometro, montreal, rango);
+        Detective detective = new Detective(cronometro, montreal, new ContadorDeDificultad(rango, 0));
 
         detective.viajar(montreal);
 
         int distanciaEntreCiudades = 3800; // km
-        int tiempoEsperado = distanciaEntreCiudades / 900 /*velocidad novato*/;
-        assertEquals(4, cronometro.tiempo());
+        int tiempoEsperado = rango.tiempoDeViaje(distanciaEntreCiudades) /*velocidad novato*/;
+        assertEquals(tiempoEsperado, cronometro.tiempo());
     }
 
 
@@ -118,7 +116,7 @@ public class Entrega1Test {
 
         Ciudad montreal = new Ciudad("Montreal", aeropuerto, puerto);
 
-        Detective detective = new Detective(cronometro, montreal, rango);
+        Detective detective = new Detective(cronometro, montreal, new ContadorDeDificultad(rango, 0));
 
         for (int i = 0; i < 2; i++) {
             detective.visitar(aeropuerto);
@@ -146,7 +144,7 @@ public class Entrega1Test {
 
         Ciudad montreal = new Ciudad("Montreal");
 
-        Detective detective = new Detective(cronometro, montreal, rango);
+        Detective detective = new Detective(cronometro, montreal, new ContadorDeDificultad(rango, 0));
 
         detective.recibirHeridaDeCuchillo();
         detective.dormir();

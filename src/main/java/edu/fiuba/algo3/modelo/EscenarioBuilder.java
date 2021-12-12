@@ -26,10 +26,10 @@ public class EscenarioBuilder implements Builder {
         return builder;
     }
 
-    public Escenario construirCon(Rango rango) {
+    public Escenario construirCon(ContadorDeDificultad contador) {
         List<Ciudad> rutaDeEscape = buildersDeCiudades.stream().map(CiudadBuilder::construir)
                 .collect(Collectors.toList());
-        Detective detective = new Detective(cronometro, rutaDeEscape.get(0), rango);
+        Detective detective = new Detective(cronometro, rutaDeEscape.get(0), contador);
 
         return new Escenario(detective, ladron, rutaDeEscape);
     }

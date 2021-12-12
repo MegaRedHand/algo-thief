@@ -20,7 +20,7 @@ public class Entrega2Test {
 
         Ciudad montreal = new Ciudad("Montreal");
 
-        Detective detective = new Detective(cronometro, montreal, rango);
+        Detective detective = new Detective(cronometro, montreal, new ContadorDeDificultad(rango, 0));
 
         detective.recibirHeridaDeCuchillo();
         detective.dormir();
