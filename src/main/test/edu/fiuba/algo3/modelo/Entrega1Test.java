@@ -46,21 +46,28 @@ public class Entrega1Test {
     @Test
     public void test02DetectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
 
+        Algothief algothief = new Algothief();
+
+        algothief.asignarDetective(0);
+
+        EscenarioBuilder builder = new EscenarioBuilder();
+
         Cronometro cronometro = new Cronometro();
-        Rango rango = new Novato();
+        builder.conCronometro(cronometro);
 
-        Facil pistaBanco = new Facil("esta es la pista del banco");
-        Facil pistaBiblioteca = new Facil("esta es la pista del biblioteca");
+        builder.conObjetoRobado("Tesoro Nacional de Montreal").conLadron("F");
+        builder.conCiudad("Montreal").yEdificios("Banco Nacional", "Biblioteca de Montreal");
 
-        Edificio banco = new Edificio("Banco Nacional", pistaBanco);
-        Edificio biblioteca = new Edificio("Biblioteca de Montreal", pistaBiblioteca);
+        algothief.generarEscenario(builder);
 
-        Ciudad montreal = new Ciudad("Montreal", banco, biblioteca);
+        algothief.visitarEdificio("Banco Nacional");
+        String pistaBanco = algothief.pistaMasReciente();
 
-        Detective detective = new Detective(cronometro, montreal, rango);
+        algothief.visitarEdificio("Biblioteca de Montreal");
+        String pistaBiblioteca = algothief.pistaMasReciente();
 
-        assertEquals(pistaBanco, detective.visitar(banco));
-        assertEquals(pistaBiblioteca, detective.visitar(biblioteca));
+        assertEquals("Descripción de la pista", pistaBanco);
+        assertEquals("Descripción de la pista", pistaBiblioteca);
 
         assertEquals(2, cronometro.tiempo());
     }
@@ -132,7 +139,7 @@ public class Entrega1Test {
      * - Detective duerme.
      */
     @Test
-    public void detectiveSufreHeridaDeCuchilloYDuerme() {
+    public void test05DetectiveSufreHeridaDeCuchilloYDuerme() {
         Cronometro cronometro = new Cronometro();
 
         Rango rango = new Novato();
