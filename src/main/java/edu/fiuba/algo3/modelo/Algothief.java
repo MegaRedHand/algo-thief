@@ -4,9 +4,10 @@ public class Algothief {
 
     private Escenario escenarioActual;
     private Pista ultimaPista;
+    private Rango rango;
 
-    public void asignarEscenario(Escenario escenario) {
-        escenarioActual = escenario;
+    public void generarEscenario(Builder builder) {
+        escenarioActual = builder.construirCon(rango);
     }
 
     public void visitarEdificio(String nombreEdificio) {
@@ -15,5 +16,9 @@ public class Algothief {
 
     public String pistaMasReciente() {
         return ultimaPista.descripcion();
+    }
+
+    public void asignarDetective(int cantidadDeArrestos) {
+        rango = new Novato();
     }
 }

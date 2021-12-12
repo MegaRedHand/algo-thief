@@ -2,18 +2,23 @@
 
 class Algothief {
     + Algothief()
-    + asignarEscenario(escenario)
+    + asignarDetective(cantidadDeArrestos)
+    + generarEscenario(escenario)
     + visitarEdificio(nombre)
     + pistaMasReciente() : String
 }
 
-class EscenarioBuilder {
-    + EscenarioBuilder(cantidadDeArrestos) : this
+interface Builder {
+    + {abstract} construirCon(rango)
+}
+
+class EscenarioBuilder implements Builder {
+    + EscenarioBuilder() : this
     + conCronometro(cronometro) : this
     + conObjetoRobado(nombre) : this
     + conLadron(sexo) : this
     + conCiudad(nombre) : CiudadBuilder
-    + construir() : Escenario
+    + construirCon(rango) : Escenario
 }
 
 class Escenario {

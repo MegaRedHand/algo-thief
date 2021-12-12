@@ -4,17 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EscenarioBuilder {
-    private final Rango rango;
+public class EscenarioBuilder implements Builder {
     private Comun objeto;
     private Ladron ladron;
     private final List<CiudadBuilder> buildersDeCiudades = new ArrayList<>();
     private Cronometro cronometro;
-
-    public EscenarioBuilder(int numeroDeArrestos) {
-
-        rango = new Novato(); // TODO: lógica de cambio de rangos (CoR?)
-    }
 
     public EscenarioBuilder conObjetoRobado(String nombre) {
         objeto = new Comun(nombre); // TODO: lógica de selección de rareza
@@ -32,7 +26,7 @@ public class EscenarioBuilder {
         return builder;
     }
 
-    public Escenario construir() {
+    public Escenario construirCon(Rango rango) {
         List<Ciudad> rutaDeEscape = buildersDeCiudades.stream().map(CiudadBuilder::construir)
                 .collect(Collectors.toList());
         Detective detective = new Detective(cronometro, rutaDeEscape.get(0), rango);

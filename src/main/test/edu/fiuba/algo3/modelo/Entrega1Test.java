@@ -20,16 +20,17 @@ public class Entrega1Test {
 
         Algothief algothief = new Algothief();
 
-        /* Hay que llamarlos en un orden específico. En el juego usaríamos un Director, que
-        * se encarga de llamarlos */
-        EscenarioBuilder builder = new EscenarioBuilder(0);
+        algothief.asignarDetective(0);
+
+        EscenarioBuilder builder = new EscenarioBuilder();
 
         builder.conCronometro(new Cronometro());
 
         builder.conObjetoRobado("Tesoro Nacional de Montreal").conLadron("F");
         builder.conCiudad("Montreal").yEdificios("Banco Nacional");
 
-        algothief.asignarEscenario(builder.construir());
+        algothief.generarEscenario(builder);
+
         algothief.visitarEdificio("Banco Nacional");
         assertEquals("Descripción de la pista", algothief.pistaMasReciente());
     }
