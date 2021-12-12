@@ -14,6 +14,12 @@ public class Ciudad {
         this.edificios = new ArrayList<>(List.of(edificios));
     }
 
+    public Ciudad(String nombre, List<Edificio> edificios) {
+
+        this.nombre = nombre;
+        this.edificios = new ArrayList<>(edificios);
+    }
+
     public Edificio obtenerEdificio(String nombreEdificio) {
         return edificios.stream().filter(e -> e.es(nombreEdificio)).findAny().orElseThrow();
     }

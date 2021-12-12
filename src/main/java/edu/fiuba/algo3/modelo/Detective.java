@@ -42,4 +42,8 @@ public class Detective {
     public void dormir() {
         cronometro.restar(8);
     }
+
+    public Pista visitar(String nombreEdificio) {
+        return this.visitar(ciudadActual.obtenerEdificio(nombreEdificio));
+    }
 }

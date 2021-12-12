@@ -1,0 +1,35 @@
+@startuml
+
+class Algothief {
+    + Algothief()
+    + asignarEscenario(escenario)
+    + visitarEdificio(nombre)
+    + pistaMasReciente() : String
+}
+
+class EscenarioBuilder {
+    + EscenarioBuilder(cantidadDeArrestos) : this
+    + conCronometro(cronometro) : this
+    + conObjetoRobado(nombre) : this
+    + conLadron(sexo) : this
+    + conCiudad(nombre) : CiudadBuilder
+    + construir() : Escenario
+}
+
+class Escenario {
+    + Escenario(detective, ladron, rutaDeEscape)
+    + detectiveVisita(nombre) : Pista
+}
+
+class CiudadBuilder {
+    + CiudadBuilder(nombre)
+    + yEdificios(nombre) : this
+    + construir() : Ciudad
+}
+
+
+EscenarioBuilder o-- CiudadBuilder
+EscenarioBuilder ..> Escenario
+Algothief o-- Escenario
+
+@enduml

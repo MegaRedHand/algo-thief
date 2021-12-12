@@ -18,19 +18,20 @@ public class Entrega1Test {
     @Test
     public void test01DetectiveNovatoEmpiezaEnMontrealYAlVisitarBancoDespliegaUnaPista() {
 
-        Cronometro cronometro = new Cronometro();
-        Rango rango = new Novato();
-        Comun objeto = new Comun("Tesoro Nacional de Montreal");
-        Ladron ladron = new Ladron(objeto,"F");
+        Algothief algothief = new Algothief();
 
-        Facil pista = new Facil("esta es la pista");
-        Edificio banco = new Edificio("Banco Nacional", pista);
-        Ciudad montreal = new Ciudad("Montreal", banco);
+        /* Hay que llamarlos en un orden específico. En el juego usaríamos un Director, que
+        * se encarga de llamarlos */
+        EscenarioBuilder builder = new EscenarioBuilder(0);
 
-        Detective detective = new Detective(cronometro, montreal, rango);
+        builder.conCronometro(new Cronometro());
 
-        assertEquals(pista, detective.visitar(banco));
-        assertEquals(1, cronometro.tiempo());
+        builder.conObjetoRobado("Tesoro Nacional de Montreal").conLadron("F");
+        builder.conCiudad("Montreal").yEdificios("Banco Nacional");
+
+        algothief.asignarEscenario(builder.construir());
+        algothief.visitarEdificio("Banco Nacional");
+        assertEquals("Descripción de la pista", algothief.pistaMasReciente());
     }
 
 
