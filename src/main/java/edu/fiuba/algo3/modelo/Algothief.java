@@ -10,8 +10,8 @@ public class Algothief {
         escenarioActual = builder.construirCon(contador);
     }
 
-    public void visitarEdificio(String nombreEdificio) {
-        ultimaPista = escenarioActual.detectiveVisita(nombreEdificio);
+    public void visitar(String nombreEdificio) {
+        ultimaPista = escenarioActual.detectiveVisitar(nombreEdificio);
     }
 
     public String pistaMasReciente() {
@@ -20,5 +20,17 @@ public class Algothief {
 
     public void asignarDetective(ContadorDeDificultad contador) {
         this.contador = contador;
+    }
+
+    public void viajar(String nombreCiudad) {
+        escenarioActual.detectiveViajar(nombreCiudad);
+    }
+
+    public void recibirHeridaDeCuchillo() {
+        escenarioActual.detectiveRecibirHeridaDeCuchillo();
+    }
+
+    public void dormir() {
+        escenarioActual.detectiveDormir();
     }
 }

@@ -13,7 +13,19 @@ public class Escenario {
         this.rutaDeEscape = rutaDeEscape;
     }
 
-    public Pista detectiveVisita(String nombreEdificio) {
+    public Pista detectiveVisitar(String nombreEdificio) {
         return detective.visitar(nombreEdificio);
+    }
+
+    public void detectiveViajar(String nombreCiudad) {
+        detective.viajar(rutaDeEscape.stream().filter(c -> c.es(nombreCiudad)).findAny().orElseThrow());
+    }
+
+    public void detectiveRecibirHeridaDeCuchillo() {
+        detective.recibirHeridaDeCuchillo();
+    }
+
+    public void detectiveDormir() {
+        detective.dormir();
     }
 }

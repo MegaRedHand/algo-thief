@@ -24,4 +24,7 @@ public class Ciudad {
         return edificios.stream().filter(e -> e.es(nombreEdificio)).findAny().orElseThrow();
     }
 
+    public boolean es(String nombreCiudad) {
+        return nombre.equals(nombreCiudad);
+    }
 }
