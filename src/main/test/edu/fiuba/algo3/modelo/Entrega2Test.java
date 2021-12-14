@@ -14,16 +14,19 @@ public class Entrega2Test {
      */
     @Test
     public void test01DetectiveSufreHeridaDeCuchilloYDuerme() {
+
+        Algothief algothief = new Algothief();
+        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
+
         Cronometro cronometro = new Cronometro();
 
-        Rango rango = new Novato();
+        EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
+        builder.conCiudad("Mexico");
 
-        Ciudad montreal = new Ciudad("Montreal");
+        algothief.generarEscenario(builder);
 
-        Detective detective = new Detective(cronometro, montreal, new ContadorDeDificultad(rango, 0));
-
-        detective.recibirHeridaDeCuchillo();
-        detective.dormir();
+        algothief.recibirHeridaDeCuchillo();
+        algothief.dormir();
 
         assertEquals(10, cronometro.tiempo());
     }
@@ -34,7 +37,25 @@ public class Entrega2Test {
      */
     @Test
     public void test02DetectiveInvestigadorTomaCasoYViajaDeMontrealAMexico() {
-        assertTrue(true);
+
+        Algothief algothief = new Algothief();
+
+        algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
+
+
+        Cronometro cronometro = new Cronometro();
+        EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
+
+        builder.conCiudad("Montreal");
+        builder.conCiudad("Mexico");
+
+        algothief.generarEscenario(builder);
+
+        algothief.viajar("Mexico");
+
+        int distanciaEntreCiudades = 3800; // km
+        int tiempoEsperado = new Investigador().tiempoDeViaje(distanciaEntreCiudades) /*velocidad investigador*/;
+        assertEquals(tiempoEsperado, cronometro.tiempo());
     }
 
     /**

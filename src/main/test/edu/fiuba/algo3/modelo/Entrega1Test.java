@@ -53,7 +53,6 @@ public class Entrega1Test {
         Cronometro cronometro = new Cronometro();
         builder.conCronometro(cronometro);
 
-        builder.conObjetoRobado("Tesoro Nacional de Montreal").conLadron("F");
         builder.conCiudad("Montreal").conEdificios("Banco Nacional", "Biblioteca de Montreal");
 
         algothief.generarEscenario(builder);
@@ -87,7 +86,6 @@ public class Entrega1Test {
         Cronometro cronometro = new Cronometro();
         builder.conCronometro(cronometro);
 
-        builder.conObjetoRobado("Tesoro Nacional de Montreal").conLadron("F");
         builder.conCiudad("Montreal");
         builder.conCiudad("Mexico");
 
@@ -122,7 +120,6 @@ public class Entrega1Test {
         String nombreAeropuerto = "Aeropuerto Nacional";
         String nombrePuerto = "Puerto de Mexico";
 
-        builder.conObjetoRobado("Tesoro Nacional de Montreal").conLadron("F");
         builder.conCiudad("Mexico").conEdificios(nombreAeropuerto, nombrePuerto);
 
         algothief.generarEscenario(builder);
