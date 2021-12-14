@@ -3,9 +3,6 @@ package edu.fiuba.algo3.modelo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class CiudadUnitTest {
 
@@ -15,7 +12,7 @@ public class CiudadUnitTest {
         String nombreEdificio = "nombre del edificio";
         String nombreCiudad = "Ciudad de prueba";
 
-        /* habría que usar un mock acá?
+        /* habría que usar un stub acá?
         Edificio edificioStub = mock(Edificio.class);
         when(edificioStub.es(nombreEdificio)).thenReturn(true);
          */

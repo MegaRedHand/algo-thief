@@ -14,7 +14,7 @@ public class CiudadBuilder {
         this.nombreCiudad = nombreCiudad;
     }
 
-    public CiudadBuilder yEdificios(String... nombresEdificios) {
+    public CiudadBuilder conEdificios(String... nombresEdificios) {
         // TODO: tal vez conviene encargárselo a otra clase EdificioBuilder?
         Pista pista = new Facil("Descripción de la pista");
         Stream.of(nombresEdificios).forEach(nombre -> edificiosDeLaCiudad.add(new Edificio(nombre, pista)));

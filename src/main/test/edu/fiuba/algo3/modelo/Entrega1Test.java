@@ -25,7 +25,7 @@ public class Entrega1Test {
         builder.conCronometro(new Cronometro());
 
         builder.conObjetoRobado("Tesoro Nacional de Montreal").conLadron("F");
-        builder.conCiudad("Montreal").yEdificios("Banco Nacional");
+        builder.conCiudad("Montreal").conEdificios("Banco Nacional");
 
         algothief.generarEscenario(builder);
 
@@ -54,7 +54,7 @@ public class Entrega1Test {
         builder.conCronometro(cronometro);
 
         builder.conObjetoRobado("Tesoro Nacional de Montreal").conLadron("F");
-        builder.conCiudad("Montreal").yEdificios("Banco Nacional", "Biblioteca de Montreal");
+        builder.conCiudad("Montreal").conEdificios("Banco Nacional", "Biblioteca de Montreal");
 
         algothief.generarEscenario(builder);
 

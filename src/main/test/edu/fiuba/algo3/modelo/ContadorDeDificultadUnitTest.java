@@ -9,7 +9,7 @@ import static org.mockito.Mockito.*;
 public class ContadorDeDificultadUnitTest {
 
     @Test
-    public void test01ContadorCon0ArrestosTieneRangoNovato() {
+    public void test01AlRegistrarUnArrestoSeActualizaElRango() {
 
         Rango rangoMock = mock(Rango.class);
         when(rangoMock.actualizar(anyInt())).thenReturn(rangoMock);
@@ -22,7 +22,7 @@ public class ContadorDeDificultadUnitTest {
     }
 
     @Test
-    public void test02AlRegistrarArrestos3VecesElContadorDevuelveCantidadCorrecta() {
+    public void test02AlRegistrarArrestos3VecesElContadorTiene3Arrestos() {
 
         Rango rangoMock = mock(Rango.class);
         when(rangoMock.actualizar(anyInt())).thenReturn(rangoMock);
