@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
 public class Entrega1Test {
 
@@ -16,7 +17,7 @@ public class Entrega1Test {
     @Test
     public void test01DetectiveNovatoEmpiezaEnMontrealYAlVisitarBancoDespliegaUnaPista() {
 
-        Algothief algothief = new Algothief();
+        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
@@ -44,7 +45,7 @@ public class Entrega1Test {
     @Test
     public void test02DetectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
 
-        Algothief algothief = new Algothief();
+        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
@@ -77,7 +78,7 @@ public class Entrega1Test {
     @Test
     public void test03DetectiveViajaDeMontrealAMexico() {
 
-        Algothief algothief = new Algothief();
+        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
@@ -108,7 +109,7 @@ public class Entrega1Test {
     @Test
     public void test04DetectiveAlVisitaAeropuertoSeDespliegaPistaYAlVisitarPuertoSeDespliegaPista() {
 
-        Algothief algothief = new Algothief();
+        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
@@ -150,7 +151,7 @@ public class Entrega1Test {
     @Test
     public void test05DetectiveSufreHeridaDeCuchilloYDuerme() {
 
-        Algothief algothief = new Algothief();
+        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
         Cronometro cronometro = new Cronometro();

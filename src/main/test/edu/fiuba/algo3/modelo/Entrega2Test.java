@@ -2,8 +2,10 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 public class Entrega2Test {
 
@@ -15,7 +17,7 @@ public class Entrega2Test {
     @Test
     public void test01DetectiveSufreHeridaDeCuchilloYDuerme() {
 
-        Algothief algothief = new Algothief();
+        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
         Cronometro cronometro = new Cronometro();
@@ -38,10 +40,8 @@ public class Entrega2Test {
     @Test
     public void test02DetectiveInvestigadorTomaCasoYViajaDeMontrealAMexico() {
 
-        Algothief algothief = new Algothief();
-
+        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
         algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
-
 
         Cronometro cronometro = new Cronometro();
         EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
@@ -64,7 +64,30 @@ public class Entrega2Test {
      */
     @Test
     public void test03DetectiveCargaDatosEnComputadoraYBuscaSospechoso() {
-        assertTrue(true);
+
+        // TODO: definir de dónde toma los datos el juego
+        FuenteDeDatos fuente = mock(FuenteDeDatos.class);
+
+        // ejemplo de mockeo (stubeo?) de FuenteDeDatos:
+//        DescripcionSospechoso sospechoso1 = new DescripcionSospechoso().conNombre("Carmen SanDiego").conSexo("Femenino").conHobby("Tenis");
+//        DescripcionSospechoso sospechoso2 = new DescripcionSospechoso().conNombre("Lucía").conSexo("Femenino").conHobby("Tenis");
+//
+//        when(fuente.descripciones()).thenReturn(List.of(sospechoso1, sospechoso2));
+
+        Algothief algothief = new Algothief(fuente);
+        algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
+
+        Cronometro cronometro = new Cronometro();
+        EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
+        builder.conCiudad("Montreal");
+
+        algothief.generarEscenario(builder);
+
+        // TODO: definir cómo manejamos las descripciones de los sospechosos
+        DescripcionSospechoso descripcion = new DescripcionSospechoso().conSexo("Femenino").conHobby("Tenis");
+        algothief.cargarDatosSospechoso(descripcion);
+
+        assertEquals(List.of("Carmen SanDiego"), algothief.buscarSospechosos());
     }
 
     /**
@@ -73,7 +96,21 @@ public class Entrega2Test {
      */
     @Test
     public void test04DetectiveIntentaAtraparAlSospechosoSinLaOrdenDeArrestoEmitida() {
-        assertTrue(true);
+
+        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
+        algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
+
+        Cronometro cronometro = new Cronometro();
+        EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
+        builder.conCiudad("Montreal");
+
+        algothief.generarEscenario(builder);
+
+        algothief.atraparSospechoso();
+
+        // TODO: definir cómo chequear esta prueba :(
+        assertTrue(algothief.juegoAcabado());
+        assertFalse(algothief.juegoGanado());
     }
 
     /**
@@ -86,7 +123,37 @@ public class Entrega2Test {
      */
     @Test
     public void test05DetectiveHace6ArrestosTomaCasoRealizaInvestigacionEmiteOrdenDeArrestoYAtrapaAlSospechoso() {
-        assertTrue(true);
+
+        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
+
+        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
+
+        EscenarioBuilder builder = new EscenarioBuilder();
+
+        builder.conCronometro(new Cronometro());
+
+        builder.conObjetoRobado("Incan Gold Mask").conLadron("M");
+
+        builder.conCiudad("Montreal").conEdificios("Banco Nacional", "Biblioteca de Montreal");
+        builder.conCiudad("Mexico").conEdificios("Aeropuerto Nacional", "Puerto de Mexico");
+
+        algothief.generarEscenario(builder);
+
+        algothief.visitar("Banco Nacional");
+        algothief.visitar("Banco Nacional");
+        algothief.visitar("Biblioteca de Montreal");
+
+        algothief.viajar("Mexico");
+        algothief.visitar("Aeropuerto Nacional");
+
+        DescripcionSospechoso descripcion = new DescripcionSospechoso().conSexo("Masculino").conHobby("Tenis");
+        algothief.cargarDatosSospechoso(descripcion);
+        algothief.buscarSospechosos();
+
+        algothief.atraparSospechoso();
+
+        assertTrue(algothief.juegoAcabado());
+//        assertTrue(algothief.juegoGanado());
     }
 
 }
