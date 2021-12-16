@@ -83,7 +83,7 @@ public class Entrega2Test {
 
         algothief.generarEscenario(builder);
 
-        // TODO: definir cómo manejamos las descripciones de los sospechosos
+        // TODO: definir cómo manejamos las descripciones de los sospechosos (ok?)
         DescripcionSospechoso descripcion = new DescripcionSospechoso().conSexo("Femenino").conHobby("Tenis");
         algothief.cargarDatosSospechoso(descripcion);
 

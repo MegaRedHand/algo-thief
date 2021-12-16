@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Algothief {
 
@@ -9,6 +10,7 @@ public class Algothief {
     private Escenario escenarioActual;
     private Pista ultimaPista;
     private ContadorDeDificultad contador;
+    private DescripcionSospechoso descripcion = new DescripcionSospechoso();
 
     public Algothief(FuenteDeDatos fuente) {
         this.fuente = fuente;
@@ -43,11 +45,15 @@ public class Algothief {
     }
 
     public void cargarDatosSospechoso(DescripcionSospechoso descripcion) {
-
+        this.descripcion.agregar(descripcion);
     }
 
     public List<String> buscarSospechosos() {
-        return List.of("Carmen SanDiego");
+//        List<DescripcionSospechoso> sospechosos = fuente.listaDeSospechosos();
+        List<DescripcionSospechoso> sospechosos = new ArrayList<>();
+        sospechosos.add(new DescripcionSospechoso().conNombre("Carmen SanDiego").conSexo("Femenino").conHobby("Tenis"));
+        return sospechosos.stream().filter(d -> this.descripcion.coincideCon(d)).map(DescripcionSospechoso::nombre)
+                .collect(Collectors.toList());
     }
 
     public void atraparSospechoso() {
