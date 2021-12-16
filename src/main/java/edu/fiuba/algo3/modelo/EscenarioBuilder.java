@@ -5,27 +5,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EscenarioBuilder implements Builder {
-    private Comun objeto;
+
+    private ObjetoRobado objeto;
     private Ladron ladron;
     private final List<CiudadBuilder> buildersDeCiudades = new ArrayList<>();
     private Cronometro cronometro;
 
-    public EscenarioBuilder conObjetoRobado(String nombre) {
-        objeto = new Comun(nombre); // TODO: lógica de selección de rareza
-        return this;
-    }
-
-    public EscenarioBuilder conLadron(String sexo) { // TODO: parámetros primitivos
-        ladron = new Ladron(objeto, sexo);
+    public EscenarioBuilder conObjetoRobado(ObjetoRobado objeto) {
+        this.objeto = objeto;
         return this;
     }
 
     public EscenarioBuilder conLadron(String nombre, DescripcionSospechoso descripcion) {
+        // TODO: para mí que Escenario debería tener solo las ciudades
         ladron = new Ladron(nombre, descripcion, objeto);
         return this;
     }
 
     public CiudadBuilder conCiudad(String nombre) {
+        // TODO: debería recibir CiudadBuilder por parámetro (D.I.)
         CiudadBuilder builder = new CiudadBuilder(nombre);
         buildersDeCiudades.add(builder);
         return builder;

@@ -155,8 +155,8 @@ public class Entrega2Test {
 
         builder.conCronometro(new Cronometro());
 
-        builder.conObjetoRobado("Incan Gold Mask").conLadron("M");
-        builder.conLadron("Carmen SanDiego", new DescripcionSospechoso());
+        builder.conObjetoRobado(new Comun("Incan Gold Mask"));
+        builder.conLadron(ladron1.getNombre(), ladron1.descripcion());
 
         builder.conCiudad("Montreal").conEdificios("Banco Nacional", "Biblioteca de Montreal");
         builder.conCiudad("Mexico").conEdificios("Aeropuerto Nacional", "Puerto de Mexico");

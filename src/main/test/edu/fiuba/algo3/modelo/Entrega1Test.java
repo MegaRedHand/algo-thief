@@ -25,7 +25,8 @@ public class Entrega1Test {
 
         builder.conCronometro(new Cronometro());
 
-        builder.conObjetoRobado("Tesoro Nacional de Montreal").conLadron("F");
+        builder.conObjetoRobado(new Comun("Tesoro Nacional de Montreal"));
+        builder.conLadron("Sospechoso", new DescripcionSospechoso(new Rasgo("Sexo", "Femenino")));
         builder.conCiudad("Montreal").conEdificios("Banco Nacional");
 
         algothief.generarEscenario(builder);
