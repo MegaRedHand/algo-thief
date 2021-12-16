@@ -6,12 +6,21 @@ title "Detective visita un edificio"
 participant ":Detective" as detective
 participant ":Cronometro" as cron
 participant "edificio:Edificio" as edificio
+participant "ciudadActual:Ciudad" as ciudad
 
--> detective: visitar(edificio)
+-> detective: visitar(nombreEdificio)
 activate detective
-detective -> cron: restar(horas)
-detective -> edificio: obtenerPista()
-    activate edificio
+detective -> ciudad: obtenerEdificio(nombreEdificio)
+    activate ciudad
+    return edificio
+detective -> detective: visitar(edificio)
+    activate detective
+    detective -> detective: registrarVisita(edificio)
+    detective -> detective: tiempoDeVisita(edificio)
+    detective -> cron: restar(tiempo)
+    detective -> edificio: obtenerPista()
+        activate edificio
+        return pista
     return pista
 return pista
 

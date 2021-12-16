@@ -18,11 +18,19 @@ public class Detective {  // TODO: cambiar nombre a Policía (hay un rango Detec
     }
 
     public Pista visitar(Edificio edificio) {
+        // TODO: debería ser private
+        registrarVisita(edificio);
+        cronometro.restar(tiempoDeVisita(edificio));
+        return edificio.obtenerPista();
+    }
+
+    private void registrarVisita(Edificio edificio) {
         int cantidadDeVisitas = visitasPorEdificio.getOrDefault(edificio, 0) + 1;
         visitasPorEdificio.put(edificio, cantidadDeVisitas);
-        int horas = Integer.min(cantidadDeVisitas, 3);
-        cronometro.restar(horas);
-        return edificio.obtenerPista();
+    }
+
+    private int tiempoDeVisita(Edificio edificio) {
+        return Integer.min(visitasPorEdificio.getOrDefault(edificio, 0), 3);
     }
 
     public void viajar(Ciudad ciudad) {
