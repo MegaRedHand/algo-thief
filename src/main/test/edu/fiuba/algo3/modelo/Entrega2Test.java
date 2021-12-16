@@ -6,6 +6,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class Entrega2Test {
 
@@ -65,14 +66,20 @@ public class Entrega2Test {
     @Test
     public void test03DetectiveCargaDatosEnComputadoraYBuscaSospechoso() {
 
-        // TODO: definir de dónde toma los datos el juego
+        // TODO: definir de dónde toma los datos el juego (ok?)
         FuenteDeDatos fuente = mock(FuenteDeDatos.class);
 
         // ejemplo de mockeo (stubeo?) de FuenteDeDatos:
-//        DescripcionSospechoso sospechoso1 = new DescripcionSospechoso().conNombre("Carmen SanDiego").conSexo("Femenino").conHobby("Tenis");
-//        DescripcionSospechoso sospechoso2 = new DescripcionSospechoso().conNombre("Lucía").conSexo("Femenino").conHobby("Tenis");
-//
-//        when(fuente.descripciones()).thenReturn(List.of(sospechoso1, sospechoso2));
+        Ladron ladron1 = new Ladron("Carmen SanDiego", new DescripcionSospechoso(
+                new Rasgo("Sexo", "Femenino"),
+                new Rasgo("Hobby", "Tenis")
+        ));
+        Ladron ladron2 = new Ladron("Lucía", new DescripcionSospechoso(
+                new Rasgo("Sexo", "Femenino"),
+                new Rasgo("Hobby", "Alpinismo")
+        ));
+
+        when(fuente.listaDeLadrones()).thenReturn(List.of(ladron1, ladron2));
 
         Algothief algothief = new Algothief(fuente);
         algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
@@ -104,13 +111,14 @@ public class Entrega2Test {
 
         Cronometro cronometro = new Cronometro();
         EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
+        builder.conLadron("Carmen", new DescripcionSospechoso());
         builder.conCiudad("Montreal");
 
         algothief.generarEscenario(builder);
 
         algothief.atraparSospechoso();
 
-        // TODO: definir cómo chequear esta prueba :(
+        // TODO: definir cómo chequear esta prueba :( (ok?)
         assertTrue(algothief.juegoAcabado());
         assertFalse(algothief.juegoGanado());
     }
@@ -126,7 +134,20 @@ public class Entrega2Test {
     @Test
     public void test05DetectiveHace6ArrestosTomaCasoRealizaInvestigacionEmiteOrdenDeArrestoYAtrapaAlSospechoso() {
 
-        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
+        FuenteDeDatos fuente = mock(FuenteDeDatos.class);
+
+        Ladron ladron1 = new Ladron("Carmen SanDiego", new DescripcionSospechoso(
+                new Rasgo("Sexo", "Femenino"),
+                new Rasgo("Hobby", "Tenis")
+        ));
+        Ladron ladron2 = new Ladron("Lucía", new DescripcionSospechoso(
+                new Rasgo("Sexo", "Femenino"),
+                new Rasgo("Hobby", "Alpinismo")
+        ));
+
+        when(fuente.listaDeLadrones()).thenReturn(List.of(ladron1, ladron2));
+
+        Algothief algothief = new Algothief(fuente);
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
@@ -135,6 +156,7 @@ public class Entrega2Test {
         builder.conCronometro(new Cronometro());
 
         builder.conObjetoRobado("Incan Gold Mask").conLadron("M");
+        builder.conLadron("Carmen SanDiego", new DescripcionSospechoso());
 
         builder.conCiudad("Montreal").conEdificios("Banco Nacional", "Biblioteca de Montreal");
         builder.conCiudad("Mexico").conEdificios("Aeropuerto Nacional", "Puerto de Mexico");
@@ -150,14 +172,15 @@ public class Entrega2Test {
 
         DescripcionSospechoso descripcion = new DescripcionSospechoso(
                 new Rasgo("Hobby", "Tenis"),
-                new Rasgo("Sexo", "Femenino"));
+                new Rasgo("Sexo", "Femenino")
+        );
         algothief.cargarDatosSospechoso(descripcion);
         algothief.buscarSospechosos();
 
         algothief.atraparSospechoso();
 
         assertTrue(algothief.juegoAcabado());
-//        assertTrue(algothief.juegoGanado());
+        assertTrue(algothief.juegoGanado());
     }
 
 }

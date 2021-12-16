@@ -21,6 +21,13 @@ public class Ladron {
         this.sexo = "";
     }
 
+    public Ladron(String nombre, DescripcionSospechoso descripcion) {
+        this.nombre = nombre;
+        this.objetoRobado = new Comun("Ninguno");
+        this.descripcion = descripcion;
+        this.sexo = "";
+    }
+
     public DescripcionSospechoso descripcion() {
         return descripcion;
     }
@@ -29,4 +36,7 @@ public class Ladron {
         return nombre;
     }
 
+    public boolean seLlama(String nombre) {
+        return this.nombre.equals(nombre);
+    }
 }

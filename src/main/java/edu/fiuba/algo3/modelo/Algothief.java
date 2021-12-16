@@ -10,7 +10,9 @@ public class Algothief {
     private Escenario escenarioActual;
     private Pista ultimaPista;
     private ContadorDeDificultad contador;
-    private DescripcionSospechoso descripcion = new DescripcionSospechoso();
+    private final DescripcionSospechoso descripcion = new DescripcionSospechoso();
+    private boolean acabado = false;
+    private boolean ganado = false;
 
     public Algothief(FuenteDeDatos fuente) {
         this.fuente = fuente;
@@ -49,23 +51,28 @@ public class Algothief {
     }
 
     public List<String> buscarSospechosos() {
-//        List<DescripcionSospechoso> sospechosos = fuente.listaDeSospechosos();
-        List<Ladron> sospechosos = new ArrayList<>();
-        sospechosos.add(new Ladron("Carmen SanDiego", new DescripcionSospechoso(
-                new Rasgo("Sexo", "Femenino"),
-                new Rasgo("Hobby", "Tenis")), new Comun("Ninguno")));
-        return sospechosos.stream().filter(d -> this.descripcion.coincideCon(d.descripcion())).map(Ladron::getNombre)
+
+        List<String> nombres = fuente.listaDeLadrones().stream().filter(d ->
+                        this.descripcion.coincideCon(d.descripcion())).map(Ladron::getNombre)
                 .collect(Collectors.toList());
+
+        if (nombres.size() == 1) {
+            escenarioActual.emitirOrdenDeArresto(nombres.get(0));
+        }
+
+        return nombres;
     }
 
     public void atraparSospechoso() {
+        ganado = escenarioActual.detectiveAtraparLadron();
+        acabado = true;
     }
 
     public boolean juegoAcabado() {
-        return true;
+        return acabado;
     }
 
     public boolean juegoGanado() {
-        return false;
+        return ganado;
     }
 }

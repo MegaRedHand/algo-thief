@@ -20,6 +20,11 @@ public class EscenarioBuilder implements Builder {
         return this;
     }
 
+    public EscenarioBuilder conLadron(String nombre, DescripcionSospechoso descripcion) {
+        ladron = new Ladron(nombre, descripcion, objeto);
+        return this;
+    }
+
     public CiudadBuilder conCiudad(String nombre) {
         CiudadBuilder builder = new CiudadBuilder(nombre);
         buildersDeCiudades.add(builder);
