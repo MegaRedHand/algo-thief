@@ -1,12 +1,30 @@
 @startuml
 
 class AlgoThief {
-    + visitarEdificio(nombreEdificio: String)
+    + AlgoThief(fuenteDeDatos)
+    + generarEscenario(builder)
+    + visitar(nombreEdificio)
+    + pistaMasReciente() : String
+    + asignarDetective(contadorDeDificultad)
+    + recibirHeridaDeCuchillo()
+    + dormir()
+    + cargarDatosSospechoso(descripcionSospechoso)
+    + buscarSospechosos() : List<String>
+    + atraparSospechoso()
+    + juegoAcabado() : boolean
+    + juegoTerminado() : boolean
 }
 
+AlgoThief "1" --> "0..1" Escenario
+AlgoThief "1" --> "0..1" Pista
+AlgoThief "1" --> "1" FuenteDeDatos
+AlgoThief "1" --> "0..1" ContadorDeDificultad
+AlgoThief "1" --> "0..1" DescripcionSospechoso
+AlgoThief ..> Builder
 
-AlgoThief "1" --> "4..7" Ciudad
-AlgoThief "1" --> "1" Ladron
-AlgoThief "1" --> "1" Detective
+interface Builder
+interface FuenteDeDatos {
+    + listaDeLadrones(): List<Ladron>
+}
 
 @enduml

@@ -1,22 +1,23 @@
 @startuml
 
 class Ciudad {
+    + Ciudad(nombreCiudad, edificios)
     + buscarEdificio(nombre: String): Edificio
-}
-
-class Testigo {
-    + pistas: List<Pista>
+    + es(nombreCiudad): boolean
 }
 
 class Edificio {
-    +
+    + Edificio(nombreEdificio, pista)
+    + obtenerPista(): Pista
+    + es(nombreEdificio): boolean
 }
 
-'class Banco implements Edificio
-'class Museo implements Edificio
-'class Puerto implements Edificio
+class Pista {
+    + Pista(descripcion: String)
+    + descripcion(): String
+}
 
-Ciudad "1" --> "1..*" Edificio
-Edificio -> Testigo
+Ciudad "1" --> "*" Edificio
+Edificio "1" --> "1" Pista
 
 @enduml

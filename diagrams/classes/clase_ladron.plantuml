@@ -1,15 +1,35 @@
 @startuml
 
 class Ladron {
-    - genero: String
+    - nombre: String
+    + Ladron(nombre, descripcion, objetoRobado)
+    + Ladron(nombre, descripcion)
+    + descripcion(): DescripcionSospechoso
+    + getNombre(): String
+    + seLlama(nombre): boolean
 }
 
-interface ObjetoRobado
+abstract class ObjetoRobado
 
-class Comunes implements ObjetoRobado
-class Valiosos implements ObjetoRobado
-class MuyValiosos implements ObjetoRobado
+class Comun extends ObjetoRobado
+class Valioso extends ObjetoRobado
+class MuyValioso extends ObjetoRobado
 
-Ladron "1" --> "1" ObjetoRobado
+class DescripcionSospechoso {
+    + DescripcionSospechoso(rasgos)
+    + coincideCon(descripcion): boolean
+    + agregar(rasgos)
+    + agregar(descripcion)
+}
+
+class Rasgo {
+    + Rasgo(categoria, valor)
+    + categoria(): String
+    + coincideCon(rasgo): boolean
+}
+
+Ladron "1" o-- "1" ObjetoRobado
+Ladron "1" o-- "1" DescripcionSospechoso
+DescripcionSospechoso "1" o-- "*" Rasgo
 
 @enduml

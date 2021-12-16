@@ -1,28 +1,19 @@
 @startuml
 
 class Detective {
-    + visitar(edificio: Edificio) : Pista
+    + Detective(cronometro, ciudad, contadorDeDificultad)
+    + visitar(nombreEdificio): Pista
     + viajar(ciudad: Ciudad)
     + recibirHeridaDeCuchillo()
     + dormir()
 }
 
-Detective "1" -> "1" Cronometro
-
 class Cronometro {
     + restar(horas: int)
-    + tiempo() : int
+    + tiempo(): int
 }
 
-Detective "1" --> "1" Rango
+Detective "1" -> "1" Cronometro
 
-interface Rango {
-    + {abstract}tiempoDeViaje(distanciaEnKms: int) : int
-}
-
-class Novato implements Rango
-class RangoDetective implements Rango
-class Investigador implements Rango
-class Sargento implements Rango
 
 @enduml

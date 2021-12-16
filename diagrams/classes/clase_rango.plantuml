@@ -4,36 +4,42 @@ class Detective {
     + registrarArresto()
 }
 
-class ContadorDeDificultad {
-    - cantidadDeArrestos : int
-    + registrarArresto()
+interface Rango {
+    + {abstract} tiempoDeViaje(distanciaEnKms: int): int
+    + {abstract} actualizar(cantidadDeArrestos): Rango
 }
 
-Detective o- ContadorDeDificultad
-ContadorDeDificultad o- Rango
+class Novato implements Rango {
+    - siguiente()
+}
+class RangoDetective implements Rango {
+    - siguiente()
+}
+class Investigador implements Rango {
+    - siguiente()
+}
+class Sargento implements Rango {
+    - siguiente()
+}
+
+class ContadorDeDificultad {
+    - cantidadDeArrestos : int
+    + ContadorDeDificultad(rangoInicial, arrestos)
+    + ContadorDeDificultad(rangoInicial)
+    + registrarArresto()
+    + arrestos(): int
+    + rango(): Rango
+}
 
 interface Rango {
     + {abstract}tiempoParaViaje(kms: int): int
     + {abstract}actualizar(cantidadDeArrestos: int): Rango
 }
 
-class Novato implements Rango
-class DetectiveRango implements Rango
-class Investigador implements Rango
-class Sargento implements Rango
-
-Novato -> DetectiveRango
-DetectiveRango -> Investigador
-Investigador -> Sargento
-
-note right of Rango::actualizar
-// para el caso de Novato
-actualizar(cantidadDeArrestos) {
-    if (arrestos >= 5) {
-        return siguiente();
-    }
-    return this;
-}
-end note
+Detective "1" o-- "1" ContadorDeDificultad
+ContadorDeDificultad "1" o-- "1" Rango
+Novato .> RangoDetective
+RangoDetective .> Investigador
+Investigador .> Sargento
 
 @enduml

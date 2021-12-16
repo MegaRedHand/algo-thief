@@ -1,40 +1,27 @@
 @startuml
 
-class Algothief {
-    + Algothief()
-    + asignarDetective(cantidadDeArrestos)
-    + generarEscenario(escenario)
-    + visitarEdificio(nombre)
-    + pistaMasReciente() : String
-}
-
 interface Builder {
-    + {abstract} construirCon(rango)
+    + {abstract} construirCon(contadorDeDificultad)
 }
 
 class EscenarioBuilder implements Builder {
     + EscenarioBuilder() : this
     + conCronometro(cronometro) : this
     + conObjetoRobado(nombre) : this
-    + conLadron(sexo) : this
+    + conLadron(nombre, descripcion) : this
     + conCiudad(nombre) : CiudadBuilder
-    + construirCon(rango) : Escenario
-}
-
-class Escenario {
-    + Escenario(detective, ladron, rutaDeEscape)
-    + detectiveVisita(nombre) : Pista
+    + construirCon(contadorDeDificultad) : Escenario
 }
 
 class CiudadBuilder {
-    + CiudadBuilder(nombre)
-    + yEdificios(nombre) : this
+    + CiudadBuilder(nombreCiudad)
+    + conEdificios(nombresDeEdificios) : this
     + construir() : Ciudad
 }
 
-
-EscenarioBuilder o-- CiudadBuilder
-EscenarioBuilder ..> Escenario
-Algothief o-- Escenario
+EscenarioBuilder "1" o-- "*" CiudadBuilder
+EscenarioBuilder .> Escenario
+CiudadBuilder .> Ciudad
+Edificio <. CiudadBuilder
 
 @enduml

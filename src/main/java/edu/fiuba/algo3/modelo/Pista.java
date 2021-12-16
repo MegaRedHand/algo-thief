@@ -8,8 +8,8 @@ public class Pista {
         this.descripcion = descripcion;
     }
 
-
     public String descripcion() {
         return descripcion;
     }
+
 }
