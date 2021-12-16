@@ -50,9 +50,11 @@ public class Algothief {
 
     public List<String> buscarSospechosos() {
 //        List<DescripcionSospechoso> sospechosos = fuente.listaDeSospechosos();
-        List<DescripcionSospechoso> sospechosos = new ArrayList<>();
-        sospechosos.add(new DescripcionSospechoso().conNombre("Carmen SanDiego").conSexo("Femenino").conHobby("Tenis"));
-        return sospechosos.stream().filter(d -> this.descripcion.coincideCon(d)).map(DescripcionSospechoso::nombre)
+        List<Ladron> sospechosos = new ArrayList<>();
+        sospechosos.add(new Ladron("Carmen SanDiego", new DescripcionSospechoso(
+                new Rasgo("Sexo", "Femenino"),
+                new Rasgo("Hobby", "Tenis")), new Comun("Ninguno")));
+        return sospechosos.stream().filter(d -> this.descripcion.coincideCon(d.descripcion())).map(Ladron::getNombre)
                 .collect(Collectors.toList());
     }
 

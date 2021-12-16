@@ -1,80 +1,32 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.HashMap;
+import java.util.stream.Stream;
+
 public class DescripcionSospechoso {
 
-    private String nombre;
-    private String sexo;
-    private String hobby;
-    private String cabello;
-    private String senia;
-    private String vehiculo;
+    private final HashMap<String, Rasgo> rasgos = new HashMap<>();
 
-    public DescripcionSospechoso() {
-        nombre = "";
-        sexo = "";
-        hobby = "";
-        cabello = "";
-        senia = "";
-        vehiculo = "";
-    }
-
-    public DescripcionSospechoso(String nombre, String sexo, String hobby, String cabello, String senia, String vehiculo) {
-
-        this.nombre = nombre;
-        this.sexo = sexo;
-        this.hobby = hobby;
-        this.cabello = cabello;
-        this.senia = senia;
-        this.vehiculo = vehiculo;
-    }
-
-    public DescripcionSospechoso conSexo(String sexo) {
-
-        this.sexo = sexo;
-        return this;
-    }
-
-    public DescripcionSospechoso conHobby(String hobby) {
-
-        this.hobby = hobby;
-        return this;
-    }
-
-    public DescripcionSospechoso conNombre(String nombre) {
-        this.nombre = nombre;
-        return this;
-    }
-
-    public String nombre() {
-        return this.nombre;
+    public DescripcionSospechoso(Rasgo... rasgos) {
+        this.agregar(rasgos);
     }
 
     public boolean coincideCon(DescripcionSospechoso otraDescripcion) {
-
-        // TODO: mejorar este asco de solución
-        // Se me ocurre un patrón composite, con una función categoria que devuelve "hobby", "seña", etc; y guardarlo en un hashmap
-        String[] valores = new String[] { nombre, sexo, hobby, cabello, senia, vehiculo };
-        String[] valoresOtro = new String[] { otraDescripcion.nombre, otraDescripcion.sexo, otraDescripcion.hobby,
-                otraDescripcion.cabello, otraDescripcion.senia, otraDescripcion.vehiculo };
-        for (int i = 0; i < 6; i++) {
-            if (!valores[i].equals("") && !valores[i].equals(valoresOtro[i])) {
-                return false;
-            }
-        }
-        return true;
+        return rasgos.keySet().stream().allMatch(k ->
+                this.obtenerRasgo(k).coincideCon(otraDescripcion.obtenerRasgo(k)));
     }
 
-    public DescripcionSospechoso agregar(DescripcionSospechoso otraDescripcion) {
-
-        // TODO: mejorar este asco de solución
-        String[] valores = new String[] { nombre, sexo, hobby, cabello, senia, vehiculo };
-        String[] valoresOtro = new String[] { otraDescripcion.nombre, otraDescripcion.sexo, otraDescripcion.hobby,
-                otraDescripcion.cabello, otraDescripcion.senia, otraDescripcion.vehiculo };
-        for (int i = 0; i < 6; i++) {
-            if (!valoresOtro[i].equals("")) {
-                valores[i] = valoresOtro[i];
-            }
-        }
-        return new DescripcionSospechoso(valores[0], valores[1], valores[2], valores[3], valores[4], valores[5]);
+    public void agregar(DescripcionSospechoso otraDescripcion) {
+        this.rasgos.putAll(otraDescripcion.rasgos);
     }
+
+    public void agregar(Rasgo... rasgos) {
+        Stream.of(rasgos).forEach(r -> this.rasgos.put(r.categoria(), r));
+    }
+
+    private Rasgo obtenerRasgo(String categoria) {
+        // TODO: devolver una subclase de rasgo con coincideCon() { return false; }
+        return this.rasgos.getOrDefault(categoria, new Rasgo(categoria, null));
+    }
+
 }

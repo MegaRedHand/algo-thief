@@ -84,7 +84,9 @@ public class Entrega2Test {
         algothief.generarEscenario(builder);
 
         // TODO: definir cómo manejamos las descripciones de los sospechosos (ok?)
-        DescripcionSospechoso descripcion = new DescripcionSospechoso().conSexo("Femenino").conHobby("Tenis");
+        DescripcionSospechoso descripcion = new DescripcionSospechoso(
+                new Rasgo("Hobby", "Tenis"),
+                new Rasgo("Sexo", "Femenino"));
         algothief.cargarDatosSospechoso(descripcion);
 
         assertEquals(List.of("Carmen SanDiego"), algothief.buscarSospechosos());
@@ -146,7 +148,9 @@ public class Entrega2Test {
         algothief.viajar("Mexico");
         algothief.visitar("Aeropuerto Nacional");
 
-        DescripcionSospechoso descripcion = new DescripcionSospechoso().conSexo("Masculino").conHobby("Tenis");
+        DescripcionSospechoso descripcion = new DescripcionSospechoso(
+                new Rasgo("Hobby", "Tenis"),
+                new Rasgo("Sexo", "Femenino"));
         algothief.cargarDatosSospechoso(descripcion);
         algothief.buscarSospechosos();
 

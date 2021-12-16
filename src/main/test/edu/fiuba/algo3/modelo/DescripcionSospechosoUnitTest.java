@@ -9,8 +9,16 @@ public class DescripcionSospechosoUnitTest {
     @Test
     public void test01DescripcionDePocosRasgosCoincideConDescripcionMasDetallada() {
 
-        DescripcionSospechoso dePocosRasgos = new DescripcionSospechoso().conHobby("Tenis").conSexo("Femenino");
-        DescripcionSospechoso masDetallada = new DescripcionSospechoso("Nombre", "Femenino", "Tenis", "Castaño", "Anillo", "Descapotable");
+        DescripcionSospechoso dePocosRasgos = new DescripcionSospechoso(
+                new Rasgo("Hobby", "Tenis"),
+                new Rasgo("Sexo", "Femenino"));
+
+        DescripcionSospechoso masDetallada = new DescripcionSospechoso(
+                new Rasgo("Sexo", "Femenino"),
+                new Rasgo("Hobby", "Tenis"),
+                new Rasgo("Cabello", "Castaño"),
+                new Rasgo("Seña", "Anillo"),
+                new Rasgo("Vehículo", "Descapotable"));
 
         assertTrue(dePocosRasgos.coincideCon(masDetallada));
     }
@@ -18,8 +26,16 @@ public class DescripcionSospechosoUnitTest {
     @Test
     public void test02DescripcionDetalladaNoCoincideConDescripcionDePocosRasgos() {
 
-        DescripcionSospechoso masDetallada = new DescripcionSospechoso("Nombre", "Femenino", "Tenis", "Castaño", "Anillo", "Descapotable");
-        DescripcionSospechoso dePocosRasgos = new DescripcionSospechoso().conHobby("Tenis").conSexo("Femenino");
+        DescripcionSospechoso masDetallada = new DescripcionSospechoso(
+                new Rasgo("Sexo", "Femenino"),
+                new Rasgo("Hobby", "Tenis"),
+                new Rasgo("Cabello", "Castaño"),
+                new Rasgo("Seña", "Anillo"),
+                new Rasgo("Vehículo", "Descapotable"));
+
+        DescripcionSospechoso dePocosRasgos = new DescripcionSospechoso(
+                new Rasgo("Hobby", "Tenis"),
+                new Rasgo("Sexo", "Femenino"));
 
         assertFalse(masDetallada.coincideCon(dePocosRasgos));
     }
@@ -27,12 +43,16 @@ public class DescripcionSospechosoUnitTest {
     @Test
     public void test03AlAgregarDosDescripcionesSeComportaIgualQueUnaDescripcionCreadaConLosMismosRasgos() {
 
-        DescripcionSospechoso conSexoYHobby = new DescripcionSospechoso().conHobby("Tenis").conSexo("Femenino");
+        DescripcionSospechoso conSexoYHobby = new DescripcionSospechoso(
+                new Rasgo("Hobby", "Tenis"),
+                new Rasgo("Sexo", "Femenino"));
 
-        DescripcionSospechoso conSexo = new DescripcionSospechoso().conSexo("Femenino");
-        DescripcionSospechoso conHobby = new DescripcionSospechoso().conHobby("Tenis");
+        DescripcionSospechoso conSexo = new DescripcionSospechoso(new Rasgo("Sexo", "Femenino"));
+        DescripcionSospechoso conHobby = new DescripcionSospechoso(new Rasgo("Hobby", "Tenis"));
 
-        DescripcionSospechoso agregada = conSexo.agregar(conHobby);
+        DescripcionSospechoso agregada = new DescripcionSospechoso();
+        agregada.agregar(conSexo);
+        agregada.agregar(conHobby);
 
         assertTrue(agregada.coincideCon(conSexoYHobby));
     }
