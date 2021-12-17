@@ -3,14 +3,21 @@
 title "Caso de uso 1"
 
 participant ":Testcase1" as testcase
+participant ":Algothief" as algothief
+participant ":Escenario" as escenario
 participant ":Detective" as detective
 participant ":Cronometro" as cronometro
 
 
-testcase ->> detective: recibirHeridaDeCuchillo()
+testcase ->> algothief: recibirHeridaDeCuchillo()
+algothief ->> escenario: detectiveRecibirHeridaDeCuchillo()
+escenario ->> detective: recibirHeridaDeCuchillo()
 detective ->>cronometro:restar(2)
 
-testcase ->> detective:dormir()
+testcase ->> algothief: recibirHeridaDeCuchillo()
+algothief ->> escenario: detectiveDormir()
+escenario ->> detective:dormir()
 detective ->> cronometro: restar(8)
+
 @enduml
 
