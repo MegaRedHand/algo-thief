@@ -19,5 +19,6 @@ algothief ->> escenario: detectiveDormir()
 escenario ->> detective:dormir()
 detective ->> cronometro: restar(8)
 
+
 @enduml
 
