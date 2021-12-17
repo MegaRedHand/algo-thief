@@ -66,10 +66,11 @@ testcase -> algothief: juegoGanado()
     activate algothief
     return true
 
-testcase -> testcase: assertTrue(juegoGanado)
+testcase -> testcase: assertTrue(juegoAcabado)
 activate testcase
 deactivate testcase
-testcase -> testcase: assertTrue(juegoAcabado)
+
+testcase -> testcase: assertTrue(juegoGanado)
 activate testcase
 deactivate testcase
 
