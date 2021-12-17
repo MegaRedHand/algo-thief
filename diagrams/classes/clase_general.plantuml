@@ -7,5 +7,6 @@
 !include clase_ladron.plantuml
 !include clase_policia.plantuml
 !include clase_escenario.plantuml
+!include clase_pista.plantuml
 
 @enduml

@@ -12,10 +12,7 @@ class Edificio {
     + es(nombreEdificio): boolean
 }
 
-class Pista {
-    + Pista(descripcion: String)
-    + descripcion(): String
-}
+abstract class Pista
 
 Ciudad "1" --> "*" Edificio
 Edificio "1" --> "1" Pista

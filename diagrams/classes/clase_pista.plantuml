@@ -1,0 +1,12 @@
+@startuml
+
+abstract class Pista {
+    + Pista(descripcion: String)
+    + descripcion(): String
+}
+
+class Facil extends Pista
+class Media extends Pista
+class Dificil extends Pista
+
+@enduml

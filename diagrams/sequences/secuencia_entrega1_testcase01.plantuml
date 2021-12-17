@@ -129,8 +129,4 @@ testcase -> testcase: assertEquals("Descripción de la pista", descripcion)
 activate testcase
 deactivate testcase
 
-
-
-
-
 @enduml
