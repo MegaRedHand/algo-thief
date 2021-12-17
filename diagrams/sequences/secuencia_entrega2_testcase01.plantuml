@@ -1,6 +1,6 @@
 @startuml
 
-title "Caso de uso 1"
+title "Caso de uso 1 de la entrega 2"
 
 participant ":Testcase1" as testcase
 participant ":Algothief" as algothief
@@ -8,17 +8,36 @@ participant ":Escenario" as escenario
 participant ":Detective" as detective
 participant ":Cronometro" as cronometro
 
+activate testcase
+testcase -> algothief: recibirHeridaDeCuchillo()
+    activate algothief
+    algothief -> escenario: detectiveRecibirHeridaDeCuchillo()
+        activate escenario
+        escenario -> detective: recibirHeridaDeCuchillo()
+            activate detective
+            detective -> cronometro: restar(2)
+            deactivate detective
+        deactivate escenario
+    deactivate algothief
 
-testcase ->> algothief: recibirHeridaDeCuchillo()
-algothief ->> escenario: detectiveRecibirHeridaDeCuchillo()
-escenario ->> detective: recibirHeridaDeCuchillo()
-detective ->>cronometro:restar(2)
+testcase -> algothief: recibirHeridaDeCuchillo()
+    activate algothief
+    algothief -> escenario: detectiveDormir()
+        activate escenario
+        escenario -> detective: dormir()
+            activate detective
+            detective -> cronometro: restar(8)
+            deactivate detective
+        deactivate escenario
+    deactivate algothief
 
-testcase ->> algothief: recibirHeridaDeCuchillo()
-algothief ->> escenario: detectiveDormir()
-escenario ->> detective:dormir()
-detective ->> cronometro: restar(8)
+testcase -> cronometro: tiempo()
+    activate cronometro
+    return horas
 
+testcase -> testcase: assertEquals(10, horas)
+activate testcase
+deactivate testcase
 
 @enduml
 
