@@ -1,0 +1,18 @@
+@startuml
+
+title "Caso de uso 1"
+
+participant ":Testcase1" as testcase
+participant ":Escenario" as escenario
+participant ":Algothief" as algothief
+participant ":Detective" as detective
+participant ":Cronometro" as cronometro
+
+
+
+testcase ->> algothief: viajar("Mexico")
+algothief ->> escenario: detectiveViajar("Mexico")
+escenario ->> detective: viajar(Mexico)
+detective ->>cronometro:restar(contador.rango().tiempoDeViaje(3800))
+
+@enduml
