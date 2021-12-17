@@ -1,0 +1,16 @@
+@startuml
+
+title "Caso de uso 1"
+
+participant ":Testcase1" as testcase
+participant ":Detective" as detective
+participant ":Cronometro" as cronometro
+
+
+testcase ->> detective: recibirHeridaDeCuchillo()
+detective ->>cronometro:restar(2)
+
+testcase ->> detective:dormir()
+detective ->> cronometro: restar(8)
+@enduml
+
