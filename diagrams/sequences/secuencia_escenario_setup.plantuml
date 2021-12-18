@@ -1,0 +1,73 @@
+@startuml
+
+title "Ejemplo de construcción de escenario para caso de uso 1"
+
+participant ":Testcase1" as testcase
+participant "fuenteStub\n:FuenteDeDatos" as fuente
+participant ":Algothief" as algothief
+
+participant "escenarioBuilder\n:EscenarioBuilder" as escenarioBuilder
+participant "cronometro\n:Cronometro" as cron
+participant "ciudadBuilder\n:CiudadBuilder" as ciudadBuilder
+
+participant ":Detective" as detective
+participant "escenario:Escenario" as escenario
+
+participant "novato:Novato" as novato
+participant "contador\n:ContadorDeDificultad" as contDificultad
+participant "objeto:Comun" as objeto
+participant "rasgo:Rasgo" as rasgo
+participant "descripcion\n:DescripcionSospechoso" as descripcion
+participant ":Ladron" as ladron
+participant "pista:Facil" as pista
+participant "banco:Edificio" as banco
+participant "ciudad: Ciudad" as ciudad
+
+
+
+activate testcase
+testcase ->> fuente**: <<create>>\n FuenteDeDatos()
+testcase ->> algothief**: <<create>>\n Algothief(fuente)
+
+
+testcase ->> novato**: <<create>>\n Novato()
+testcase ->> contDificultad**: <<create>>\n ContadorDeDificultad(novato,0)
+
+testcase -> algothief: asignarDetective(contador)
+
+testcase ->> escenarioBuilder**: <<create>>\n EscenarioBuilder()
+
+testcase ->> cron**: <<create>>\n Cronometro()
+testcase -> escenarioBuilder++: conCronometro(cronometro)
+    return escenarioBuilder
+
+testcase ->> objeto**: <<create>>\n Comun("Tesoro Nacional de Montreal")
+testcase -> escenarioBuilder++: conObjetoRobado(objeto)
+    return escenarioBuilder
+
+testcase ->> rasgo**: <<create>>\n Rasgo("Sexo","Femenino")
+testcase ->> descripcion**: <<create>>\n DescripcionSospechoso(rasgo)
+testcase -> escenarioBuilder++: conLadron("Sospechoso",descripcion)
+    escenarioBuilder ->> ladron**: <<create>>\n Ladron("nombre",descripcion)
+    return escenarioBuilder
+
+testcase -> escenarioBuilder++: conCiudad("Montreal")
+    escenarioBuilder ->> ciudadBuilder**: <<create>>\n CiudadBuilder("Montreal")
+    return ciudadBuilder
+
+testcase -> ciudadBuilder++: conEdificios("Banco Nacional")
+    return ciudadBuilder
+
+testcase -> algothief++: generarEscenario(escenarioBuilder)
+    algothief -> escenarioBuilder++: construirCon(contador)
+        escenarioBuilder -> ciudadBuilder++: construir()
+            ciudadBuilder ->> pista**: <<create>>\n Facil("Descripcion Pista")
+            ciudadBuilder ->> banco**: <<create>>\n Edificio("Banco Nacional", pista)
+            ciudadBuilder ->> ciudad**: <<create>>\n Ciudad("Montreal", banco)
+            return ciudad
+        escenarioBuilder ->> detective**: <<create>>\n Detective(cronometro, ciudad, contador)
+        escenarioBuilder ->> escenario**: <<create>>\n Escenario(detective, ladron, ciudad)
+        return escenario
+        deactivate algothief
+
+@enduml

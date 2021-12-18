@@ -4,129 +4,38 @@ title "Caso de uso 1"
 
 participant ":Testcase1" as testcase
 participant "algothief:Algothief" as algothief
-
-participant "escenarioBuilder\n:EscenarioBuilder" as escenarioBuilder
+participant "escenario:Escenario" as escenario
 participant "cronometro\n:Cronometro" as cron
-participant "ciudadBuilder\n:CiudadBuilder" as ciudadBuilder
-
 participant ":Detective" as detective
 participant "ciudad: Ciudad" as ciudad
-participant "escenario:Escenario" as escenario
-
-participant "pista:Facil" as pista
 participant "banco:Edificio" as banco
+participant "pista:Facil" as pista
 
-participant "objeto:Comun" as objeto
-participant "rasgo:Rasgo" as rasgo
-participant "descripcion\n:DescripcionSospechoso" as descripcion
-participant ":Ladron" as ladron
-
-participant "fuente\n:FuenteDeDatos" as fuente
-participant "novato:Novato" as novato
-participant "contadorDificultad\n:ContadorDeDificultad" as contDificultad
 
 activate testcase
-create fuente
-testcase ->> fuente: <<create>>\n FuenteDeDatos()
-create algothief
-testcase ->> algothief: <<create>>\n Algothief(fuente)
-
-
-create novato
-testcase ->> novato: <<create>>\n Novato()
-create contDificultad
-testcase ->> contDificultad: <<create>>\n ContadorDeDificultad(novato,0)
-
-testcase -> algothief: asignarDetective(contador)
-
-
-
-create escenarioBuilder
-testcase ->> escenarioBuilder: <<create>>\n EscenarioBuilder()
-
-create cron
-testcase ->>cron: <<create>>\n Cronometro()
-testcase -> escenarioBuilder: conCronometro(cronometro)
-activate escenarioBuilder
-return escenarioBuilder
-
-
-create objeto
-testcase ->>objeto: <<create>>\n Comun("Tesoro Nacional de Montreal")
-testcase -> escenarioBuilder: conObjetoRobado(objeto)
-activate escenarioBuilder
-return escenarioBuilder
-
-create rasgo
-testcase ->>rasgo: <<create>>\n Rasgo("Sexo","Femenino")
-create descripcion
-testcase ->>descripcion: <<create>>\n DescripcionSospechoso(rasgo)
-testcase -> escenarioBuilder: conLadron("Sospechoso",descripcion)
-activate escenarioBuilder
-create ladron
-escenarioBuilder ->>ladron: <<create>>\n Ladron("nombre",descripcion)
-return escenarioBuilder
-
-testcase -> escenarioBuilder: conCiudad("Montreal)
-activate escenarioBuilder
-create ciudadBuilder
-escenarioBuilder ->>ciudadBuilder: <<create>>\n CiudadBuilder("Montreal")
-escenarioBuilder ->ciudadBuilder: conEdificios("Banco Nacional")
-activate ciudadBuilder
-create pista
-ciudadBuilder ->> pista: <<create>>\n Facil("Descripcion Pista")
-create banco
-ciudadBuilder ->> banco: <<create>>\n Edificio("Banco Nacional",pista)
-return ciudadBuilder
-deactivate escenarioBuilder
-
-testcase -> algothief: generarEscenario(escenarioBuilder)
-activate algothief
-algothief -> escenarioBuilder: construirCon(contador)
-activate ciudadBuilder
-escenarioBuilder -> ciudadBuilder: construir()
-activate ciudadBuilder
-create ciudad
-ciudadBuilder ->> ciudad: <<create>>\n Ciudad("Montreal",banco)
-
-activate ciudad
-return ciudad
-return ciudad
-create detective
-escenarioBuilder->> detective: <<create>>\n Detective(cronometro,ciudad, contador)
-create escenario
-escenarioBuilder->> escenario: <<create>>\n Escenario(detective, ladron,ciudad)
-return escenario
-deactivate algothief
-testcase -> algothief: visitar("Banco Nacional")
-activate algothief
-algothief->escenario: detectiveVisitar("Banco Nacional")
-activate escenario
-escenario -> detective: visitar("Banco Nacional")
-activate detective
-detective -> ciudad: obtenerEdificio("Banco Nacional")
-    activate ciudad
-    return banco
-detective -> detective: visitar(banco)
-activate detective
-    detective -> detective: registrarVisita(banco)
-    detective -> detective: tiempoDeVisita(banco)
-    detective -> cron: restar(tiempo)
-    detective -> banco: obtenerPista()
-        activate banco
+testcase -> algothief++: visitar("Banco Nacional")
+    algothief -> escenario++: detectiveVisitar("Banco Nacional")
+        escenario -> detective++: visitar("Banco Nacional")
+            detective -> ciudad++: obtenerEdificio("Banco Nacional")
+                return banco
+            detective -> detective++: visitar(banco)
+                detective -> detective: registrarVisita(banco)
+                detective -> detective++: tiempoDeVisita(banco)
+                    return tiempo
+                detective -> cron: restar(tiempo)
+                detective -> banco++: obtenerPista()
+                    return pista
+                return pista
+            return pista
         return pista
-    return pista
-return pista
-return pista
+    deactivate algothief
 
-testcase -> algothief: pistaMasReciente()
-activate algothief
-algothief -> pista: descripcion()
-activate pista
-return "Descripción de la pista"
-return "Descripción de la pista"
-testcase -> testcase: assertEquals("Descripción de la pista", descripcion)
-activate testcase
+testcase -> algothief++: pistaMasReciente()
+    algothief -> pista++: descripcion()
+        return descripcionDeLaPista
+    return descripcionDeLaPista
+
+testcase -> testcase++: assertEquals("Descripción de la pista", descripcionDeLaPista)
 deactivate testcase
 
 @enduml

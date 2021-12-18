@@ -6,19 +6,32 @@ class Detective {
 
 interface Rango {
     + {abstract} tiempoDeViaje(distanciaEnKms: int): int
-    + {abstract} actualizar(cantidadDeArrestos): Rango
+    + {abstract} actualizar(cantidadDeArrestos: int): Rango
 }
 
-class Novato implements Rango {
+abstract class RangoLineal implements Rango {
+    - arrestosParaActualizar: int
+    - velocidadDeViaje: int
+    # RangoLineal(arrestosParaActualizar, velocidadDeViaje)
+    + tiempoDeViaje(distanciaEnKms: int): int
+    + actualizar(cantidadDeArrestos: int): Rango
+    - {abstract} siguiente()
+}
+
+class Novato extends RangoLineal {
+    + Novato()
     - siguiente()
 }
-class RangoDetective implements Rango {
+class RangoDetective extends RangoLineal {
+    + RangoDetective()
     - siguiente()
 }
-class Investigador implements Rango {
+class Investigador extends RangoLineal {
+    + Investigador()
     - siguiente()
 }
-class Sargento implements Rango {
+class Sargento extends RangoLineal {
+    + Sargento()
     - siguiente()
 }
 
@@ -31,15 +44,10 @@ class ContadorDeDificultad {
     + rango(): Rango
 }
 
-interface Rango {
-    + {abstract}tiempoParaViaje(kms: int): int
-    + {abstract}actualizar(cantidadDeArrestos: int): Rango
-}
-
 Detective "1" o-- "1" ContadorDeDificultad
 ContadorDeDificultad "1" o-- "1" Rango
-Novato .> RangoDetective
-RangoDetective .> Investigador
-Investigador .> Sargento
+Novato::siguiente .> RangoDetective::RangoDetective
+RangoDetective::siguiente .> Investigador::Investigador
+Investigador::siguiente .> Sargento::Sargento
 
 @enduml

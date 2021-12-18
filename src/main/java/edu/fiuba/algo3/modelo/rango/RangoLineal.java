@@ -5,7 +5,7 @@ public abstract class RangoLineal implements Rango {
     private final int arrestosParaActualizar;
     private final int velocidadDeViaje;
 
-    public RangoLineal(int arrestosParaActualizar, int velocidadDeViaje) {
+    protected RangoLineal(int arrestosParaActualizar, int velocidadDeViaje) {
         this.arrestosParaActualizar = arrestosParaActualizar;
         this.velocidadDeViaje = velocidadDeViaje;
     }
