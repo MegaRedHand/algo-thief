@@ -1,18 +1,39 @@
 @startuml
 
-title "Caso de uso 1"
+title "Caso de uso 2 de la entrega 2"
 
 participant ":Testcase1" as testcase
-participant ":Escenario" as escenario
 participant ":Algothief" as algothief
-participant ":Detective" as detective
 participant ":Cronometro" as cronometro
+participant ":Escenario" as escenario
+participant ":Detective" as detective
+participant ":ContadorDeArrestos" as contador
+participant "rango:Investigador" as rango
 
+activate testcase
+testcase -> algothief: viajar("Mexico")
+    activate algothief
+    algothief -> escenario: detectiveViajar("Mexico")
+        activate escenario
+        escenario -> detective: viajar(mexico)
+            activate detective
+            detective -> contador: rango()
+                activate contador
+                return rango
+            detective -> rango: tiempoDeViaje(3800)
+                activate rango
+                return 3800 / 1100
+            detective -> cronometro: restar(3)
+            return
+        return
+    return
 
+testcase -> cronometro: tiempo()
+    activate cronometro
+    return horas
 
-testcase ->> algothief: viajar("Mexico")
-algothief ->> escenario: detectiveViajar("Mexico")
-escenario ->> detective: viajar(Mexico)
-detective ->>cronometro:restar(contador.rango().tiempoDeViaje(3800))
+testcase -> testcase: assertEquals(3, horas)
+activate testcase
+deactivate testcase
 
 @enduml

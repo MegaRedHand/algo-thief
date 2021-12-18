@@ -46,7 +46,7 @@ testcase -> algothief: buscarSospechosos()
         activate descripcion
         return false
     algothief -> escenario: emitirOrdenDeArresto("Carmen SanDiego")
-    return List("Carmen SanDiego")
+    return "Carmen SanDiego"
 
 testcase -> algothief: atraparSospechoso()
     activate algothief
