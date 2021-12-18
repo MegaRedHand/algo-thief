@@ -17,13 +17,13 @@ public class EscenarioBuilder implements Builder {
     }
 
     public EscenarioBuilder conLadron(String nombre, DescripcionSospechoso descripcion) {
-        // TODO: para mí que Escenario debería tener solo las ciudades
         ladron = new Ladron(nombre, descripcion, objeto);
         return this;
     }
 
     public CiudadBuilder conCiudad(String nombre) {
         // TODO: debería recibir CiudadBuilder por parámetro (D.I.)
+        //  ejemplo: conCiudad(CiudadBuilder ciudadBuilder)
         CiudadBuilder builder = new CiudadBuilder(nombre);
         buildersDeCiudades.add(builder);
         return builder;

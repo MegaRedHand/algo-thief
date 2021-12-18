@@ -50,7 +50,6 @@ public class Algothief {
     }
 
     public List<String> buscarSospechosos() {
-
         List<String> nombres = fuente.listaDeLadrones().stream().filter(d ->
                         this.descripcion.coincideCon(d.descripcion())).map(Ladron::getNombre)
                 .collect(Collectors.toList());

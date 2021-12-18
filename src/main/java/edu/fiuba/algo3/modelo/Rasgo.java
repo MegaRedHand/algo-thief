@@ -14,7 +14,7 @@ public class Rasgo {
         return this.categoria;
     }
 
-    public boolean coincideCon(Rasgo otroRasgo) {
+    public boolean igualA(Rasgo otroRasgo) {
         return this.valor.equals(otroRasgo.valor);
     }
 

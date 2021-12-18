@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.rango.Investigador;
+import edu.fiuba.algo3.modelo.rango.Novato;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -55,7 +57,7 @@ public class Entrega2Test {
         algothief.viajar("Mexico");
 
         int distanciaEntreCiudades = 3800; // km
-        int tiempoEsperado = new Investigador().tiempoDeViaje(distanciaEntreCiudades) /*velocidad investigador*/;
+        int tiempoEsperado = new Investigador().tiempoDeViaje(distanciaEntreCiudades);
         assertEquals(tiempoEsperado, cronometro.tiempo());
     }
 
@@ -69,7 +71,6 @@ public class Entrega2Test {
         // TODO: definir de dónde toma los datos el juego (ok?)
         FuenteDeDatos fuente = mock(FuenteDeDatos.class);
 
-        // ejemplo de mockeo (stubeo?) de FuenteDeDatos:
         Ladron ladron1 = new Ladron("Carmen SanDiego", new DescripcionSospechoso(
                 new Rasgo("Sexo", "Femenino"),
                 new Rasgo("Hobby", "Tenis")

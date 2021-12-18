@@ -13,7 +13,7 @@ public class DescripcionSospechoso {
 
     public boolean coincideCon(DescripcionSospechoso otraDescripcion) {
         return rasgos.keySet().stream().allMatch(k ->
-                this.obtenerRasgo(k).coincideCon(otraDescripcion.obtenerRasgo(k)));
+                this.obtenerRasgo(k).igualA(otraDescripcion.obtenerRasgo(k)));
     }
 
     public void agregar(DescripcionSospechoso otraDescripcion) {
@@ -25,7 +25,6 @@ public class DescripcionSospechoso {
     }
 
     private Rasgo obtenerRasgo(String categoria) {
-        // TODO: devolver una subclase de rasgo con coincideCon() { return false; }
         return this.rasgos.getOrDefault(categoria, new Rasgo(categoria, null));
     }
 

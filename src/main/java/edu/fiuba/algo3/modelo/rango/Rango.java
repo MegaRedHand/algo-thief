@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.rango;
 
 public interface Rango {
     Rango actualizar(int cantidadDeArrestos);

@@ -6,7 +6,7 @@ public class Escenario {
     private final Detective detective;
     private final Ladron ladron;
     private final List<Ciudad> rutaDeEscape;
-    private String ordenDeArrestoANombreDe;
+    private String nombreEnOrdenDeArresto;
 
     public Escenario(Detective detective, Ladron ladron, List<Ciudad> rutaDeEscape) {
         this.detective = detective;
@@ -31,10 +31,10 @@ public class Escenario {
     }
 
     public boolean detectiveAtraparLadron() {
-        return ladron.seLlama(ordenDeArrestoANombreDe);
+        return ladron.seLlama(nombreEnOrdenDeArresto);
     }
 
     public void emitirOrdenDeArresto(String nombre) {
-        ordenDeArrestoANombreDe = nombre;
+        nombreEnOrdenDeArresto = nombre;
     }
 }

@@ -14,12 +14,14 @@ public class DetectiveUnitTest {
         Ciudad ciudad = mock(Ciudad.class);
         ContadorDeDificultad contador = mock(ContadorDeDificultad.class);
         Edificio edificio = mock(Edificio.class);
-        Pista pista = new Pista("descripcion");
+        Pista pista = mock(Pista.class);
+
+        when(ciudad.obtenerEdificio("nombreEdificio")).thenReturn(edificio);
         when(edificio.obtenerPista()).thenReturn(pista);
 
         Detective detective = new Detective(cronometro, ciudad, contador);
 
-        Pista pistaDevuelta = detective.visitar(edificio);
+        Pista pistaDevuelta = detective.visitar("nombreEdificio");
 
         assertEquals(pista, pistaDevuelta);
     }
@@ -32,9 +34,11 @@ public class DetectiveUnitTest {
         ContadorDeDificultad contador = mock(ContadorDeDificultad.class);
         Edificio edificio = mock(Edificio.class);
 
+        when(ciudad.obtenerEdificio("nombreEdificio")).thenReturn(edificio);
+
         Detective detective = new Detective(cronometro, ciudad, contador);
 
-        detective.visitar(edificio);
+        detective.visitar("nombreEdificio");
 
         assertEquals(1, cronometro.tiempo());
     }
@@ -48,12 +52,15 @@ public class DetectiveUnitTest {
         Edificio unEdificio = mock(Edificio.class);
         Edificio otroEdificio = mock(Edificio.class);
 
+        when(ciudad.obtenerEdificio("unEdificio")).thenReturn(unEdificio);
+        when(ciudad.obtenerEdificio("otroEdificio")).thenReturn(otroEdificio);
+
         Detective detective = new Detective(cronometro, ciudad, contador);
 
-        detective.visitar(unEdificio);
+        detective.visitar("unEdificio");
 
-        detective.visitar(otroEdificio);
-        detective.visitar(otroEdificio);
+        detective.visitar("otroEdificio");
+        detective.visitar("otroEdificio");
 
         assertEquals(4, cronometro.tiempo());
     }
@@ -65,11 +72,12 @@ public class DetectiveUnitTest {
         Ciudad ciudad = mock(Ciudad.class);
         ContadorDeDificultad contador = mock(ContadorDeDificultad.class);
         Edificio edificio = mock(Edificio.class);
+        when(ciudad.obtenerEdificio("nombreEdificio")).thenReturn(edificio);
 
         Detective detective = new Detective(cronometro, ciudad, contador);
 
         for (int i = 0; i < 4; i++) {
-            detective.visitar(edificio);
+            detective.visitar("nombreEdificio");
         }
 
         assertEquals(9, cronometro.tiempo());

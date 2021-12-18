@@ -17,8 +17,7 @@ public class Detective {  // TODO: cambiar nombre a Policía (hay un rango Detec
         this.contador = contador;
     }
 
-    public Pista visitar(Edificio edificio) {
-        // TODO: debería ser private
+    private Pista visitar(Edificio edificio) {
         registrarVisita(edificio);
         cronometro.restar(tiempoDeVisita(edificio));
         return edificio.obtenerPista();
