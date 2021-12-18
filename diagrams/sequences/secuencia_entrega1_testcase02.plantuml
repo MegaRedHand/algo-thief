@@ -15,6 +15,7 @@ activate testcase
 testcase -> algothief++: visitar("Banco Nacional")
     algothief -> escenario++: detectiveVisitar("Banco Nacional")
         escenario -> detective++: visitar("Banco Nacional")
+            return pistaBanco
         return pistaBanco
     deactivate algothief
 
@@ -28,6 +29,7 @@ testcase -> algothief++: pistaMasReciente()
 testcase -> algothief++: visitar("Biblioteca de Montreal")
     algothief -> escenario++: detectiveVisitar("Biblioteca de Montreal")
         escenario -> detective++: visitar("Biblioteca de Montreal")
+            return pistaBiblioteca
         return pistaBiblioteca
     deactivate algothief
 

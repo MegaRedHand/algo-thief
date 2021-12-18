@@ -1,6 +1,6 @@
 @startuml
 
-title "Caso de uso 1 de la entrega 2"
+title "Caso de uso 5 de la entrega 1\n y caso de uso 1 de la entrega 2"
 
 participant ":Testcase1" as testcase
 participant ":Algothief" as algothief

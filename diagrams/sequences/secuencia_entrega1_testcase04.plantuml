@@ -8,9 +8,33 @@ participant ":Cronometro" as cronometro
 
 
 activate testcase
-'Se podría ampliar este loop para mostrar qué pasa al visitar varias veces
 loop 3 veces
-    testcase -> algothief: visitar("Aeropuerto Nacional")
+    testcase -> algothief++: visitar("Banco Nacional")
+        algothief -> escenario++: detectiveVisitar("Banco Nacional")
+            escenario -> detective++: visitar("Banco Nacional")
+                detective -> ciudad++: obtenerEdificio("Banco Nacional")
+                    return banco
+                detective -> detective++: visitar(banco)
+                    detective -> detective: registrarVisita(banco)
+                    alt primera visita
+                        detective -> detective++: tiempoDeVisita(banco)
+                        return min(3, 1)
+                    detective -> cron: restar(1)
+                    else segunda visita
+                        detective -> detective++: tiempoDeVisita(banco)
+                        return min(3, 2)
+                    detective -> cron: restar(2)
+                    else tercera visita
+                        detective -> detective++: tiempoDeVisita(banco)
+                        return min(3, 3)
+                    detective -> cron: restar(3)
+                    end alt
+                    detective -> banco++: obtenerPista()
+                        return pista
+                    return pista
+                return pista
+            return pista
+        deactivate algothief
 end loop
 testcase -> algothief++: pistaMasReciente()
     return descripcionAeropuerto := "Descripción de la pista Aeropuerto"
