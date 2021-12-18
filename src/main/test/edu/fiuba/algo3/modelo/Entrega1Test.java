@@ -127,8 +127,6 @@ public class Entrega1Test {
 
         algothief.generarEscenario(builder);
 
-        Facil pistaAeropuerto = new Facil("Descripción de la pista");
-        Facil pistaPuerto = new Facil("Descripción de la pista");
 
         for (int i = 0; i < 3; i++) {
             algothief.visitar(nombreAeropuerto);
@@ -140,8 +138,8 @@ public class Entrega1Test {
             algothief.visitar(nombrePuerto);
         }
 
-        assertEquals(pistaAeropuerto.descripcion(), pistaDevueltaAeropuerto);
-        assertEquals(pistaPuerto.descripcion(), algothief.pistaMasReciente());
+        assertEquals("Descripción de la pista", pistaDevueltaAeropuerto);
+        assertEquals("Descripción de la pista", algothief.pistaMasReciente());
 
         assertEquals(168, cronometro.tiempo());
     }

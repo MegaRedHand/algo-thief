@@ -2,7 +2,7 @@
 
 title "Caso de uso 3 de la entrega 2"
 
-participant ":Testcase1" as testcase
+participant ":Testcase" as testcase
 participant "descripcion\n:DescripcionSospechoso" as descripcion
 participant ":Algothief" as algothief
 participant ":DescripcionSospechoso" as descripcionAT

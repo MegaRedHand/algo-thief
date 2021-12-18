@@ -2,7 +2,7 @@
 
 title "Ejemplo de construcción de escenario para caso de uso 1"
 
-participant ":Testcase1" as testcase
+participant ":Testcase" as testcase
 participant "fuenteStub\n:FuenteDeDatos" as fuente
 participant ":Algothief" as algothief
 

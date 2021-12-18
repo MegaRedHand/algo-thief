@@ -1,167 +1,54 @@
 @startuml
 
-title "Caso de uso 2"
+title "Caso de uso 2 de la entrega 2"
 
-participant ":Testcase1" as testcase
+participant ":Testcase" as testcase
 participant "algothief:Algothief" as algothief
-
-participant "escenarioBuilder\n:EscenarioBuilder" as escenarioBuilder
 participant "cronometro\n:Cronometro" as cron
-participant "ciudadBuilder\n:CiudadBuilder" as ciudadBuilder
-
-participant ":Detective" as detective
-participant "ciudad: Ciudad" as ciudad
-participant "escenario:Escenario" as escenario
-
 participant "pistaBanco:Facil" as pistaBanco
 participant "pistaBiblioteca:Facil" as pistaBiblioteca
-participant "banco:Edificio" as banco
-participant "biblioteca:Edificio" as biblioteca
+participant "escenario:Escenario" as escenario
+participant ":Detective" as detective
 
-participant "fuente\n:FuenteDeDatos" as fuente
-participant "novato:Novato" as novato
-participant "contadorDificultad\n:ContadorDeDificultad" as contDificultad
 
 activate testcase
-create fuente
-testcase ->> fuente: <<create>>\n FuenteDeDatos()
-create algothief
-testcase ->> algothief: <<create>>\n Algothief(fuente)
-
-
-create novato
-testcase ->> novato: <<create>>\n Novato()
-create contDificultad
-testcase ->> contDificultad: <<create>>\n ContadorDeDificultad(novato,0)
-
-testcase -> algothief: asignarDetective(contador)
-
-
-
-create escenarioBuilder
-testcase ->> escenarioBuilder: <<create>>\n EscenarioBuilder()
-
-create cron
-testcase ->>cron: <<create>>\n Cronometro()
-testcase -> escenarioBuilder: conCronometro(cronometro)
-activate escenarioBuilder
-return escenarioBuilder
-
-
-testcase -> escenarioBuilder: conCiudad("Montreal)
-activate escenarioBuilder
-create ciudadBuilder
-escenarioBuilder ->>ciudadBuilder: <<create>>\n CiudadBuilder("Montreal")
-escenarioBuilder ->ciudadBuilder: conEdificios("Banco Nacional")
-activate ciudadBuilder
-create pistaBanco
-ciudadBuilder ->> pistaBanco: <<create>>\n Facil("Descripcion Pista Banco")
-create banco
-ciudadBuilder ->> banco: <<create>>\n Edificio("Banco Nacional",pistaBanco)
-
-
-escenarioBuilder ->ciudadBuilder: conEdificios("Biblioteca de Montreal")
-activate ciudadBuilder
-create pistaBiblioteca
-ciudadBuilder ->> pistaBiblioteca: <<create>>\n Facil("Descripcion Pista Biblioteca")
-create biblioteca
-ciudadBuilder ->> biblioteca: <<create>>\n Edificio("Biblioteca de Montreal",pistaBiblioteca)
-
-return ciudadBuilder
-deactivate escenarioBuilder
-
-
-
-testcase -> algothief: generarEscenario(escenarioBuilder)
-activate algothief
-algothief -> escenarioBuilder: construirCon(contador)
-activate ciudadBuilder
-escenarioBuilder -> ciudadBuilder: construir()
-activate ciudadBuilder
-create ciudad
-ciudadBuilder ->> ciudad: <<create>>\n Ciudad("Montreal",banco,biblioteca)
-
-activate ciudad
-return ciudad
-return ciudad
-create detective
-escenarioBuilder->> detective: <<create>>\n Detective(cronometro,ciudad, contador)
-create escenario
-escenarioBuilder->> escenario: <<create>>\n Escenario(detective, ladron,ciudad)
-return escenario
-deactivate algothief
-
-
-testcase -> algothief: visitar("Banco Nacional")
-activate algothief
-algothief->escenario: detectiveVisitar("Banco Nacional")
-activate escenario
-escenario -> detective: visitar("Banco Nacional")
-activate detective
-detective -> ciudad: obtenerEdificio("Banco Nacional")
-    activate ciudad
-    return banco
-detective -> detective: visitar(banco)
-activate detective
-    detective -> detective: registrarVisita(banco)
-    detective -> detective: tiempoDeVisita(banco)
-    detective -> cron: restar(tiempo)
-    detective -> banco: obtenerPista()
-        activate banco
+testcase -> algothief++: visitar("Banco Nacional")
+    algothief -> escenario++: detectiveVisitar("Banco Nacional")
+        escenario -> detective++: visitar("Banco Nacional")
         return pistaBanco
-    return pistaBanco
-return pistaBanco
-return pistaBanco
+    deactivate algothief
 
 
-testcase -> algothief: pistaMasReciente()
-activate algothief
-algothief -> pistaBanco: descripcion()
-activate pistaBanco
-return "Descripción de la pista Banco"
-return "Descripción de la pista Banco"
+testcase -> algothief++: pistaMasReciente()
+    algothief -> pistaBanco++: descripcion()
+        return "Descripción de la pista Banco"
+    return descripcionBanco := "Descripción de la pista Banco"
 
 
-
-
-testcase -> algothief: visitar("Biblioteca de Montreal")
-activate algothief
-algothief->escenario: detectiveVisitar("Biblioteca de Montreal")
-activate escenario
-escenario -> detective: visitar("Biblioteca de Montreal")
-activate detective
-detective -> ciudad: obtenerEdificio("Biblioteca de Montreal")
-    activate ciudad
-    return biblioteca
-detective -> detective: visitar(biblioteca)
-activate detective
-    detective -> detective: registrarVisita(biblioteca)
-    detective -> detective: tiempoDeVisita(biblioteca)
-    detective -> cron: restar(tiempo)
-    detective -> banco: obtenerPista()
-        activate biblioteca
+testcase -> algothief++: visitar("Biblioteca de Montreal")
+    algothief -> escenario++: detectiveVisitar("Biblioteca de Montreal")
+        escenario -> detective++: visitar("Biblioteca de Montreal")
         return pistaBiblioteca
-    return pistaBiblioteca
-return pistaBiblioteca
-return pistaBiblioteca
+    deactivate algothief
 
 
-testcase -> algothief: pistaMasReciente()
-activate algothief
-algothief -> pistaBiblioteca: descripcion()
-activate pistaBiblioteca
-return "Descripción de la pista Biblioteca"
-return "Descripción de la pista Biblioteca"
+testcase -> algothief++: pistaMasReciente()
+    algothief -> pistaBiblioteca++: descripcion()
+        return "Descripción de la pista pistaBiblioteca"
+    return descripcionBiblioteca := "Descripción de la pista pistaBiblioteca"
 
 
+testcase -> cron: tiempo()
+    activate cron
+    return tiempo
 
-
-testcase -> testcase: assertEquals("Descripción de la pista Banco", pistaBanco)
-activate testcase
+testcase -> testcase++: assertEquals("Descripción de la pista Banco", pistaBanco)
 deactivate testcase
 
-testcase -> testcase: assertEquals("Descripción de la pista Biblioteca", pistaBiblioteca)
-activate testcase
+testcase -> testcase++: assertEquals("Descripción de la pista Biblioteca", pistaBiblioteca)
+deactivate testcase
+
+testcase -> testcase++: assertEquals(2, tiempo)
 deactivate testcase
 
 @enduml

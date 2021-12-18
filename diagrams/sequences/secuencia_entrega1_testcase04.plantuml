@@ -1,0 +1,37 @@
+@startuml
+
+title "Caso de uso 4 de la entrega 1"
+
+participant ":Testcase" as testcase
+participant ":Algothief" as algothief
+participant ":Cronometro" as cronometro
+
+
+activate testcase
+'Se podría ampliar este loop para mostrar qué pasa al visitar varias veces
+loop 3 veces
+    testcase -> algothief: visitar("Aeropuerto Nacional")
+end loop
+testcase -> algothief++: pistaMasReciente()
+    return descripcionAeropuerto := "Descripción de la pista Aeropuerto"
+
+loop 55 veces
+    testcase -> algothief: visitar("Puerto de Mexico")
+end loop
+testcase -> algothief++: pistaMasReciente()
+    return descripcionPuerto := "Descripción de la pista Puerto"
+
+
+testcase -> cronometro++: tiempo()
+    return horas
+
+testcase -> testcase++: assertEquals("Descripción de la pista Aeropuerto", descripcionAeropuerto)
+deactivate testcase
+
+testcase -> testcase++: assertEquals("Descripción de la pista Puerto", descripcionPuerto)
+deactivate testcase
+
+testcase -> testcase++: assertEquals(4, horas)
+deactivate testcase
+
+@enduml

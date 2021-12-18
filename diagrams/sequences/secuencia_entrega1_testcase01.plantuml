@@ -1,8 +1,8 @@
 @startuml
 
-title "Caso de uso 1"
+title "Caso de uso 1 de la entrega 1"
 
-participant ":Testcase1" as testcase
+participant ":Testcase" as testcase
 participant "algothief:Algothief" as algothief
 participant "escenario:Escenario" as escenario
 participant "cronometro\n:Cronometro" as cron
@@ -21,8 +21,8 @@ testcase -> algothief++: visitar("Banco Nacional")
             detective -> detective++: visitar(banco)
                 detective -> detective: registrarVisita(banco)
                 detective -> detective++: tiempoDeVisita(banco)
-                    return tiempo
-                detective -> cron: restar(tiempo)
+                    return min(3, 1)
+                detective -> cron: restar(1)
                 detective -> banco++: obtenerPista()
                     return pista
                 return pista

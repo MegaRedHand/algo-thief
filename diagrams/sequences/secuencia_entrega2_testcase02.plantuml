@@ -2,7 +2,7 @@
 
 title "Caso de uso 2 de la entrega 2"
 
-participant ":Testcase1" as testcase
+participant ":Testcase" as testcase
 participant ":Algothief" as algothief
 participant ":Cronometro" as cronometro
 participant ":Escenario" as escenario

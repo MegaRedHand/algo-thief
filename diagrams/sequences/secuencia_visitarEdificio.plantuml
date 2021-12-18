@@ -3,10 +3,11 @@
 'autonumber
 
 title "Detective visita un edificio"
+
 participant ":Detective" as detective
+participant "ciudadActual:Ciudad" as ciudad
 participant ":Cronometro" as cron
 participant "edificio:Edificio" as edificio
-participant "ciudadActual:Ciudad" as ciudad
 
 -> detective: visitar(nombreEdificio)
 activate detective
@@ -16,7 +17,8 @@ detective -> ciudad: obtenerEdificio(nombreEdificio)
 detective -> detective: visitar(edificio)
     activate detective
     detective -> detective: registrarVisita(edificio)
-    detective -> detective: tiempoDeVisita(edificio)
+    detective -> detective++: tiempoDeVisita(edificio)
+        return tiempo := min(3, cantidadDeVisitas)
     detective -> cron: restar(tiempo)
     detective -> edificio: obtenerPista()
         activate edificio
