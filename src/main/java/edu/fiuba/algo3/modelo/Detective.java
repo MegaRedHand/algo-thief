@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Detective {  // TODO: cambiar nombre a Policía (hay un rango Detective)
+public class Detective {
 
     private final Cronometro cronometro;
     private Ciudad ciudadActual;

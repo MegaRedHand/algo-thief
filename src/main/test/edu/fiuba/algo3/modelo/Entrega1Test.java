@@ -60,7 +60,7 @@ public class Entrega1Test {
 
         algothief.generarEscenario(builder);
 
-        algothief.visitar("Banco Nacional"); // TODO: visitarEdificio o detectivaVisitaEdificio?
+        algothief.visitar("Banco Nacional");
         String pistaBanco = algothief.pistaMasReciente();
 
         algothief.visitar("Biblioteca de Montreal");

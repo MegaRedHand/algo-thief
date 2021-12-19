@@ -22,8 +22,6 @@ public class EscenarioBuilder implements Builder {
     }
 
     public CiudadBuilder conCiudad(String nombre) {
-        // TODO: debería recibir CiudadBuilder por parámetro (D.I.)
-        //  ejemplo: conCiudad(CiudadBuilder ciudadBuilder)
         CiudadBuilder builder = new CiudadBuilder(nombre);
         buildersDeCiudades.add(builder);
         return builder;

@@ -68,7 +68,6 @@ public class Entrega2Test {
     @Test
     public void test03DetectiveCargaDatosEnComputadoraYBuscaSospechoso() {
 
-        // TODO: definir de dónde toma los datos el juego (ok?)
         FuenteDeDatos fuente = mock(FuenteDeDatos.class);
 
         Ladron ladron1 = new Ladron("Carmen SanDiego", new DescripcionSospechoso(
@@ -91,7 +90,6 @@ public class Entrega2Test {
 
         algothief.generarEscenario(builder);
 
-        // TODO: definir cómo manejamos las descripciones de los sospechosos (ok?)
         DescripcionSospechoso descripcion = new DescripcionSospechoso(
                 new Rasgo("Hobby", "Tenis"),
                 new Rasgo("Sexo", "Femenino"));
@@ -119,7 +117,6 @@ public class Entrega2Test {
 
         algothief.atraparSospechoso();
 
-        // TODO: definir cómo chequear esta prueba :( (ok?)
         assertTrue(algothief.juegoAcabado());
         assertFalse(algothief.juegoGanado());
     }
