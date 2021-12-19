@@ -1,0 +1,41 @@
+@startuml
+
+title "Caso de uso 1 de la entrega 1"
+
+participant ":Testcase" as testcase
+participant "algothief:Algothief" as algothief
+participant "escenario:Escenario" as escenario
+participant "cronometro\n:Cronometro" as cron
+participant ":Detective" as detective
+participant "ciudad: Ciudad" as ciudad
+participant "banco:Edificio" as banco
+participant "pista:Facil" as pista
+
+
+activate testcase
+testcase -> algothief++: visitar("Banco Nacional")
+    algothief -> escenario++: detectiveVisitar("Banco Nacional")
+        escenario -> detective++: visitar("Banco Nacional")
+            detective -> ciudad++: obtenerEdificio("Banco Nacional")
+                return banco
+            detective -> detective++: visitar(banco)
+                detective -> detective: registrarVisita(banco)
+                detective -> detective++: tiempoDeVisita(banco)
+                    return min(3, 1)
+                detective -> cron: restar(1)
+                detective -> banco++: obtenerPista()
+                    return pista
+                return pista
+            return pista
+        return pista
+    deactivate algothief
+
+testcase -> algothief++: pistaMasReciente()
+    algothief -> pista++: descripcion()
+        return descripcionDeLaPista
+    return descripcionDeLaPista
+
+testcase -> testcase++: assertEquals("Descripción de la pista", descripcionDeLaPista)
+deactivate testcase
+
+@enduml

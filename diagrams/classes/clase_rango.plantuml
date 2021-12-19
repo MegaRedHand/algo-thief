@@ -1,0 +1,53 @@
+@startuml
+
+class Detective {
+    + registrarArresto()
+}
+
+interface Rango {
+    + {abstract} tiempoDeViaje(distanciaEnKms: int): int
+    + {abstract} actualizar(cantidadDeArrestos: int): Rango
+}
+
+abstract class RangoLineal implements Rango {
+    - arrestosParaActualizar: int
+    - velocidadDeViaje: int
+    # RangoLineal(arrestosParaActualizar, velocidadDeViaje)
+    + tiempoDeViaje(distanciaEnKms: int): int
+    + actualizar(cantidadDeArrestos: int): Rango
+    - {abstract} siguiente()
+}
+
+class Novato extends RangoLineal {
+    + Novato()
+    - siguiente()
+}
+class RangoDetective extends RangoLineal {
+    + RangoDetective()
+    - siguiente()
+}
+class Investigador extends RangoLineal {
+    + Investigador()
+    - siguiente()
+}
+class Sargento extends RangoLineal {
+    + Sargento()
+    - siguiente()
+}
+
+class ContadorDeDificultad {
+    - cantidadDeArrestos : int
+    + ContadorDeDificultad(rangoInicial, arrestos)
+    + ContadorDeDificultad(rangoInicial)
+    + registrarArresto()
+    + arrestos(): int
+    + rango(): Rango
+}
+
+Detective "1" o-- "1" ContadorDeDificultad
+ContadorDeDificultad "1" o-- "1" Rango
+Novato::siguiente .> RangoDetective::RangoDetective
+RangoDetective::siguiente .> Investigador::Investigador
+Investigador::siguiente .> Sargento::Sargento
+
+@enduml

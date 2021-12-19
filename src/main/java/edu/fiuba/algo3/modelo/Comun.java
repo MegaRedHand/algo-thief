@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-public class Comun {
-    private final String nombre;
+public class Comun extends ObjetoRobado {
 
     public Comun(String nombre) {
-        this.nombre = nombre;
+        super(nombre);
     }
+
 }

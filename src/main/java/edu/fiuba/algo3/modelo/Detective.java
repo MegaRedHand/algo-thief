@@ -7,26 +7,33 @@ public class Detective {
 
     private final Cronometro cronometro;
     private Ciudad ciudadActual;
-    private Rango rango;
+    private final ContadorDeDificultad contador;
     private final Map<Edificio, Integer> visitasPorEdificio = new HashMap<>();
     private int cantidadDeHeridasDeCuchillo = 0;
 
-    public Detective(Cronometro cronometro, Ciudad ciudad, Rango rango) {
+    public Detective(Cronometro cronometro, Ciudad ciudad, ContadorDeDificultad contador) {
         this.cronometro = cronometro;
         this.ciudadActual = ciudad;
-        this.rango = rango;
+        this.contador = contador;
     }
 
-    public Pista visitar(Edificio edificio) {
-        int cantidadDeVisitas = visitasPorEdificio.getOrDefault(edificio, 0) + 1;
-        visitasPorEdificio.put(edificio, cantidadDeVisitas);
-        int horas = Integer.min(cantidadDeVisitas, 3);
-        cronometro.restar(horas);
+    private Pista visitar(Edificio edificio) {
+        registrarVisita(edificio);
+        cronometro.restar(tiempoDeVisita(edificio));
         return edificio.obtenerPista();
     }
 
+    private void registrarVisita(Edificio edificio) {
+        int cantidadDeVisitas = visitasPorEdificio.getOrDefault(edificio, 0) + 1;
+        visitasPorEdificio.put(edificio, cantidadDeVisitas);
+    }
+
+    private int tiempoDeVisita(Edificio edificio) {
+        return Integer.min(visitasPorEdificio.getOrDefault(edificio, 0), 3);
+    }
+
     public void viajar(Ciudad ciudad) {
-        cronometro.restar(rango.tiempoDeViaje(3800));
+        cronometro.restar(contador.rango().tiempoDeViaje(3800));
         ciudadActual = ciudad;
     }
 
@@ -42,4 +49,13 @@ public class Detective {
     public void dormir() {
         cronometro.restar(8);
     }
+
+    public Pista visitar(String nombreEdificio) {
+        return this.visitar(ciudadActual.obtenerEdificio(nombreEdificio));
+    }
+
+    public void registrarArresto() {
+        contador.registrarArresto();
+    }
+
 }

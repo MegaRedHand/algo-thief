@@ -1,0 +1,27 @@
+@startuml
+
+interface Builder {
+    + {abstract} construirCon(contadorDeDificultad)
+}
+
+class EscenarioBuilder implements Builder {
+    + EscenarioBuilder() : this
+    + conCronometro(cronometro) : this
+    + conObjetoRobado(nombre) : this
+    + conLadron(nombre, descripcion) : this
+    + conCiudad(nombre) : CiudadBuilder
+    + construirCon(contadorDeDificultad) : Escenario
+}
+
+class CiudadBuilder {
+    + CiudadBuilder(nombreCiudad)
+    + conEdificios(nombresDeEdificios) : this
+    + construir() : Ciudad
+}
+
+EscenarioBuilder "1" o-- "*" CiudadBuilder
+EscenarioBuilder .> Escenario
+CiudadBuilder .> Ciudad
+Edificio <. CiudadBuilder
+
+@enduml

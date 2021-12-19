@@ -1,0 +1,16 @@
+@startuml
+
+class Escenario {
+    - detective: Detective
+    - ladron: Ladron
+    - rutaDeEscape: List<Ciudad>
+    + Escenario(detective, ladron, rutaDeEscape)
+    + detectiveVisitar(nombreEdificio) : Pista
+    + detectiveViajar(nombreCiudad)
+    + detectiveRecibirHeridaDeCuchillo()
+    + detectiveDormir()
+    + detectiveAtraparLadron(): boolean
+    + emitirOrdenDeArresto(nombre)
+}
+
+@enduml

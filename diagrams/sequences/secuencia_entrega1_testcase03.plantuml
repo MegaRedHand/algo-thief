@@ -1,0 +1,32 @@
+@startuml
+
+title "Caso de uso 3 de la entrega 1"
+
+participant ":Testcase" as testcase
+participant ":Algothief" as algothief
+participant ":Cronometro" as cronometro
+participant ":Escenario" as escenario
+participant ":Detective" as detective
+participant ":ContadorDeArrestos" as contador
+participant "rango:Novato" as rango
+
+activate testcase
+testcase -> algothief++: viajar("Mexico")
+    algothief -> escenario++: detectiveViajar("Mexico")
+        escenario -> detective++: viajar(mexico)
+            detective -> contador++: rango()
+                return rango
+            detective -> rango++: tiempoDeViaje(3800)
+                return 3800 / 900
+            detective -> cronometro: restar(4)
+            return
+        return
+    return
+
+testcase -> cronometro++: tiempo()
+    return horas
+
+testcase -> testcase++: assertEquals(4, horas)
+deactivate testcase
+
+@enduml

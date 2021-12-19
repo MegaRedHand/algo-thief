@@ -7,4 +7,9 @@ public class Pista {
     public Pista(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String descripcion() {
+        return descripcion;
+    }
+
 }

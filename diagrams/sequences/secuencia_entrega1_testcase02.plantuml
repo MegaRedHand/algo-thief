@@ -1,0 +1,56 @@
+@startuml
+
+title "Caso de uso 2 de la entrega 2"
+
+participant ":Testcase" as testcase
+participant "algothief:Algothief" as algothief
+participant "cronometro\n:Cronometro" as cron
+participant "pistaBanco:Facil" as pistaBanco
+participant "pistaBiblioteca:Facil" as pistaBiblioteca
+participant "escenario:Escenario" as escenario
+participant ":Detective" as detective
+
+
+activate testcase
+testcase -> algothief++: visitar("Banco Nacional")
+    algothief -> escenario++: detectiveVisitar("Banco Nacional")
+        escenario -> detective++: visitar("Banco Nacional")
+            return pistaBanco
+        return pistaBanco
+    deactivate algothief
+
+
+testcase -> algothief++: pistaMasReciente()
+    algothief -> pistaBanco++: descripcion()
+        return "Descripción de la pista Banco"
+    return descripcionBanco := "Descripción de la pista Banco"
+
+
+testcase -> algothief++: visitar("Biblioteca de Montreal")
+    algothief -> escenario++: detectiveVisitar("Biblioteca de Montreal")
+        escenario -> detective++: visitar("Biblioteca de Montreal")
+            return pistaBiblioteca
+        return pistaBiblioteca
+    deactivate algothief
+
+
+testcase -> algothief++: pistaMasReciente()
+    algothief -> pistaBiblioteca++: descripcion()
+        return "Descripción de la pista pistaBiblioteca"
+    return descripcionBiblioteca := "Descripción de la pista pistaBiblioteca"
+
+
+testcase -> cron: tiempo()
+    activate cron
+    return tiempo
+
+testcase -> testcase++: assertEquals("Descripción de la pista Banco", pistaBanco)
+deactivate testcase
+
+testcase -> testcase++: assertEquals("Descripción de la pista Biblioteca", pistaBiblioteca)
+deactivate testcase
+
+testcase -> testcase++: assertEquals(2, tiempo)
+deactivate testcase
+
+@enduml

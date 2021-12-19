@@ -1,22 +1,9 @@
 @startuml
 
-class Ciudad {
-    + obtenerEdificio(nombre: String): Edificio
-}
-
-
-class Edificio {
-    + es(nombreEdificio: String) : boolean
-    + obtenerPista(): Pista
-}
-
-Ciudad "1" --> "*" Edificio
-
 abstract class Pista {
-    - Descripcion: String
+    + Pista(descripcion: String)
+    + descripcion(): String
 }
-
-Edificio "1" --> "1" Pista
 
 class Facil extends Pista
 class Media extends Pista

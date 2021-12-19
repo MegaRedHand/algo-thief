@@ -1,8 +1,12 @@
 @startuml
 
 !include clase_algothief.plantuml
-!include clase_pista.plantuml
+!include clase_builder.plantuml
+!include clase_rango.plantuml
+!include clase_ciudad.plantuml
 !include clase_ladron.plantuml
 !include clase_policia.plantuml
+!include clase_escenario.plantuml
+!include clase_pista.plantuml
 
 @enduml
