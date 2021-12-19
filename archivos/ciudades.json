@@ -1,0 +1,17 @@
+[
+  {
+    "City": "Athens",
+    "Flag": ["Blue","White"],
+    "Currency": "Drachmas",
+    Geography: "???",
+    "Landmarks":   ["Aegean Sea", "Pindus Mountains"],
+    "Industries":  ["Figs", "Olives"],
+    "Animals":     "???",
+    "People":      ["Plato", "Spartans"],
+    "Languages":   "Greek",
+    "Art":         "???",
+    "Religion":    "???",
+    "Leader":      "Prime Minister",
+    "Misc":        ["Hellenic Republic", "Neighbors Yugoslavia"]
+  }
+]
