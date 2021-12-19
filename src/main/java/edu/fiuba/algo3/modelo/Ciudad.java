@@ -7,11 +7,13 @@ public class Ciudad {
 
     private final String nombre;
     private final List<Edificio> edificios;
+    //private final DatosDeCiudad datos;
 
     public Ciudad(String nombre, Edificio... edificios) {
 
         this.nombre = nombre;
         this.edificios = new ArrayList<>(List.of(edificios));
+
     }
 
     public Ciudad(String nombre, List<Edificio> edificios) {
@@ -27,4 +29,12 @@ public class Ciudad {
     public boolean es(String nombreCiudad) {
         return nombre.equals(nombreCiudad);
     }
+
+    /*
+    public void agregarDatosDeCiudad(DatosDeCiudad datosDeCiudad){
+
+        this.datos = datosDeCiudad;
+    }
+
+     */
 }
