@@ -6,4 +6,6 @@ public interface FuenteDeDatos {
 
     List<Ladron> listaDeLadrones();
 
+    Pista obtenerPista(String dificultad, String tipoEdificio);
+
 }

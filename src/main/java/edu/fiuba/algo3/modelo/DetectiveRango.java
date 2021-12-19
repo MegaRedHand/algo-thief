@@ -1,9 +1,9 @@
-package edu.fiuba.algo3.modelo.rango;
+package edu.fiuba.algo3.modelo;
 
 public class DetectiveRango extends RangoLineal {
 
     public DetectiveRango() {
-        super(10, 1100);
+        super(10, 1100, "facil");
     }
 
     @Override

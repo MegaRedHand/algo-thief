@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.rango.Investigador;
-import edu.fiuba.algo3.modelo.rango.Novato;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -25,8 +23,8 @@ public class Entrega2Test {
 
         Cronometro cronometro = new Cronometro();
 
-        EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
-        builder.conCiudad("Mexico");
+        EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
+        builder.conCiudades(new CiudadBuilder("Mexico"));
 
         algothief.generarEscenario(builder);
 
@@ -47,10 +45,12 @@ public class Entrega2Test {
         algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
 
         Cronometro cronometro = new Cronometro();
-        EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
+        EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
 
-        builder.conCiudad("Montreal");
-        builder.conCiudad("Mexico");
+        builder.conCiudades(
+                new CiudadBuilder("Montreal"),
+                new CiudadBuilder("Mexico")
+        );
 
         algothief.generarEscenario(builder);
 
@@ -85,8 +85,8 @@ public class Entrega2Test {
         algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
 
         Cronometro cronometro = new Cronometro();
-        EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
-        builder.conCiudad("Montreal");
+        EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
+        builder.conCiudades(new CiudadBuilder("Montreal"));
 
         algothief.generarEscenario(builder);
 
@@ -109,9 +109,9 @@ public class Entrega2Test {
         algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
 
         Cronometro cronometro = new Cronometro();
-        EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
+        EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
         builder.conLadron("Carmen", new DescripcionSospechoso());
-        builder.conCiudad("Montreal");
+        builder.conCiudades(new CiudadBuilder("Montreal"));
 
         algothief.generarEscenario(builder);
 
@@ -149,15 +149,23 @@ public class Entrega2Test {
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
-        EscenarioBuilder builder = new EscenarioBuilder();
+        EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
         builder.conCronometro(new Cronometro());
 
         builder.conObjetoRobado(new Comun("Incan Gold Mask"));
         builder.conLadron(ladron1.getNombre(), ladron1.descripcion());
 
-        builder.conCiudad("Montreal").conEdificios("Banco Nacional", "Biblioteca de Montreal");
-        builder.conCiudad("Mexico").conEdificios("Aeropuerto Nacional", "Puerto de Mexico");
+        builder.conCiudades(
+                new CiudadBuilder("Montreal").conEdificios(
+                        new EdificioBuilder("Banco Nacional", "banco"),
+                        new EdificioBuilder("Biblioteca de Montreal", "biblioteca")
+                ),
+                new CiudadBuilder("Mexico").conEdificios(
+                        new EdificioBuilder("Aeropuerto Nacional", "aeropuerto"),
+                        new EdificioBuilder("Puerto de Mexico", "puerto")
+                )
+        );
 
         algothief.generarEscenario(builder);
 

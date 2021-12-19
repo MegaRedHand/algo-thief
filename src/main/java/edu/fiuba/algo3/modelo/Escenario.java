@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 
 public class Escenario {
+
     private final Detective detective;
     private final Ladron ladron;
     private final List<Ciudad> rutaDeEscape;
@@ -37,4 +38,5 @@ public class Escenario {
     public void emitirOrdenDeArresto(String nombre) {
         nombreEnOrdenDeArresto = nombre;
     }
+
 }

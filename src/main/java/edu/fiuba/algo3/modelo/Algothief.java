@@ -17,8 +17,8 @@ public class Algothief {
         this.fuente = fuente;
     }
 
-    public void generarEscenario(Builder builder) {
-        escenarioActual = builder.construirCon(contador);
+    public void generarEscenario(EscenarioBuilder builder) {
+        escenarioActual = builder.construirCon(contador, fuente);
     }
 
     public void visitar(String nombreEdificio) {

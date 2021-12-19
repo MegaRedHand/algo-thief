@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.modelo.rango;
+package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.rango.DetectiveRango;
-import edu.fiuba.algo3.modelo.rango.Novato;
-import edu.fiuba.algo3.modelo.rango.Rango;
+import edu.fiuba.algo3.modelo.DetectiveRango;
+import edu.fiuba.algo3.modelo.Novato;
+import edu.fiuba.algo3.modelo.Rango;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

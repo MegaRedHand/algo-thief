@@ -1,10 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.rango.Novato;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class Entrega1Test {
 
@@ -18,22 +20,29 @@ public class Entrega1Test {
     @Test
     public void test01DetectiveNovatoEmpiezaEnMontrealYAlVisitarBancoDespliegaUnaPista() {
 
-        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
+        FuenteDeDatos fuente = mock(FuenteDeDatos.class);
+        Pista pista = new Pista("Descripcion de la pista del banco");
+        when(fuente.obtenerPista(anyString(), anyString())).thenReturn(pista);
+        Algothief algothief = new Algothief(fuente);
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
-        EscenarioBuilder builder = new EscenarioBuilder();
+        EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
         builder.conCronometro(new Cronometro());
 
         builder.conObjetoRobado(new Comun("Tesoro Nacional de Montreal"));
         builder.conLadron("Sospechoso", new DescripcionSospechoso(new Rasgo("Sexo", "Femenino")));
-        builder.conCiudad("Montreal").conEdificios("Banco Nacional");
+        builder.conCiudades(
+                new CiudadBuilder("Montreal").conEdificios(
+                        new EdificioBuilder("Banco Nacional", "banco")
+                )
+        );
 
         algothief.generarEscenario(builder);
 
         algothief.visitar("Banco Nacional");
-        assertEquals("Descripción de la pista", algothief.pistaMasReciente());
+        assertEquals(pista.descripcion(), algothief.pistaMasReciente());
     }
 
 
@@ -47,27 +56,40 @@ public class Entrega1Test {
     @Test
     public void test02DetectiveNovatoEmpiezaEnMontrealYAlVisitarVariosEdificiosDespliegaVariasPistas() {
 
-        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
+        FuenteDeDatos fuente = mock(FuenteDeDatos.class);
+
+        Pista pistaBanco = new Pista("Descripcion de la pista del banco");
+        when(fuente.obtenerPista(anyString(), eq("banco"))).thenReturn(pistaBanco);
+
+        Pista pistaBiblioteca = new Pista("Descripcion de la pista de la biblioteca");
+        when(fuente.obtenerPista(anyString(), eq("biblioteca"))).thenReturn(pistaBiblioteca);
+
+        Algothief algothief = new Algothief(fuente);
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
-        EscenarioBuilder builder = new EscenarioBuilder();
+        EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
         Cronometro cronometro = new Cronometro();
         builder.conCronometro(cronometro);
 
-        builder.conCiudad("Montreal").conEdificios("Banco Nacional", "Biblioteca de Montreal");
+        builder.conCiudades(
+                new CiudadBuilder("Montreal").conEdificios(
+                        new EdificioBuilder("Banco Nacional", "banco"),
+                        new EdificioBuilder("Biblioteca de Montreal", "biblioteca")
+                )
+        );
 
         algothief.generarEscenario(builder);
 
         algothief.visitar("Banco Nacional");
-        String pistaBanco = algothief.pistaMasReciente();
+        String pistaDevueltaBanco = algothief.pistaMasReciente();
 
         algothief.visitar("Biblioteca de Montreal");
-        String pistaBiblioteca = algothief.pistaMasReciente();
+        String pistaDevueltaBiblioteca = algothief.pistaMasReciente();
 
-        assertEquals("Descripción de la pista", pistaBanco);
-        assertEquals("Descripción de la pista", pistaBiblioteca);
+        assertEquals(pistaBanco.descripcion(), pistaDevueltaBanco);
+        assertEquals(pistaBiblioteca.descripcion(), pistaDevueltaBiblioteca);
 
         assertEquals(2, cronometro.tiempo());
     }
@@ -84,13 +106,15 @@ public class Entrega1Test {
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
-        EscenarioBuilder builder = new EscenarioBuilder();
+        EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
         Cronometro cronometro = new Cronometro();
         builder.conCronometro(cronometro);
 
-        builder.conCiudad("Montreal");
-        builder.conCiudad("Mexico");
+        builder.conCiudades(
+                new CiudadBuilder("Montreal"),
+                new CiudadBuilder("Mexico")
+        );
 
         algothief.generarEscenario(builder);
 
@@ -109,21 +133,33 @@ public class Entrega1Test {
      *   - Se despliega una pista.
      */
     @Test
-    public void test04DetectiveAlVisitaAeropuertoSeDespliegaPistaYAlVisitarPuertoSeDespliegaPista() {
+    public void test04DetectiveAlVisitarAeropuertoSeDespliegaPistaYAlVisitarPuertoSeDespliegaPista() {
 
-        Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
+        FuenteDeDatos fuente = mock(FuenteDeDatos.class);
+
+        Pista pistaAeropuerto = new Pista("Descripción del aeropuerto");
+        when(fuente.obtenerPista(anyString(), eq("aeropuerto"))).thenReturn(pistaAeropuerto);
+
+        Pista pistaPuerto = new Pista("Descripción del puerto");
+        when(fuente.obtenerPista(anyString(), eq("puerto"))).thenReturn(pistaPuerto);
+
+        Algothief algothief = new Algothief(fuente);
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
-        EscenarioBuilder builder = new EscenarioBuilder();
-
         Cronometro cronometro = new Cronometro();
-        builder.conCronometro(cronometro);
+        EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
+
 
         String nombreAeropuerto = "Aeropuerto Nacional";
         String nombrePuerto = "Puerto de Mexico";
 
-        builder.conCiudad("Mexico").conEdificios(nombreAeropuerto, nombrePuerto);
+        builder.conCiudades(
+                new CiudadBuilder("Mexico").conEdificios(
+                        new EdificioBuilder(nombreAeropuerto, "aeropuerto"),
+                        new EdificioBuilder(nombrePuerto, "puerto")
+                )
+        );
 
         algothief.generarEscenario(builder);
 
@@ -138,8 +174,8 @@ public class Entrega1Test {
             algothief.visitar(nombrePuerto);
         }
 
-        assertEquals("Descripción de la pista", pistaDevueltaAeropuerto);
-        assertEquals("Descripción de la pista", algothief.pistaMasReciente());
+        assertEquals(pistaAeropuerto.descripcion(), pistaDevueltaAeropuerto);
+        assertEquals(pistaPuerto.descripcion(), algothief.pistaMasReciente());
 
         assertEquals(168, cronometro.tiempo());
     }
@@ -156,8 +192,8 @@ public class Entrega1Test {
 
         Cronometro cronometro = new Cronometro();
 
-        EscenarioBuilder builder = new EscenarioBuilder().conCronometro(cronometro);
-        builder.conCiudad("Mexico");
+        EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
+        builder.conCiudades(new CiudadBuilder("Mexico"));
 
         algothief.generarEscenario(builder);
 
