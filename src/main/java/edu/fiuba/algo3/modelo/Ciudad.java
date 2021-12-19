@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Ciudad {
@@ -8,6 +9,7 @@ public class Ciudad {
     private final String nombre;
     private final List<Edificio> edificios;
     //private final DatosDeCiudad datos;
+    //private final HashMap<String, List<String>> datos;
 
     public Ciudad(String nombre, Edificio... edificios) {
 
@@ -32,6 +34,13 @@ public class Ciudad {
 
     /*
     public void agregarDatosDeCiudad(DatosDeCiudad datosDeCiudad){
+
+        this.datos = datosDeCiudad;
+    }
+
+
+
+    public void agregarDatosDeCiudad(HashMap<String, List<String>> datosDeCiudad){
 
         this.datos = datosDeCiudad;
     }
