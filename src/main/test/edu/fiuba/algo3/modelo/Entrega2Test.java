@@ -79,7 +79,7 @@ public class Entrega2Test {
                 new Rasgo("Hobby", "Alpinismo")
         ));
 
-        when(fuente.listaDeLadrones()).thenReturn(List.of(ladron1, ladron2));
+        when(fuente.getComputadora()).thenReturn(new Computadora(List.of(ladron1, ladron2)));
 
         Algothief algothief = new Algothief(fuente);
         algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
@@ -143,7 +143,7 @@ public class Entrega2Test {
                 new Rasgo("Hobby", "Alpinismo")
         ));
 
-        when(fuente.listaDeLadrones()).thenReturn(List.of(ladron1, ladron2));
+        when(fuente.getComputadora()).thenReturn(new Computadora(List.of(ladron1, ladron2)));
 
         Algothief algothief = new Algothief(fuente);
 

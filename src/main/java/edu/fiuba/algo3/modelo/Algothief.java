@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Algothief {
+public class Algothief implements JuegoObservable {
 
     private final FuenteDeDatos fuente;
     private Escenario escenarioActual;
@@ -12,6 +13,8 @@ public class Algothief {
     private final DescripcionSospechoso descripcion = new DescripcionSospechoso();
     private boolean acabado = false;
     private boolean ganado = false;
+
+    private List<JuegoObserver> observers = new ArrayList<>();
 
     public Algothief(FuenteDeDatos fuente) {
         this.fuente = fuente;
@@ -50,9 +53,7 @@ public class Algothief {
     }
 
     public List<String> buscarSospechosos() {
-        List<String> nombres = fuente.listaDeLadrones().stream().filter(d ->
-                        this.descripcion.coincideCon(d.descripcion())).map(Ladron::getNombre)
-                .collect(Collectors.toList());
+        List<String> nombres = fuente.getComputadora().ladronesConDescripcion(descripcion);
 
         if (nombres.size() == 1) {
             escenarioActual.emitirOrdenDeArresto(nombres.get(0));
@@ -73,4 +74,10 @@ public class Algothief {
     public boolean juegoGanado() {
         return ganado;
     }
+
+    @Override
+    public void agregarObserver(JuegoObserver observer) {
+        observers.add(observer);
+    }
+
 }
