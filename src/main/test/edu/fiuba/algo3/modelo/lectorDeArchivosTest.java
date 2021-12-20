@@ -18,6 +18,7 @@ public class lectorDeArchivosTest {
         System.out.println(ciudades.get(0));  //la primera ciudad
         System.out.println((ciudades.get(0)).get("Flag")); //de la primera ciudad , la bandera
 
+
         //para imprimir primer elemento de bandera
         ArrayList<String> bandera = (ArrayList<String>) (ciudades.get(0)).get("Flag");
         System.out.println(bandera.get(0));

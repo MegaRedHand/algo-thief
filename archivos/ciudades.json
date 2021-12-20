@@ -283,7 +283,7 @@
         "Art":   "???",
         "Religion": "???",
         "Leader":  "???",
-        "Misc":  "Subways",
+        "Misc":  "Subways"
     },
     {
         "City": "Oslo",
@@ -386,7 +386,7 @@
     "Animals": "???",
     "People": "Etruscans",
     "Languages": "Italian",
-    "Art": "Renaissance Painting"
+    "Art": "Renaissance Painting",
     "Religion": "???",
     "Leader": "President",
     "Misc": "???"
@@ -396,7 +396,7 @@
         "Flag":  ["Blue", "White"],
         "Currency":  "???",
         "Geography": "???",
-        "Landmarks":   "Mount Titano"
+        "Landmarks":   "Mount Titano",
         "Industries":  ["Ceramics", "Postage Stamps"],
         "Animals":  "???",
         "People": "???",
@@ -437,7 +437,7 @@
         "Misc":  "???"
     },
     {
-        "City": "Tokyo"
+        "City": "Tokyo",
         "Flag":  ["Red","White"],
         "Currency": "Yen",
         "Geography":  "???",
