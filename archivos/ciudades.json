@@ -1,17 +1,34 @@
 [
-  {
-    "City": "Athens",
-    "Flag": ["Blue","White"],
-    "Currency": "Drachmas",
-    Geography: "???",
-    "Landmarks":   ["Aegean Sea", "Pindus Mountains"],
-    "Industries":  ["Figs", "Olives"],
-    "Animals":     "???",
-    "People":      ["Plato", "Spartans"],
-    "Languages":   "Greek",
-    "Art":         "???",
-    "Religion":    "???",
-    "Leader":      "Prime Minister",
-    "Misc":        ["Hellenic Republic", "Neighbors Yugoslavia"]
-  }
+    {
+        "City": "Athens",
+        "Flag": ["Blue","White"],
+        "Currency": "Drachmas",
+        "Geography": "???",
+        "Landmarks":   ["Aegean Sea", "Pindus Mountains"],
+        "Industries":  ["Figs", "Olives"],
+        "Animals":     "???",
+        "People":      ["Plato", "Spartans"],
+        "Languages":   "Greek",
+        "Art":         "???",
+        "Religion":    "???",
+        "Leader":      "Prime Minister",
+        "Misc":        ["Hellenic Republic", "Neighbors Yugoslavia"]
+    },
+    {
+        "City": "Baghdad",
+        "Flag": ["Red", "White","Black"],
+        "Currency": "Dinars",
+        "Geography": "Desert",
+        "Landmarks": ["Syrian Desert", "Euphrates River", "Tigris River" ],
+        "Industries": "Oil" ,
+        "Animals": "Arabian Gazelles ",
+        "People": "Sumerian",
+        "Languages": "???",
+        "Art": "???",
+        "Religion": "???",
+        "Leader": "???",
+        "Misc": "Mesopotamia"
+    }
+
+
 ]
