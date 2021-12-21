@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import edu.fiuba.algo3.modelo.Computadora;
-import edu.fiuba.algo3.modelo.DatosDeCiudad;
-import edu.fiuba.algo3.modelo.FuenteDeDatos;
-import edu.fiuba.algo3.modelo.Pista;
+import edu.fiuba.algo3.modelo.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -36,7 +33,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
         return null;
     }
 
-
+    /*
     public List<Map<?,?> >  leerJson(String rutaArchivo)throws IOException{
         List<Map<?,?> > ciudades = null;
 
@@ -51,10 +48,94 @@ public class LectorDeArchivos implements FuenteDeDatos {
         }catch (IOException e){
             e.printStackTrace();
         }
-
         return ciudades;
-
     }
+
+     */
+
+    private List<Map<?,?>>  leerJson(String rutaArchivo)throws IOException{
+        List<Map<?,?>> datos = null;
+
+        try {
+            Reader archivo = Files.newBufferedReader(Paths.get(rutaArchivo));
+            Gson gson = new Gson();
+
+            final Type tipoListaDatos = new TypeToken<List<Map<?,?> >>(){}.getType();
+            datos = gson.fromJson(archivo, tipoListaDatos);
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return datos;
+    }
+
+    public List<Map<?,?> > obtenerCiudades(String rutaArchivo) throws IOException {
+
+        List<Map<?,?> > ciudades = leerJson(rutaArchivo);
+        return ciudades;
+    }
+
+
+    public List<Ladron> obtenerLadrones(String rutaArchivo) throws IOException {
+        List<Map<?,?> > ladronesLista = leerJson(rutaArchivo);
+
+        Map<?,?> ladronMap;
+        List<Ladron> ladrones = null;
+
+        for (int i= 0; i < ladronesLista.size();i++){
+            ladronMap = ladronesLista.get(i);
+
+            Rasgo sexo = new Rasgo("sexo",(String) ladronMap.get("Sex"));
+            Rasgo hobby = new Rasgo("hobby",(String) ladronMap.get("Hobby");
+            Rasgo cabello = new Rasgo("cabello",(String) ladronMap.get("Hair"));
+            Rasgo seña = new Rasgo("seña",(String) ladronMap.get("Feature"));
+            Rasgo vehiculo = new Rasgo("vehiculo",(String) ladronMap.get("Auto"));
+            DescripcionSospechoso descripcion = new DescripcionSospechoso(sexo,hobby,cabello,seña,vehiculo);
+            Ladron ladron = new Ladron((String) ladronMap.get("Name"), descripcion);
+
+            ladrones.add(ladron);
+        }
+        return ladrones;
+    }
+
+     /*
+    public void obtenerLadrones(String rutaArchivo) throws IOException {
+        List<Map<?,?> > ladronesLista = leerJson(rutaArchivo);
+
+        System.out.println(ladronesLista);
+
+        Map<?,?> ladronMap;
+        List<Ladron> ladrones = null;
+
+        System.out.println(ladronesLista.size());
+        for (int i= 0; i < ladronesLista.size();i++){
+            ladronMap = ladronesLista.get(i);
+            System.out.println(ladronMap);
+
+            Rasgo sexo = new Rasgo("sexo",(String) ladronMap.get("Sex"));
+            System.out.println((String) ladronMap.get("Sex"));
+            Rasgo hobby = new Rasgo("hobby",(String) ladronMap.get("Hobby"));
+            System.out.println((String) ladronMap.get("Hobby"));
+            Rasgo cabello = new Rasgo("cabello",(String) ladronMap.get("Hair"));
+            System.out.println((String) ladronMap.get("Hair"));
+            Rasgo seña = new Rasgo("seña",(String) ladronMap.get("Feature"));
+            System.out.println((String) ladronMap.get("Feature"));
+            Rasgo vehiculo = new Rasgo("vehiculo",(String) ladronMap.get("Auto"));
+            System.out.println((String) ladronMap.get("Auto"));
+
+            System.out.println(sexo.categoria());
+
+            DescripcionSospechoso descripcion = new DescripcionSospechoso(sexo,hobby,cabello,seña,vehiculo);
+            Ladron ladron = new Ladron((String) ladronMap.get("Name"), descripcion);
+
+            ladrones.add(ladron);
+        }
+
+     }
+
+      */
+
 
 }
 

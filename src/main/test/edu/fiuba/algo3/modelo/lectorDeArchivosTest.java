@@ -13,7 +13,7 @@ public class lectorDeArchivosTest {
     @Test
     public void test01seLeeLaCiudadCorrectamente() throws IOException {
         LectorDeArchivos lector = new LectorDeArchivos();
-        final List<Map<?,?> > ciudades = lector.leerJson("archivos/ciudades.json");
+        final List<Map<?,?> > ciudades = lector.obtenerCiudades("archivos/ciudades.json");
 
         System.out.println(ciudades.get(0));  //la primera ciudad
         System.out.println((ciudades.get(0)).get("Flag")); //de la primera ciudad , la bandera
@@ -23,4 +23,24 @@ public class lectorDeArchivosTest {
         ArrayList<String> bandera = (ArrayList<String>) (ciudades.get(0)).get("Flag");
         System.out.println(bandera.get(0));
     }
+    @Test
+    public void test02seLeeLosLadronesCorrectamente() throws IOException {
+        LectorDeArchivos lector = new LectorDeArchivos();
+
+        /*
+        List<Ladron> ladrones = lector.obtenerLadrones("archivos/ladrones.json");
+        System.out.println(ladrones);
+
+         */
+
+
+
+
+
+    }
 }
+
+
+/*
+
+ */
