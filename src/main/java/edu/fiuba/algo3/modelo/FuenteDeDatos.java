@@ -12,4 +12,6 @@ public interface FuenteDeDatos {
 
     List<Map<String, ?>> obtenerDatosDeCiudades();
 
+    List<ObjetoRobado> obtenerListadoDeObjetos();
+
 }

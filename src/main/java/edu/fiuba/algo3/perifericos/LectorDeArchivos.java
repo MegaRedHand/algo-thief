@@ -23,8 +23,10 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
     static final String RUTA_CIUDADES = "archivos/ciudades.json";
     static final String RUTA_LADRONES = "archivos/ladrones.json";
+    static final String RUTA_OBJETOS = "archivos/objetos.json";
 
     private List<Map<String,?>> datosDeCiudades;
+    private List<ObjetoRobado> objetosRobados;
     private Computadora computadora;
 
     @Override
@@ -44,7 +46,6 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
     private List<Map<String,?>>  leerJson(String rutaArchivo) {
         List<Map<String,?>> datos = null;
-
         try {
             Reader archivo = Files.newBufferedReader(Paths.get(rutaArchivo));
             Gson gson = new Gson();
@@ -55,7 +56,6 @@ public class LectorDeArchivos implements FuenteDeDatos {
         }catch (IOException e){
             e.printStackTrace();
         }
-
         return datos;
     }
 
@@ -67,7 +67,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
     @Override
     public List<Map<String, ?>> obtenerDatosDeCiudades() {
         if (datosDeCiudades == null) {
-            datosDeCiudades = leerJson(RUTA_CIUDADES);
+            datosDeCiudades = obtenerCiudades(RUTA_CIUDADES);
         }
         return datosDeCiudades;
     }
@@ -80,7 +80,6 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
         for (int i= 0; i < ladronesLista.size();i++){
             ladronMap = ladronesLista.get(i);
-
             Rasgo sexo = new Rasgo("sexo",(String) ladronMap.get("Sex"));
             Rasgo hobby = new Rasgo("hobby",(String) ladronMap.get("Hobby"));
             Rasgo cabello = new Rasgo("cabello",(String) ladronMap.get("Hair"));
@@ -95,28 +94,40 @@ public class LectorDeArchivos implements FuenteDeDatos {
         return ladrones;
     }
 
+    @Override
+    public List<ObjetoRobado> obtenerListadoDeObjetos() {
+        if (objetosRobados == null) {
+            objetosRobados = obtenerObjetosRobados(RUTA_OBJETOS);
+        }
+        return objetosRobados;
+    }
+
+    public List<ObjetoRobado> obtenerObjetosRobados(String rutaArchivo) {
+        List<Map<String,?> > objetosLista = leerJson(rutaArchivo);
+
+        Map<String,?> objetosMap;
+        List<ObjetoRobado> objetos = new ArrayList<>();
+
+        for (int i= 0; i < objetosLista.size();i++){
+            objetosMap = objetosLista.get(i);
+            ObjetoRobado objeto;
+            if((objetosMap.get("valor")).equals("Comun")){
+                objeto = new Comun((String) objetosMap.get("nombre"));
+            }else if((objetosMap.get("valor")).equals("Valioso")){
+                objeto = new Valioso((String) objetosMap.get("nombre"));
+            }else {
+                objeto = new MuyValioso((String) objetosMap.get("nombre"));
+            }
+            
+            objetos.add(objeto);
+        }
+        return objetos;
+
+    }
+
 
 }
 
 
-/*
-    //  lector viejo
-    public List<Map<?,?> >  leerJson(String rutaArchivo)throws IOException{
-        List<Map<?,?> > ciudades = null;
 
-        try {
-            Reader archivo = Files.newBufferedReader(Paths.get(rutaArchivo));
-            Gson gson = new Gson();
-
-            final Type tipoListaCiudades = new TypeToken<List<Map<?,?> >>(){}.getType();
-            ciudades = gson.fromJson(archivo, tipoListaCiudades);
-
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return ciudades;
-    }
-
-     */
 
