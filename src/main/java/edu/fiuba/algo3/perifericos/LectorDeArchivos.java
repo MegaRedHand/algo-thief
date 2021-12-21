@@ -54,7 +54,6 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
         return ciudades;
 
-
     }
 
 }
