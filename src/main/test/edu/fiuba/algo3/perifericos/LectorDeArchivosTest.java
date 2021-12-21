@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.perifericos;
 
 import edu.fiuba.algo3.modelo.Ladron;
+import edu.fiuba.algo3.modelo.ObjetoRobado;
 import edu.fiuba.algo3.perifericos.LectorDeArchivos;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +31,15 @@ public class LectorDeArchivosTest {
 
         List<Ladron> ladrones = lector.obtenerLadrones("archivos/ladrones.json");
         System.out.println(ladrones);
+    }
+
+    @Test
+    public void test03seLeenLosObjetosCorrectamente() throws IOException {
+        LectorDeArchivos lector = new LectorDeArchivos();
+
+
+        List<ObjetoRobado> objetos = lector.obtenerObjetosRobados("archivos/objetos.json");
+        System.out.println(objetos);
     }
 
 }

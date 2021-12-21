@@ -111,6 +111,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
         for (int i= 0; i < objetosLista.size();i++){
             objetosMap = objetosLista.get(i);
             ObjetoRobado objeto;
+            
             if((objetosMap.get("valor")).equals("Comun")){
                 objeto = new Comun((String) objetosMap.get("nombre"));
             }else if((objetosMap.get("valor")).equals("Valioso")){
