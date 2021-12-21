@@ -80,14 +80,14 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
         for (int i= 0; i < ladronesLista.size();i++){
             ladronMap = ladronesLista.get(i);
-            Rasgo sexo = new Rasgo("sexo",(String) ladronMap.get("Sex"));
-            Rasgo hobby = new Rasgo("hobby",(String) ladronMap.get("Hobby"));
-            Rasgo cabello = new Rasgo("cabello",(String) ladronMap.get("Hair"));
-            Rasgo seña = new Rasgo("seña",(String) ladronMap.get("Feature"));
-            Rasgo vehiculo = new Rasgo("vehiculo",(String) ladronMap.get("Auto"));
+            Rasgo sexo = new Rasgo("sexo",(String) ladronMap.get("sexo"));
+            Rasgo hobby = new Rasgo("hobby",(String) ladronMap.get("hobby"));
+            Rasgo cabello = new Rasgo("cabello",(String) ladronMap.get("colorDelPelo"));
+            Rasgo seña = new Rasgo("seña",(String) ladronMap.get("señasParticulares"));
+            Rasgo vehiculo = new Rasgo("vehiculo",(String) ladronMap.get("coche"));
 
             DescripcionSospechoso descripcion = new DescripcionSospechoso(sexo,hobby,cabello,seña,vehiculo);
-            Ladron ladron = new Ladron((String) ladronMap.get("Name"), descripcion);
+            Ladron ladron = new Ladron((String) ladronMap.get("nombre"), descripcion);
 
             ladrones.add(ladron);
         }
@@ -118,7 +118,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
             }else {
                 objeto = new MuyValioso((String) objetosMap.get("nombre"));
             }
-            
+
             objetos.add(objeto);
         }
         return objetos;

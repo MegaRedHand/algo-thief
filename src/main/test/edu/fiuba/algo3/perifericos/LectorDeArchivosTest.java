@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.perifericos;
 
+import edu.fiuba.algo3.modelo.Ladron;
 import edu.fiuba.algo3.perifericos.LectorDeArchivos;
 import org.junit.jupiter.api.Test;
 
@@ -16,11 +17,19 @@ public class LectorDeArchivosTest {
         final List<Map<String, ?>> ciudades = lector.obtenerCiudades(LectorDeArchivos.RUTA_CIUDADES);
 
         System.out.println(ciudades.get(0));  //la primera ciudad
-        System.out.println((ciudades.get(0)).get("Flag")); //de la primera ciudad , la bandera
+        System.out.println((ciudades.get(0)).get("colorBandera")); //de la primera ciudad , la bandera
 
         //para imprimir primer elemento de bandera
-        ArrayList<String> bandera = (ArrayList<String>) (ciudades.get(0)).get("Flag");
+        ArrayList<String> bandera = (ArrayList<String>) (ciudades.get(0)).get("colorBandera");
         System.out.println(bandera.get(0));
+    }
+    @Test
+    public void test02seLeeLosLadronesCorrectamente() throws IOException {
+        LectorDeArchivos lector = new LectorDeArchivos();
+
+
+        List<Ladron> ladrones = lector.obtenerLadrones("archivos/ladrones.json");
+        System.out.println(ladrones);
     }
 
 }
