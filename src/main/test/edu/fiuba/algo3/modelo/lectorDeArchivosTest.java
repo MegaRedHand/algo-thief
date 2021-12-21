@@ -27,15 +27,9 @@ public class lectorDeArchivosTest {
     public void test02seLeeLosLadronesCorrectamente() throws IOException {
         LectorDeArchivos lector = new LectorDeArchivos();
 
-        /*
+
         List<Ladron> ladrones = lector.obtenerLadrones("archivos/ladrones.json");
-        System.out.println(ladrones);
-
-         */
-
-
-
-
+        System.out.println(ladrones.get(ladrones.size() - 1).getNombre());
 
     }
 }
