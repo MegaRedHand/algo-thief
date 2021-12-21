@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Detective {
@@ -58,4 +59,11 @@ public class Detective {
         contador.registrarArresto();
     }
 
+    public List<String> edificiosVisitables() {
+        return ciudadActual.edificiosVisitables();
+    }
+
+    public List<String> ciudadesVisitables() {
+        return ciudadActual.ciudadesVisitables();
+    }
 }

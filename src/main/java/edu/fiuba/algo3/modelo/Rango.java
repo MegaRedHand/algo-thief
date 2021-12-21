@@ -4,4 +4,5 @@ public interface Rango {
     Rango actualizar(int cantidadDeArrestos);
     int tiempoDeViaje(int distanciaEnKms);
     String dificultad();
+    ObjetoRobado crearObjetoRobado(FuenteDeDatos fuente);
 }

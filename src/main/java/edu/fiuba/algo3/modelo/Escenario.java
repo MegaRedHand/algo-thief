@@ -6,13 +6,13 @@ public class Escenario {
 
     private final Detective detective;
     private final Ladron ladron;
-    private final List<Ciudad> rutaDeEscape;
+    private final List<Ciudad> ciudades;
     private String nombreEnOrdenDeArresto;
 
-    public Escenario(Detective detective, Ladron ladron, List<Ciudad> rutaDeEscape) {
+    public Escenario(Detective detective, Ladron ladron, List<Ciudad> ciudades) {
         this.detective = detective;
         this.ladron = ladron;
-        this.rutaDeEscape = rutaDeEscape;
+        this.ciudades = ciudades;
     }
 
     public Pista detectiveVisitar(String nombreEdificio) {
@@ -20,7 +20,7 @@ public class Escenario {
     }
 
     public void detectiveViajar(String nombreCiudad) {
-        detective.viajar(rutaDeEscape.stream().filter(c -> c.es(nombreCiudad)).findAny().orElseThrow());
+        detective.viajar(ciudades.stream().filter(c -> c.es(nombreCiudad)).findAny().orElseThrow());
     }
 
     public void detectiveRecibirHeridaDeCuchillo() {
@@ -39,4 +39,11 @@ public class Escenario {
         nombreEnOrdenDeArresto = nombre;
     }
 
+    public List<String> edificiosVisitables() {
+        return detective.edificiosVisitables();
+    }
+
+    public List<String> ciudadesVisitables() {
+        return detective.ciudadesVisitables();
+    }
 }

@@ -22,6 +22,10 @@ import java.util.Map;
 public class LectorDeArchivos implements FuenteDeDatos {
 
     static final String RUTA_CIUDADES = "archivos/ciudades.json";
+    static final String RUTA_LADRONES = "archivos/ladrones.json";
+
+    private List<Map<String,?>> datosDeCiudades;
+    private Computadora computadora;
 
     @Override
     public Pista obtenerPista(String dificultad, String tipoEdificio) {
@@ -30,13 +34,16 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
     @Override
     public Computadora getComputadora() {
-        return null;
+        if (computadora == null) {
+            computadora = new Computadora(obtenerLadrones(RUTA_LADRONES));
+        }
+        return computadora;
     }
 
 
 
-    private List<Map<?,?>>  leerJson(String rutaArchivo)throws IOException{
-        List<Map<?,?>> datos = null;
+    private List<Map<String,?>>  leerJson(String rutaArchivo) {
+        List<Map<String,?>> datos = null;
 
         try {
             Reader archivo = Files.newBufferedReader(Paths.get(rutaArchivo));
@@ -52,18 +59,24 @@ public class LectorDeArchivos implements FuenteDeDatos {
         return datos;
     }
 
-    public List<Map<?,?> > obtenerCiudades(String rutaArchivo) throws IOException {
-
-        List<Map<?,?> > ciudades = leerJson(rutaArchivo);
+    public List<Map<String,?> > obtenerCiudades(String rutaArchivo) {
+        List<Map<String,?> > ciudades = leerJson(rutaArchivo);
         return ciudades;
     }
 
+    @Override
+    public List<Map<String, ?>> obtenerDatosDeCiudades() {
+        if (datosDeCiudades == null) {
+            datosDeCiudades = leerJson(RUTA_CIUDADES);
+        }
+        return datosDeCiudades;
+    }
 
-    public List<Ladron> obtenerLadrones(String rutaArchivo) throws IOException {
-        List<Map<?,?> > ladronesLista = leerJson(rutaArchivo);
+    public List<Ladron> obtenerLadrones(String rutaArchivo) {
+        List<Map<String,?> > ladronesLista = leerJson(rutaArchivo);
 
-        Map<?,?> ladronMap;
-        List<Ladron> ladrones = new ArrayList<Ladron>();
+        Map<String,?> ladronMap;
+        List<Ladron> ladrones = new ArrayList<>();
 
         for (int i= 0; i < ladronesLista.size();i++){
             ladronMap = ladronesLista.get(i);
@@ -78,7 +91,6 @@ public class LectorDeArchivos implements FuenteDeDatos {
             Ladron ladron = new Ladron((String) ladronMap.get("Name"), descripcion);
 
             ladrones.add(ladron);
-
         }
         return ladrones;
     }

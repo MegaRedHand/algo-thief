@@ -8,20 +8,33 @@ import edu.fiuba.algo3.modelo.Novato;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class EdificioBuilderUnitTest {
 
     @Test
-    public void test01ConstruirEdificioLeAgregaPistaConLaDescripcionCorrecta() {
+    public void test01ConstruirEdificioDevuelveEdificioConNombreCorrecto() {
 
-        FuenteDeDatos fuente = mock(FuenteDeDatos.class);
+        String nombreEdificio = "Banco Nacional";
         Pista pista = new Pista("Descripción");
-        when(fuente.obtenerPista("facil", "banco")).thenReturn(pista);
-        EdificioBuilder builder = new EdificioBuilder("Banco Nacional", "banco");
+        EdificioBuilder builder = new EdificioBuilder(nombreEdificio, "banco");
+        builder.conPista(pista);
 
-        Edificio edificioCreado = builder.construirCon(new Novato(), fuente);
+        Edificio edificioCreado = builder.construir();
+
+        assertTrue(edificioCreado.es(nombreEdificio));
+    }
+
+    @Test
+    public void test02ConstruirEdificioLeAgregaPistaConLaDescripcionCorrecta() {
+
+        Pista pista = new Pista("Descripción");
+        EdificioBuilder builder = new EdificioBuilder("Banco Nacional");
+        builder.conPista(pista);
+
+        Edificio edificioCreado = builder.construir();
 
         assertEquals(pista.descripcion(), edificioCreado.obtenerPista().descripcion());
     }

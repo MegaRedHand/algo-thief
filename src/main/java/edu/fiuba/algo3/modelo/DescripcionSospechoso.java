@@ -28,4 +28,7 @@ public class DescripcionSospechoso {
         return this.rasgos.getOrDefault(categoria, new Rasgo(categoria, null));
     }
 
+    public String getVehiculo() {
+        return "Deportivo";
+    }
 }

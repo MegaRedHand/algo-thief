@@ -16,4 +16,7 @@ public class Computadora {
                 .collect(Collectors.toList());
     }
 
+    public List<Ladron> listaDeLadrones() {
+        return ladrones;
+    }
 }

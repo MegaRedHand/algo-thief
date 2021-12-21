@@ -1,8 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Novato;
-import edu.fiuba.algo3.modelo.Rango;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -15,16 +12,14 @@ public class CiudadBuilderUnitTest {
     public void test01CrearCiudadCon1EdificioCiudadCreadaTieneEseEdificio() {
 
         String nombreEdificio = "Banco Nacional";
-        FuenteDeDatos fuente = mock(FuenteDeDatos.class);
         EdificioBuilder edificioBuilder = mock(EdificioBuilder.class);
         Edificio edificio = new Edificio(nombreEdificio, mock(Pista.class));
-        Rango rango = new Novato();
-        when(edificioBuilder.construirCon(rango, fuente)).thenReturn(edificio);
+        when(edificioBuilder.construir()).thenReturn(edificio);
 
         CiudadBuilder builder = new CiudadBuilder("Montreal");
         builder.conEdificios(edificioBuilder);
 
-        Ciudad ciudadCreada = builder.construirCon(rango, fuente);
+        Ciudad ciudadCreada = builder.construir();
 
         assertDoesNotThrow(() -> ciudadCreada.obtenerEdificio(nombreEdificio));
     }
