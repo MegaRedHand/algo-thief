@@ -13,7 +13,7 @@
         "Religion": "???",
         "Leader": "Prime Minister",
         "Misc":  ["Hellenic Republic", "Neighbors Yugoslavia"],
-        "Loot": ["Mask of Priam"]
+        "Loot": "Mask of Priam"
     },
     {
         "City": "Baghdad",
@@ -29,7 +29,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["Mesopotamia"],
-        "Loot":["Babylonian Tablet","Flying Carpet"]
+        "Loot": "Babylonian Tablet"
     },
     {
         "City": "Bamako",
@@ -45,23 +45,7 @@
         "Religion": "???",
         "Leader": "President",
         "Misc": ["Timbuktu"],
-        "Loot": ["Islamic Manuscript", "Rare Mali Empire Pottery"]
-    },
-    {
-        "City": "Bangkok",
-        "Flag": ["Red", "White","Blue"],
-        "Currency": "Bahts",
-        "Geography": ["???"],
-        "Landmarks": ["???"],
-        "Industries": ["???"],
-        "Animals": ["???"],
-        "People": ["???"],
-        "Languages": ["???"],
-        "Art": "???",
-        "Religion": "Buddhism",
-        "Leader": "???",
-        "Misc": ["Ancient Siam"],
-        "Loot": ["Golden Buddha"]
+        "Loot": "Islamic Manuscript"
     },
     {
         "City": "Budapest",
@@ -77,7 +61,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["Neighbors Austria"],
-        "Loot":
+        "Loot": "Flying Carpet"
     },
     {
         "City": "Buenos Aires",
@@ -93,7 +77,7 @@
         "Religion": "???",
         "Leader": "President",
         "Misc": ["Former Spanish Colony"],
-        "Loot": ["Solid Gold Bola"]
+        "Loot": "Solid Gold Bola"
     },
     {
         "City":  "Cairo",
@@ -109,7 +93,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["Ancient Alexandria"],
-        "Loot": ["King Tut's Mask"]
+        "Loot": "King Tut's Mask"
     },
     {
         "City":  "Colombo",
@@ -125,7 +109,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["Ancient Taprobane"],
-        "Loot": ["Rare Tea Plant", "Sernedip Ruby"]
+        "Loot": "Rare Tea Plant"
     },
     {
         "City": "Istanbul",
@@ -141,7 +125,7 @@
         "Religion":  "???",
         "Leader":  "President",
         "Misc": ["Byzantine Empire", "Constantinople"],
-        "Loot": ["Constantine's Jeweled Cross"]
+        "Loot": "Constantine's Jeweled Cross"
     },
     {
         "City": "Kathmandu",
@@ -157,7 +141,7 @@
         "Religion":  "Hindu",
         "Leader": "???",
         "Misc": ["???"],
-        "Loot": ["Royal Quartz Collection"]
+        "Loot": "Royal Quartz Collection"
     },
     {
         "City": "Kigali",
@@ -173,7 +157,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["???"],
-        "Loot": ["Watusi King's Headdress"]
+        "Loot": "Watusi King's Headdress"
     },
     {
         "City": "Lima",
@@ -189,7 +173,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["???"],
-        "Loot": ["Incan Gold Mask", "Silver LLama"]
+        "Loot": "Incan Gold Mask"
     },
     {
         "City": "London",
@@ -205,7 +189,7 @@
         "Religion":  "???",
         "Leader": "Prime Minister",
         "Misc": ["???"],
-        "Loot": ["Crown Jewels"]
+        "Loot": "Crown Jewels"
     },
     {
         "City": "Mexico City",
@@ -221,7 +205,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["???"],
-        "Loot": ["Mask of Montezuma"]
+        "Loot": "Mask of Montezuma"
     },
     {
         "City": "Montreal",
@@ -237,7 +221,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["Former French Colony"],
-        "Loot": ["Stanley Cup"]
+        "Loot": "Stanley Cup"
 
     },
     {
@@ -254,7 +238,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["???"],
-        "Loot":
+        "Loot": "Rare Mali Empire Pottery"
     },
     {
         "City": "Moscow",
@@ -270,7 +254,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc":  ["Moldavia, Largest Country in the World"],
-        "Loot": ["Ivan the Terrible's Crown","Painting from the Kremlin"]
+        "Loot": "Ivan the Terrible's Crown"
     },
     {
         "City": "New Delhi",
@@ -286,7 +270,7 @@
         "Religion": "Sikh",
         "Leader": "Prime Minister",
         "Misc": ["???"],
-        "Loot":
+        "Loot": "Sernedip Ruby"
     },
     {
         "City":  "New York",
@@ -302,7 +286,7 @@
         "Religion": "???",
         "Leader":  "???",
         "Misc":  ["Subways"],
-        "Loot": ["The Rockettes"]
+        "Loot": "The Rockettes"
     },
     {
         "City": "Oslo",
@@ -318,7 +302,7 @@
         "Religion":  "???",
         "Leader":  "King",
         "Misc": ["Nordic Skiing"],
-        "Loot": ["Viking Helmet"]
+        "Loot": "Viking Helmet"
     },
     {
         "City": "Paris",
@@ -334,7 +318,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc":  ["???"],
-        "Loot":
+        "Loot": "Silver LLama"
     },
 
     {
@@ -351,7 +335,7 @@
         "Religion":  "???",
         "Leader": "???",
         "Misc": ["Shang Dynasty", "Wuchang Uprising"],
-        "Loot": ["1,000 Year Old Egg"]
+        "Loot": "1,000 Year Old Egg"
         },
     {
         "City": "Port Moresby",
@@ -367,7 +351,7 @@
         "Religion": "???",
         "Leader": "Prime Minister",
         "Misc": ["New Ireland"],
-        "Loot": ["Boar's Tusk"]
+        "Loot": "Boar's Tusk"
     },
     {
         "City":  "Reykjavik",
@@ -383,7 +367,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["Island Nation"],
-        "Loot":
+        "Loot": "Painting from the Kremlin"
     },
     {
         "City": "Rio de Janeiro",
@@ -399,7 +383,7 @@
         "Religion": "???",
         "Leader": "President",
         "Misc": ["???"],
-        "Loot": ["Stuffed Parrot"]
+        "Loot": "Stuffed Parrot"
     },
     {
         "City":  "Rome",
@@ -415,23 +399,7 @@
         "Religion": "???",
         "Leader": "President",
         "Misc": ["???"],
-        "Loot": ["Pope's Ring"]
-    },
-    {
-        "City":  "San Marino",
-        "Flag":  ["Blue", "White"],
-        "Currency":  "???",
-        "Geography": ["???"],
-        "Landmarks":   ["Mount Titano"],
-        "Industries":  ["Ceramics", "Postage Stamps"],
-        "Animals":  ["???"],
-        "People": ["???"],
-        "Languages": ["Italian"],
-        "Art": "???",
-        "Religion": "???",
-        "Leader": "???",
-        "Misc":  ["Serene Republic", "Oldest State in Europe", "Neighbors Italy"],
-        "Loot":
+        "Loot": "Pope's Ring"
     },
     {
         "City":  "Singapore",
@@ -447,7 +415,7 @@
         "Religion": "???",
         "Leader": "???",
         "Misc": ["Former British Colony"],
-        "Loot": ["Merlion the Golden Lion"]
+        "Loot": "Merlion the Golden Lion"
     },
     {
         "City":  "Sydney",
@@ -463,7 +431,7 @@
         "Religion":  "???",
         "Leader": "???",
         "Misc":  ["???"],
-        "Loot": ["Chandelier from the Opera House"]
+        "Loot": "Chandelier from the Opera House"
     },
     {
         "City": "Tokyo",
@@ -479,6 +447,6 @@
         "Religion": "Shinto",
         "Leader": "???",
         "Misc": ["???"],
-        "Loot":
+        "Loot": "Golden Buddha"
     }
 ]
