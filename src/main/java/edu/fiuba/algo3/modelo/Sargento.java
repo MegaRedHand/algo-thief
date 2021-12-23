@@ -1,9 +1,9 @@
-package edu.fiuba.algo3.modelo.rango;
+package edu.fiuba.algo3.modelo;
 
 public class Sargento extends RangoLineal {
 
     public Sargento() {
-        super(20, 1500);
+        super(20, 1500, "dificil");
     }
 
     @Override

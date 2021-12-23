@@ -1,0 +1,143 @@
+[
+    {
+        "ciudad": "Peking",
+        "tesoro": "Huevo de 1000 años",
+        "valor": "Valioso"
+    },
+    {
+        "ciudad": "Baghdad",
+        "tesoro": "Tablilla babilónica",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Puerto Moresby",
+        "tesoro": "Colmillo de jabalí",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Sydney",
+        "tesoro": "Araña de la Ópera",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Estambul",
+        "tesoro": "Cruz enjoyada de Constantino",
+        "valor": "Valioso"
+    },
+    {
+        "ciudad": "Londres",
+        "tesoro": "Joyas de la corona",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Baghdad",
+        "tesoro": "Alfombra voladora",
+        "valor": "Muy valioso"
+    },
+    {
+        "ciudad": "Bangkok",
+        "tesoro": "Buda dorado",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Lima",
+        "tesoro": "Máscara de oro Inca",
+        "valor": "Valioso"
+    },
+    {
+        "ciudad": "Bamako",
+        "tesoro": "Manuscrito islámico",
+        "valor": "Valioso"
+    },
+    {
+        "ciudad": "Moscú",
+        "tesoro": "Corona de Iván el Terrible",
+        "valor": "Muy valioso"
+    },
+    {
+        "ciudad": "Cairo",
+        "tesoro": "Máscara funeraria de Tutankamón",
+        "valor": "Muy valioso"
+    },
+    {
+        "ciudad": "Ciudad de México",
+        "tesoro": "Máscara de Montezuma",
+        "valor": "Valioso"
+    },
+    {
+        "ciudad": "Atenas",
+        "tesoro": "Máscara de Príamo",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Singapur",
+        "tesoro": "Merlion el León Dorado",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Moscú",
+        "tesoro": "Pintura del Kremlin",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Roma",
+        "tesoro": "Anillo del Papa",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Bamako",
+        "tesoro": "Cerámica rara del Imperio de Malí",
+        "valor": "Valioso"
+    },
+    {
+        "ciudad": "Colombo",
+        "tesoro": "Planta de té rara",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Kathmandu",
+        "tesoro": "Colección Royal Quartz",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Colombo",
+        "tesoro": "Ruby Serendipia",
+        "valor": "Valioso"
+    },
+    {
+        "ciudad": "Lima",
+        "tesoro": "Llama de plata",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Buenos Aires",
+        "tesoro": "Bola de oro macizo",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Montreal",
+        "tesoro": "Copa Stanley",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Rio de Janeiro",
+        "tesoro": "Loro de peluche",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "New York",
+        "tesoro": "Las Rockettes",
+        "valor": "Comun"
+    },
+    {
+        "ciudad": "Oslo",
+        "tesoro": "Casco de vikingo",
+        "valor": "Valioso"
+    },
+    {
+        "ciudad": "Kigali",
+        "tesoro": "Tocado del rey Watusi",
+        "valor": "Comun"
+    }
+]
+

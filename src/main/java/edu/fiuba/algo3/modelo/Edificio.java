@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 public class Edificio {
-    private final String nombre ;
-    private final Pista pista;
+
+    private final String nombre;
+    protected Pista pista;
 
     public Edificio(String nombre, Pista pista) {
         this.nombre = nombre;
@@ -15,5 +16,10 @@ public class Edificio {
 
     public boolean es(String nombreEdificio) {
         return nombre.equals(nombreEdificio);
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

@@ -1,9 +1,9 @@
-package edu.fiuba.algo3.modelo.rango;
+package edu.fiuba.algo3.modelo;
 
 public class Investigador extends RangoLineal {
 
     public Investigador() {
-        super(20, 1300);
+        super(20, 1300, "media");
     }
 
     @Override

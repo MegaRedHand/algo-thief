@@ -11,4 +11,5 @@ public class Cronometro {
     public int tiempo() {
         return this.horas;
     }
+
 }

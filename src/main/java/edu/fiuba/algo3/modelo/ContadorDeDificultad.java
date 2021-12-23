@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.rango.Rango;
-
 public class ContadorDeDificultad {
     private int cantidadDeArrestos;
     private Rango rango;
