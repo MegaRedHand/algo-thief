@@ -27,6 +27,10 @@ public class Escenario {
         detective.recibirHeridaDeCuchillo();
     }
 
+    public void detectiveRecibirHeridaPorArmaDeFuego() {
+        detective.recibirHeridaPorArmaDeFuego();
+    }
+
     public void detectiveDormir() {
         detective.dormir();
     }

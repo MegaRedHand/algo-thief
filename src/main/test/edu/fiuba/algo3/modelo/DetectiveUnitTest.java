@@ -143,4 +143,34 @@ public class DetectiveUnitTest {
         assertEquals(24, cronometro.tiempo());
     }
 
+    @Test
+    public void test09DetectiveRecibeBalazoUnaVezYConsume4Horas() {
+
+        Cronometro cronometro = new Cronometro();
+        Ciudad ciudad = mock(Ciudad.class);
+        ContadorDeDificultad contador = mock(ContadorDeDificultad.class);
+
+        Detective detective = new Detective(cronometro, ciudad, contador);
+
+        detective.recibirHeridaPorArmaDeFuego();
+
+        assertEquals(4, cronometro.tiempo());
+    }
+
+    @Test
+    public void test10DetectiveRecibeBalazo5VecesYConsume20Horas() {
+
+        Cronometro cronometro = new Cronometro();
+        Ciudad ciudad = mock(Ciudad.class);
+        ContadorDeDificultad contador = mock(ContadorDeDificultad.class);
+
+        Detective detective = new Detective(cronometro, ciudad, contador);
+
+        for (int i = 0; i < 5; i++) {
+            detective.recibirHeridaPorArmaDeFuego();
+        }
+
+        assertEquals(20, cronometro.tiempo());
+    }
+
 }

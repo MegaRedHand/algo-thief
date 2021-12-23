@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Algothief implements JuegoObservable {
+public class Algothief {
 
     private final FuenteDeDatos fuente;
     private Escenario escenarioActual;
@@ -13,8 +13,6 @@ public class Algothief implements JuegoObservable {
     private final DescripcionSospechoso descripcion = new DescripcionSospechoso();
     private boolean acabado = false;
     private boolean ganado = false;
-
-    private List<JuegoObserver> observers = new ArrayList<>();
 
     public Algothief(FuenteDeDatos fuente) {
         this.fuente = fuente;
@@ -42,6 +40,10 @@ public class Algothief implements JuegoObservable {
 
     public void recibirHeridaDeCuchillo() {
         escenarioActual.detectiveRecibirHeridaDeCuchillo();
+    }
+
+    public void recibirHeridaPorArmaDeFuego() {
+        escenarioActual.detectiveRecibirHeridaPorArmaDeFuego();
     }
 
     public void dormir() {
@@ -73,11 +75,6 @@ public class Algothief implements JuegoObservable {
 
     public boolean juegoGanado() {
         return ganado;
-    }
-
-    @Override
-    public void agregarObserver(JuegoObserver observer) {
-        observers.add(observer);
     }
 
 }
