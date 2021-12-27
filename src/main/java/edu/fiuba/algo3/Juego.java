@@ -1,5 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.modelo.Algothief;
 import edu.fiuba.algo3.perifericos.LectorDeArchivos;
 
 public class Juego {
