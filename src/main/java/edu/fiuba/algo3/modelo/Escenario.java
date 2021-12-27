@@ -50,4 +50,5 @@ public class Escenario {
     public List<String> ciudadesVisitables() {
         return detective.ciudadesVisitables();
     }
+
 }

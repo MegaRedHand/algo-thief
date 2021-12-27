@@ -51,4 +51,9 @@ public class EscenarioBuilderManual implements EscenarioBuilder {
 
         return new Escenario(detective, ladron, rutaDeEscape);
     }
+
+    @Override
+    public Cronometro obtenerCronometro() {
+        return cronometro;
+    }
 }

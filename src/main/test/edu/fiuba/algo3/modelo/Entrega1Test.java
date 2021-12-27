@@ -2,7 +2,11 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -29,7 +33,7 @@ public class Entrega1Test {
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
-        builder.conCronometro(new Cronometro());
+        builder.conCronometro(new Cronometro(0));
 
         builder.conObjetoRobado(new Comun("Tesoro Nacional de Montreal"));
         builder.conLadron("Sospechoso", new DescripcionSospechoso(new Rasgo("Sexo", "Femenino")));
@@ -70,7 +74,7 @@ public class Entrega1Test {
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
-        Cronometro cronometro = new Cronometro();
+        Cronometro cronometro = new Cronometro(7);
         builder.conCronometro(cronometro);
 
         builder.conCiudades(
@@ -91,7 +95,8 @@ public class Entrega1Test {
         assertEquals(pistaBanco.descripcion(), pistaDevueltaBanco);
         assertEquals(pistaBiblioteca.descripcion(), pistaDevueltaBiblioteca);
 
-        assertEquals(2, cronometro.tiempo());
+        assertEquals(DayOfWeek.MONDAY, cronometro.fechaActual().getDayOfWeek());
+        assertEquals(9, cronometro.fechaActual().getHour());
     }
 
 
@@ -108,7 +113,7 @@ public class Entrega1Test {
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
-        Cronometro cronometro = new Cronometro();
+        Cronometro cronometro = new Cronometro(7);
         builder.conCronometro(cronometro);
 
         builder.conCiudades(
@@ -122,7 +127,9 @@ public class Entrega1Test {
 
         int distanciaEntreCiudades = 3800; // km
         int tiempoEsperado = new Novato().tiempoDeViaje(distanciaEntreCiudades) /*velocidad novato*/;
-        assertEquals(tiempoEsperado, cronometro.tiempo());
+
+        assertEquals(DayOfWeek.MONDAY, cronometro.fechaActual().getDayOfWeek());
+        assertEquals(7 + tiempoEsperado, cronometro.fechaActual().getHour());
     }
 
 
@@ -147,7 +154,7 @@ public class Entrega1Test {
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
-        Cronometro cronometro = new Cronometro();
+        Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
 
 
@@ -177,7 +184,9 @@ public class Entrega1Test {
         assertEquals(pistaAeropuerto.descripcion(), pistaDevueltaAeropuerto);
         assertEquals(pistaPuerto.descripcion(), algothief.pistaMasReciente());
 
-        assertEquals(168, cronometro.tiempo());
+        assertEquals(DayOfWeek.MONDAY, cronometro.fechaActual().getDayOfWeek());
+        assertEquals(7, cronometro.fechaActual().getHour());
+        assertTrue(cronometro.seAcaboElTiempo());
     }
 
     /**Caso de uso 5
@@ -190,7 +199,7 @@ public class Entrega1Test {
         Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
-        Cronometro cronometro = new Cronometro();
+        Cronometro cronometro = new Cronometro(7);
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
         builder.conCiudades(new CiudadBuilder("Mexico"));
@@ -200,7 +209,8 @@ public class Entrega1Test {
         algothief.recibirHeridaDeCuchillo();
         algothief.dormir();
 
-        assertEquals(10, cronometro.tiempo());
+        assertEquals(DayOfWeek.MONDAY, cronometro.fechaActual().getDayOfWeek());
+        assertEquals(17, cronometro.fechaActual().getHour());
     }
 
 }

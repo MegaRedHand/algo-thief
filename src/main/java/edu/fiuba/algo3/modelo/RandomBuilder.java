@@ -5,12 +5,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RandomBuilder implements EscenarioBuilder {
+    Cronometro cronometro = new Cronometro(0);
 
     @Override
     public Escenario construirCon(ContadorDeDificultad contador, FuenteDeDatos fuente) {
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
         ObjetoRobado objetoRobado = contador.rango().crearObjetoRobado(fuente);
-        builder.conCronometro(new Cronometro()).conObjetoRobado(objetoRobado);
+
+        builder.conCronometro(cronometro).conObjetoRobado(objetoRobado);
 
         List<Ladron> ladrones = fuente.getComputadora().listaDeLadrones();
         Ladron ladron = ladrones.get(new Random().nextInt(ladrones.size()));
@@ -48,4 +50,8 @@ public class RandomBuilder implements EscenarioBuilder {
         ciudadBuilder.conEdificios(new EdificioBuilder("Banco"));
     }
 
+    @Override
+    public Cronometro obtenerCronometro() {
+        return cronometro;
+    }
 }

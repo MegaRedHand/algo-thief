@@ -13,6 +13,7 @@ public class Algothief {
     private final DescripcionSospechoso descripcion = new DescripcionSospechoso();
     private boolean acabado = false;
     private boolean ganado = false;
+    private Cronometro cronometro;
 
     public Algothief(FuenteDeDatos fuente) {
         this.fuente = fuente;
@@ -20,6 +21,7 @@ public class Algothief {
 
     public void generarEscenario(EscenarioBuilder builder) {
         escenarioActual = builder.construirCon(contador, fuente);
+        cronometro = builder.obtenerCronometro();
     }
 
     public void visitar(String nombreEdificio) {

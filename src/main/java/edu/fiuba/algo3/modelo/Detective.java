@@ -19,39 +19,29 @@ public class Detective {
     }
 
     private Pista visitar(Edificio edificio) {
-        registrarVisita(edificio);
-        cronometro.restar(tiempoDeVisita(edificio));
+        cronometro.registrarVisita(edificio);
         return edificio.obtenerPista();
     }
 
-    private void registrarVisita(Edificio edificio) {
-        int cantidadDeVisitas = visitasPorEdificio.getOrDefault(edificio, 0) + 1;
-        visitasPorEdificio.put(edificio, cantidadDeVisitas);
-    }
-
-    private int tiempoDeVisita(Edificio edificio) {
-        return Integer.min(visitasPorEdificio.getOrDefault(edificio, 0), 3);
-    }
-
     public void viajar(Ciudad ciudad) {
-        cronometro.restar(contador.rango().tiempoDeViaje(3800));
+        cronometro.registrarViaje(contador.rango(), ciudadActual, ciudad);
         ciudadActual = ciudad;
     }
 
     public void recibirHeridaDeCuchillo() {
-        cronometro.restar(salud.tiempoDeRecuperacion());
-        // sería mejor?
+        cronometro.registrarHeridaDeCuchillo(salud);
+        // TODO: sería mejor?
         // salud = new Herido();
         salud = salud.recibirHeridaDeCuchillo();
     }
 
     public void recibirHeridaPorArmaDeFuego() {
-        // hay alguna forma de unirlo a Salud?
-        cronometro.restar(4);
+        // TODO: hay alguna forma de unirlo a Salud?
+        cronometro.registrarHeridaPorArmaDeFuego();
     }
 
     public void dormir() {
-        cronometro.restar(8);
+        cronometro.registrarDormir();
     }
 
     public Pista visitar(String nombreEdificio) {

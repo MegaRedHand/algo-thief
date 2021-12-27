@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.DayOfWeek;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,12 +17,12 @@ public class Entrega2Test {
      * - Detective duerme.
      */
     @Test
-    public void test01DetectiveSufreHeridaDeCuchilloYDuerme() {
+    public void test05DetectiveSufreHeridaDeCuchilloYDuerme() {
 
         Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
 
-        Cronometro cronometro = new Cronometro();
+        Cronometro cronometro = new Cronometro(7);
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
         builder.conCiudades(new CiudadBuilder("Mexico"));
@@ -31,7 +32,8 @@ public class Entrega2Test {
         algothief.recibirHeridaDeCuchillo();
         algothief.dormir();
 
-        assertEquals(10, cronometro.tiempo());
+        assertEquals(DayOfWeek.MONDAY, cronometro.fechaActual().getDayOfWeek());
+        assertEquals(17, cronometro.fechaActual().getHour());
     }
 
     /**
@@ -44,7 +46,7 @@ public class Entrega2Test {
         Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
         algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
 
-        Cronometro cronometro = new Cronometro();
+        Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
 
         builder.conCiudades(
@@ -58,7 +60,9 @@ public class Entrega2Test {
 
         int distanciaEntreCiudades = 3800; // km
         int tiempoEsperado = new Investigador().tiempoDeViaje(distanciaEntreCiudades);
-        assertEquals(tiempoEsperado, cronometro.tiempo());
+
+        assertEquals(DayOfWeek.MONDAY, cronometro.fechaActual().getDayOfWeek());
+        assertEquals(7 + tiempoEsperado, cronometro.fechaActual().getHour());
     }
 
     /**
@@ -84,7 +88,7 @@ public class Entrega2Test {
         Algothief algothief = new Algothief(fuente);
         algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
 
-        Cronometro cronometro = new Cronometro();
+        Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
         builder.conCiudades(new CiudadBuilder("Montreal"));
 
@@ -108,7 +112,7 @@ public class Entrega2Test {
         Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
         algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
 
-        Cronometro cronometro = new Cronometro();
+        Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
         builder.conLadron("Carmen", new DescripcionSospechoso());
         builder.conCiudades(new CiudadBuilder("Montreal"));
@@ -151,7 +155,7 @@ public class Entrega2Test {
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
-        builder.conCronometro(new Cronometro());
+        builder.conCronometro(new Cronometro(7));
 
         builder.conObjetoRobado(new Comun("Incan Gold Mask"));
         builder.conLadron(ladron1.getNombre(), ladron1.descripcion());
