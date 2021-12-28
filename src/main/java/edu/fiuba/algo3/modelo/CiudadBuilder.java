@@ -21,7 +21,7 @@ public class CiudadBuilder {
     }
 
     public CiudadBuilder(Map<String, ?> datosCiudad) {
-        this.nombreCiudad = datosCiudad.get("City").toString();
+        this.nombreCiudad = datosCiudad.get("ciudad").toString();
         this.datosCiudad = datosCiudad;
     }
 

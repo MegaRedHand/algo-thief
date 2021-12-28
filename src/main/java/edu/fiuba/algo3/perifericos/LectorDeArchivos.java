@@ -1,18 +1,8 @@
 package edu.fiuba.algo3.perifericos;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
+
 import edu.fiuba.algo3.modelo.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,13 +11,17 @@ import java.util.Map;
 
 public class LectorDeArchivos implements FuenteDeDatos {
 
+    
+    // --------------------ESTO HAY QUE SACARLO------------------------------------------------
     static final String RUTA_CIUDADES = "archivos/ciudades.json";
     static final String RUTA_LADRONES = "archivos/ladrones.json";
     static final String RUTA_OBJETOS = "archivos/objetos.json";
+    // ----------------------------------------------------------------------------------------
 
     private List<Map<String,?>> datosDeCiudades;
     private List<ObjetoRobado> objetosRobados;
     private Computadora computadora;
+    private LectorJson lectorDeJson = new LectorJson();
 
     @Override
     public Pista obtenerPista(String dificultad, String tipoEdificio) {
@@ -43,7 +37,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
     }
 
 
-
+    /*  en lectorJson
     private List<Map<String,?>>  leerJson(String rutaArchivo) {
         List<Map<String,?>> datos = null;
         try {
@@ -58,9 +52,26 @@ public class LectorDeArchivos implements FuenteDeDatos {
         }
         return datos;
     }
+    
+     */
 
+
+    @Override
+    public List<CiudadBuilder> crearCiudadesBuilder(String rutaArchivo){
+        List<Map<String,?> > datosCiudades = lectorDeJson.leerJson(rutaArchivo);
+        List<CiudadBuilder> listaCiudadesBuilder = new ArrayList<>();
+
+        for (Map<String,?> ciudadMap : datosCiudades){
+
+            CiudadBuilder ciudad = new CiudadBuilder(ciudadMap);
+            listaCiudadesBuilder.add(ciudad);
+        }
+        return listaCiudadesBuilder;
+    }
+    
+    /*
     public List<Map<String,?> > obtenerCiudades(String rutaArchivo) {
-        List<Map<String,?> > ciudades = leerJson(rutaArchivo);
+        List<Map<String,?> > ciudades = lectorDeJson.leerJson(rutaArchivo);
         return ciudades;
     }
 
@@ -71,9 +82,13 @@ public class LectorDeArchivos implements FuenteDeDatos {
         }
         return datosDeCiudades;
     }
+    
+     */
+
+
 
     public List<Ladron> obtenerLadrones(String rutaArchivo) {
-        List<Map<String,?> > ladronesLista = leerJson(rutaArchivo);
+        List<Map<String,?> > ladronesLista = lectorDeJson.leerJson(rutaArchivo);
 
         Map<String,?> ladronMap;
         List<Ladron> ladrones = new ArrayList<>();
@@ -103,7 +118,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
     }
 
     public List<ObjetoRobado> obtenerObjetosRobados(String rutaArchivo) {
-        List<Map<String,?> > objetosLista = leerJson(rutaArchivo);
+        List<Map<String,?> > objetosLista = lectorDeJson.leerJson(rutaArchivo);
 
         Map<String,?> objetosMap;
         List<ObjetoRobado> objetos = new ArrayList<>();
@@ -111,7 +126,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
         for (int i= 0; i < objetosLista.size();i++){
             objetosMap = objetosLista.get(i);
             ObjetoRobado objeto;
-            
+
             if((objetosMap.get("valor")).equals("Comun")){
                 objeto = new Comun((String) objetosMap.get("nombre"));
             }else if((objetosMap.get("valor")).equals("Valioso")){

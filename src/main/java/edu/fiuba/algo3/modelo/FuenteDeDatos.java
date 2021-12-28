@@ -10,7 +10,7 @@ public interface FuenteDeDatos {
 
     Computadora getComputadora();
 
-    List<Map<String, ?>> obtenerDatosDeCiudades();
+    List<CiudadBuilder> crearCiudadesBuilder(String rutaArchivo);
 
     List<ObjetoRobado> obtenerListadoDeObjetos();
 

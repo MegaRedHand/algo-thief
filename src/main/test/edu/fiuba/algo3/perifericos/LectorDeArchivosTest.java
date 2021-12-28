@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.perifericos;
 
+import edu.fiuba.algo3.modelo.CiudadBuilder;
 import edu.fiuba.algo3.modelo.Ladron;
 import edu.fiuba.algo3.modelo.ObjetoRobado;
 import edu.fiuba.algo3.perifericos.LectorDeArchivos;
@@ -15,14 +16,8 @@ public class LectorDeArchivosTest {
     @Test
     public void test01seLeeLaCiudadCorrectamente() throws IOException {
         LectorDeArchivos lector = new LectorDeArchivos();
-        final List<Map<String, ?>> ciudades = lector.obtenerCiudades(LectorDeArchivos.RUTA_CIUDADES);
-
-        System.out.println(ciudades.get(0));  //la primera ciudad
-        System.out.println((ciudades.get(0)).get("colorBandera")); //de la primera ciudad , la bandera
-
-        //para imprimir primer elemento de bandera
-        ArrayList<String> bandera = (ArrayList<String>) (ciudades.get(0)).get("colorBandera");
-        System.out.println(bandera.get(0));
+        List<CiudadBuilder> ciudades = lector.crearCiudadesBuilder("archivos/ciudades.json");
+        System.out.println(ciudades);
     }
     @Test
     public void test02seLeeLosLadronesCorrectamente() throws IOException {
