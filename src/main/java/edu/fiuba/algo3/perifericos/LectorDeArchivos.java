@@ -22,6 +22,19 @@ public class LectorDeArchivos implements FuenteDeDatos {
     private List<ObjetoRobado> objetosRobados;
     private Computadora computadora;
     private LectorJson lectorDeJson = new LectorJson();
+    private String rutaCiudades;
+    private String rutaLadrones;
+    private String rutaObjetos;
+    private List<Comun> objetosComunes;
+    private List<Valioso> objetosValiosos;
+    private List<MuyValioso> objetosMuyValiosos;
+
+
+    public LectorDeArchivos(Map<String,String> rutas){
+        this.rutaCiudades = rutas.get("ciudades");
+        this.rutaLadrones = rutas.get("ladrones");
+        this.rutaObjetos = rutas.get("objetos");
+    }
 
     @Override
     public Pista obtenerPista(String dificultad, String tipoEdificio) {
@@ -31,7 +44,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
     @Override
     public Computadora getComputadora() {
         if (computadora == null) {
-            computadora = new Computadora(obtenerLadrones(RUTA_LADRONES));
+            computadora = new Computadora(obtenerLadrones());
         }
         return computadora;
     }
@@ -51,28 +64,9 @@ public class LectorDeArchivos implements FuenteDeDatos {
         return null;
     }
 
-    /*  en lectorJson
-    private List<Map<String,?>>  leerJson(String rutaArchivo) {
-        List<Map<String,?>> datos = null;
-        try {
-            Reader archivo = Files.newBufferedReader(Paths.get(rutaArchivo));
-            Gson gson = new Gson();
-
-            final Type tipoListaDatos = new TypeToken<List<Map<?,?> >>(){}.getType();
-            datos = gson.fromJson(archivo, tipoListaDatos);
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return datos;
-    }
-
-     */
-
-
     @Override
     public List<CiudadBuilder> crearCiudadBuilders(){
-        List<Map<String,?> > datosCiudades = lectorDeJson.leerJson(RUTA_CIUDADES);
+        List<Map<String,?> > datosCiudades = this.lectorDeJson.leerJson(this.rutaCiudades);
         List<CiudadBuilder> listaCiudadesBuilder = new ArrayList<>();
 
         for (Map<String,?> ciudadMap : datosCiudades){
@@ -83,25 +77,9 @@ public class LectorDeArchivos implements FuenteDeDatos {
         return listaCiudadesBuilder;
     }
 
-    /*
-    public List<Map<String,?> > obtenerCiudades(String rutaArchivo) {
-        List<Map<String,?> > ciudades = lectorDeJson.leerJson(rutaArchivo);
-        return ciudades;
-    }
 
-    public List<Map<String, ?>> obtenerDatosDeCiudades() {
-        if (datosDeCiudades == null) {
-            datosDeCiudades = obtenerCiudades(RUTA_CIUDADES);
-        }
-        return datosDeCiudades;
-    }
-
-     */
-
-
-
-    public List<Ladron> obtenerLadrones(String rutaArchivo) {
-        List<Map<String,?> > ladronesLista = lectorDeJson.leerJson(rutaArchivo);
+    private List<Ladron> obtenerLadrones() {
+        List<Map<String,?> > ladronesLista = this.lectorDeJson.leerJson(this.rutaLadrones);
 
         Map<String,?> ladronMap;
         List<Ladron> ladrones = new ArrayList<>();
@@ -122,12 +100,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
         return ladrones;
     }
 
-    public List<ObjetoRobado> obtenerListadoDeObjetos() {
-        if (objetosRobados == null) {
-            objetosRobados = obtenerObjetosRobados(RUTA_OBJETOS);
-        }
-        return objetosRobados;
-    }
+
 
     public List<ObjetoRobado> obtenerObjetosRobados(String rutaArchivo) {
         List<Map<String,?> > objetosLista = lectorDeJson.leerJson(rutaArchivo);
