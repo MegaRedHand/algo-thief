@@ -27,9 +27,7 @@ public class ContadorDeDificultad {
         return rango;
     }
 
-
     public ObjetoRobado obtenerObjetosRobados(FuenteDeDatos fuente) {
         return fuente.obtenerObjetosComunes();
-
     }
 }

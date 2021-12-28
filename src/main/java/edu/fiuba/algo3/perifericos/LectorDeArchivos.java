@@ -103,16 +103,10 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
 
     public void obtenerObjetosRobados() {
-        System.out.println("entre a obtenerObjetosRobados");
+
         List<Map<String,?> > objetosLista = lectorDeJson.leerJson(this.rutaObjetos);
 
-
-        System.out.println("antes del for");
-
-
         for (Map<String,?> objetoMap : objetosLista){
-
-            System.out.println("dentro  del for");
 
             if((objetoMap.get("valor")).equals("Comun")){
                 Comun objetoComun = new Comun((String) objetoMap.get("tesoro"),(String) objetoMap.get("ciudad"));

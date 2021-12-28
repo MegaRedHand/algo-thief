@@ -10,15 +10,16 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static org.mockito.Mockito.mock;
 
 public class LectorDeArchivosTest {
-    @BeforeEach
+
     public Map<String,String> setup(){
-        Map<String,String> rutas = null;
+        Map<String,String> rutas = new HashMap<String,String>();
         rutas.put("ciudades","archivos/ciudades.json");
         rutas.put("ladrones","archivos/ladrones.json");
         rutas.put("objetos","archivos/objetos.json");
@@ -43,10 +44,12 @@ public class LectorDeArchivosTest {
         System.out.println(ladrones);
     }
     */
-    /*
+
     @Test
     public void test03seLeenLosObjetosCorrectamente() throws IOException {
         Map<String,String> rutas = setup();
+
+        System.out.println(rutas);
 
 
         LectorDeArchivos lector = new LectorDeArchivos(rutas);
@@ -57,8 +60,10 @@ public class LectorDeArchivosTest {
         System.out.println(comunes);
 
 
+
+
     }
 
-     */
+
 
 }
