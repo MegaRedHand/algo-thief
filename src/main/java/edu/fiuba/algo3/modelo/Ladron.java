@@ -14,7 +14,7 @@ public class Ladron {
 
     public Ladron(String nombre, DescripcionSospechoso descripcion) {
         this.nombre = nombre;
-        this.objetoRobado = new Comun("Ninguno");
+        this.objetoRobado = new Comun("Ninguno", "Ninguna ciudad");
         this.descripcion = descripcion;
     }
 

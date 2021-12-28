@@ -13,12 +13,12 @@ import java.util.Map;
 
 public class LectorDeArchivosTest {
 
-    @Test
-    public void test01seLeeLaCiudadCorrectamente() throws IOException {
-        LectorDeArchivos lector = new LectorDeArchivos();
-        List<CiudadBuilder> ciudades = lector.crearCiudadesBuilder("archivos/ciudades.json");
-        System.out.println(ciudades);
-    }
+//    @Test
+//    public void test01seLeeLaCiudadCorrectamente() throws IOException {
+//        LectorDeArchivos lector = new LectorDeArchivos();
+//        List<CiudadBuilder> ciudades = lector.crearCiudadesBuilder("archivos/ciudades.json");
+//        System.out.println(ciudades);
+//    }
     @Test
     public void test02seLeeLosLadronesCorrectamente() throws IOException {
         LectorDeArchivos lector = new LectorDeArchivos();

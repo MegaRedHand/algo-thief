@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.Map;
+
 public class Investigador extends RangoLineal {
 
     public Investigador() {
@@ -9,6 +11,11 @@ public class Investigador extends RangoLineal {
     @Override
     Rango siguiente() {
         return new Sargento();
+    }
+
+    @Override
+    public Pista generarPistaCon(GeneradorDePistas generador, Map<String, ?> datosCiudad, DescripcionSospechoso descripcion) {
+        return generador.generarPistaMedia(datosCiudad, descripcion);
     }
 
 }

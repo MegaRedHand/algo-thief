@@ -31,9 +31,4 @@ public abstract class RangoLineal implements Rango {
         return dificultad;
     }
 
-    @Override
-    public ObjetoRobado crearObjetoRobado(FuenteDeDatos fuente) {
-        // TODO: random
-        return new Comun("Corona de alguien importante");
-    }
 }

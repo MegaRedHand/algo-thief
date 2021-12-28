@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.List;
-import java.util.Map;
 
 public interface FuenteDeDatos {
 
@@ -10,8 +9,10 @@ public interface FuenteDeDatos {
 
     Computadora getComputadora();
 
-    List<CiudadBuilder> crearCiudadesBuilder(String rutaArchivo);
+    Comun obtenerObjetosComunes();
+    Valioso obtenerObjetosValiosos();
+    MuyValioso obtenerObjetosMuyValiosos();
 
-    List<ObjetoRobado> obtenerListadoDeObjetos();
+    List<CiudadBuilder> crearCiudadBuilders();
 
 }

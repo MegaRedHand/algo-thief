@@ -9,6 +9,7 @@ public class EdificioBuilder {
     private String tipoEdificio;
     private DescripcionSospechoso descripcionLadron;
     private Map<String, ?> datosSiguienteCiudad;
+    private GeneradorDePistas generador;
 
     public EdificioBuilder(String nombreEdificio, String tipoEdificio) {
         this.nombreEdificio = nombreEdificio;
@@ -36,6 +37,10 @@ public class EdificioBuilder {
         this.datosSiguienteCiudad = datosSiguienteCiudad;
     }
 
+    public void conPistaGeneradaPor(GeneradorDePistas generadorDePistas) {
+        this.generador = generadorDePistas;
+    }
+
     public Edificio construirCon(Rango rango) {
         // TODO: podría ser algo como
         //  pista = rango.generadorDePistas().pistaMoneda(datosSiguienteCiudad).agregar(datosSospechoso).generar()
@@ -48,4 +53,9 @@ public class EdificioBuilder {
         }
         return new Edificio(nombreEdificio, pista);
     }
+
+    public Edificio construirCon(Rango rango, DescripcionSospechoso descripcion) {
+        return new Edificio(nombreEdificio, rango.generarPistaCon(generador, datosSiguienteCiudad, descripcion));
+    }
+
 }

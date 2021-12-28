@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class LectorDeArchivos implements FuenteDeDatos {
 
-    
+
     // --------------------ESTO HAY QUE SACARLO------------------------------------------------
     static final String RUTA_CIUDADES = "archivos/ciudades.json";
     static final String RUTA_LADRONES = "archivos/ladrones.json";
@@ -36,6 +36,20 @@ public class LectorDeArchivos implements FuenteDeDatos {
         return computadora;
     }
 
+    @Override
+    public Comun obtenerObjetosComunes() {
+        return null;
+    }
+
+    @Override
+    public Valioso obtenerObjetosValiosos() {
+        return null;
+    }
+
+    @Override
+    public MuyValioso obtenerObjetosMuyValiosos() {
+        return null;
+    }
 
     /*  en lectorJson
     private List<Map<String,?>>  leerJson(String rutaArchivo) {
@@ -52,13 +66,13 @@ public class LectorDeArchivos implements FuenteDeDatos {
         }
         return datos;
     }
-    
+
      */
 
 
     @Override
-    public List<CiudadBuilder> crearCiudadesBuilder(String rutaArchivo){
-        List<Map<String,?> > datosCiudades = lectorDeJson.leerJson(rutaArchivo);
+    public List<CiudadBuilder> crearCiudadBuilders(){
+        List<Map<String,?> > datosCiudades = lectorDeJson.leerJson(RUTA_CIUDADES);
         List<CiudadBuilder> listaCiudadesBuilder = new ArrayList<>();
 
         for (Map<String,?> ciudadMap : datosCiudades){
@@ -68,21 +82,20 @@ public class LectorDeArchivos implements FuenteDeDatos {
         }
         return listaCiudadesBuilder;
     }
-    
+
     /*
     public List<Map<String,?> > obtenerCiudades(String rutaArchivo) {
         List<Map<String,?> > ciudades = lectorDeJson.leerJson(rutaArchivo);
         return ciudades;
     }
 
-    @Override
     public List<Map<String, ?>> obtenerDatosDeCiudades() {
         if (datosDeCiudades == null) {
             datosDeCiudades = obtenerCiudades(RUTA_CIUDADES);
         }
         return datosDeCiudades;
     }
-    
+
      */
 
 
@@ -109,7 +122,6 @@ public class LectorDeArchivos implements FuenteDeDatos {
         return ladrones;
     }
 
-    @Override
     public List<ObjetoRobado> obtenerListadoDeObjetos() {
         if (objetosRobados == null) {
             objetosRobados = obtenerObjetosRobados(RUTA_OBJETOS);
@@ -123,20 +135,20 @@ public class LectorDeArchivos implements FuenteDeDatos {
         Map<String,?> objetosMap;
         List<ObjetoRobado> objetos = new ArrayList<>();
 
-        for (int i= 0; i < objetosLista.size();i++){
-            objetosMap = objetosLista.get(i);
-            ObjetoRobado objeto;
-
-            if((objetosMap.get("valor")).equals("Comun")){
-                objeto = new Comun((String) objetosMap.get("nombre"));
-            }else if((objetosMap.get("valor")).equals("Valioso")){
-                objeto = new Valioso((String) objetosMap.get("nombre"));
-            }else {
-                objeto = new MuyValioso((String) objetosMap.get("nombre"));
-            }
-
-            objetos.add(objeto);
-        }
+//        for (int i= 0; i < objetosLista.size();i++){
+//            objetosMap = objetosLista.get(i);
+//            ObjetoRobado objeto;
+//
+//            if((objetosMap.get("valor")).equals("Comun")){
+//                objeto = new Comun((String) objetosMap.get("nombre"));
+//            }else if((objetosMap.get("valor")).equals("Valioso")){
+//                objeto = new Valioso((String) objetosMap.get("nombre"));
+//            }else {
+//                objeto = new MuyValioso((String) objetosMap.get("nombre"));
+//            }
+//
+//            objetos.add(objeto);
+//        }
         return objetos;
 
     }

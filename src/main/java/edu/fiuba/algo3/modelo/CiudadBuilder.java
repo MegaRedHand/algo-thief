@@ -47,21 +47,19 @@ public class CiudadBuilder {
         this.adyacentes.addAll(nombresAdyacentes);
     }
 
-    public void conPistasPara(Map<String, ?> datosSiguienteCiudad) {
-        this.datosSiguienteCiudad = datosSiguienteCiudad;
+    public void conPistasPara(CiudadBuilder builderSiguienteCiudad) {
+        this.datosSiguienteCiudad = builderSiguienteCiudad.datosCiudad;
     }
 
     public Ciudad construirCon(Rango rango, DescripcionSospechoso descripcion) {
         edificioBuilders.forEach(eb -> eb.conPistaPara(descripcion, datosSiguienteCiudad));
-        List<Edificio> edificiosDeLaCiudad = edificioBuilders.stream().map(eb -> eb.construirCon(rango))
+        List<Edificio> edificiosDeLaCiudad = edificioBuilders.stream().map(eb -> eb.construirCon(rango, descripcion))
                 .collect(Collectors.toList());
 
         return new Ciudad(nombreCiudad, edificiosDeLaCiudad, adyacentes);
     }
 
-//    public Ciudad construirCon(Rango rango, DatosDeCiudad datosDeLaSiguienteCiudad, Ladron ladron) {
-//        edificiosDeLaCiudad.forEach(e -> e.agregarPista(rango, datosDeLaSiguienteCiudad, ladron));
-//        return new Ciudad(nombreCiudad, edificiosDeLaCiudad);
-//    }
-
+    public boolean lePertenece(ObjetoRobado objetoRobado) {
+        return objetoRobado.tieneOrigen(nombreCiudad);
+    }
 }

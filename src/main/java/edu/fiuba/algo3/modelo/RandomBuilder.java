@@ -10,48 +10,56 @@ public class RandomBuilder implements EscenarioBuilder {
     @Override
     public Escenario construirCon(ContadorDeDificultad contador, FuenteDeDatos fuente) {
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
-        ObjetoRobado objetoRobado = contador.rango().crearObjetoRobado(fuente);
-
-        builder.conCronometro(cronometro).conObjetoRobado(objetoRobado);
 
         List<Ladron> ladrones = fuente.getComputadora().listaDeLadrones();
         Ladron ladron = ladrones.get(new Random().nextInt(ladrones.size()));
-
         builder.conLadron(ladron);
 
-        List<Map<String, ?>> datosCiudades = fuente.obtenerDatosDeCiudades();
-        Collections.shuffle(datosCiudades);
-        List<CiudadBuilder> ciudadesNoVisitadas = datosCiudades.stream().map(CiudadBuilder::new)
-                .collect(Collectors.toList());
+        ObjetoRobado objetoRobado = contador.obtenerObjetosRobados(fuente);
+        builder.conCronometro(cronometro).conObjetoRobado(objetoRobado);
 
-        builder.conCiudades(ciudadesNoVisitadas);
-        ciudadesNoVisitadas.forEach(this::agregarEdificios);
+        List<CiudadBuilder> ciudadBuilders = generarListaDeCiudadBuilders(fuente, objetoRobado);
 
-        List<Map<String, ?>> datosRutaDeEscape = new ArrayList<>(datosCiudades.subList(0, objetoRobado.largoDeLaRutaDeEscape()));
-        List<CiudadBuilder> rutaDeEscape = new ArrayList<>(ciudadesNoVisitadas.subList(0, objetoRobado.largoDeLaRutaDeEscape()));
-        ciudadesNoVisitadas.removeAll(rutaDeEscape);
+        List<CiudadBuilder> rutaDeEscape = new ArrayList<>(ciudadBuilders.subList(
+                0, objetoRobado.largoDeLaRutaDeEscape()));
+        List<CiudadBuilder> ciudadesNoVisitadas = new ArrayList<>(ciudadBuilders.subList(
+                objetoRobado.largoDeLaRutaDeEscape(), ciudadBuilders.size()));
 
-        agregarAdyacentesACiudades(ciudadesNoVisitadas, datosRutaDeEscape, rutaDeEscape);
+        agregarAdyacentesACiudades(ciudadesNoVisitadas, rutaDeEscape);
+
+        ciudadBuilders.forEach(this::agregarEdificios);
 
         return builder.construirCon(contador, ladron.descripcion());
     }
 
-    private void agregarAdyacentesACiudades(List<CiudadBuilder> ciudadesNoVisitadas, List<Map<String, ?>> datosRutaDeEscape, List<CiudadBuilder> rutaDeEscape) {
+    private List<CiudadBuilder> generarListaDeCiudadBuilders(FuenteDeDatos fuente, ObjetoRobado objetoRobado) {
+        List<CiudadBuilder> ciudadBuilders = fuente.crearCiudadBuilders();
+        CiudadBuilder ciudadInicial = ciudadBuilders.stream().filter(cb -> cb.lePertenece(objetoRobado)).findFirst().orElseThrow();
+        ciudadBuilders.remove(ciudadInicial);
+        Collections.shuffle(ciudadBuilders);
+        ciudadBuilders.add(0, ciudadInicial);
+        return ciudadBuilders;
+    }
+
+    private void agregarAdyacentesACiudades(List<CiudadBuilder> ciudadesNoVisitadas, List<CiudadBuilder> rutaDeEscape) {
         for (int i = 0; i < rutaDeEscape.size() - 1; i++) {
             List<CiudadBuilder> adyacentes = new ArrayList<>(ciudadesNoVisitadas.subList(0, 2));
             ciudadesNoVisitadas.removeAll(adyacentes);
             adyacentes.add(rutaDeEscape.get(i + 1));
             rutaDeEscape.get(i).conPasajesA(adyacentes);
-            rutaDeEscape.get(i).conPistasPara(datosRutaDeEscape.get(i + 1));
+            rutaDeEscape.get(i).conPistasPara(rutaDeEscape.get(i + 1));
         }
     }
 
     private void agregarEdificios(CiudadBuilder ciudadBuilder) {
-        ciudadBuilder.conEdificios(new EdificioBuilder("Banco"));
+        EdificioBuilder edificioBuilder = new EdificioBuilder("Banco");
+        edificioBuilder.conPistaGeneradaPor(new GeneradorDePistasBanco());
+        ciudadBuilder.conEdificios(edificioBuilder);
     }
 
     @Override
     public Cronometro obtenerCronometro() {
         return cronometro;
     }
+
 }

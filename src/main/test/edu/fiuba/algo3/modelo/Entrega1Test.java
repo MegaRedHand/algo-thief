@@ -35,7 +35,7 @@ public class Entrega1Test {
 
         builder.conCronometro(new Cronometro(0));
 
-        builder.conObjetoRobado(new Comun("Tesoro Nacional de Montreal"));
+        builder.conObjetoRobado(new Comun("Tesoro Nacional de Montreal", "Montreal"));
         builder.conLadron("Sospechoso", new DescripcionSospechoso(new Rasgo("Sexo", "Femenino")));
         builder.conCiudades(
                 new CiudadBuilder("Montreal").conEdificios(
