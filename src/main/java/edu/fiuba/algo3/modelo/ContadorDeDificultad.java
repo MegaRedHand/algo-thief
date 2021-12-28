@@ -29,7 +29,7 @@ public class ContadorDeDificultad {
 
 
     public ObjetoRobado obtenerObjetosRobados(FuenteDeDatos fuente) {
-        //return fuente.obtenerObjetosComunes();
-        return null;
+        return fuente.obtenerObjetosComunes();
+
     }
 }
