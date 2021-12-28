@@ -25,9 +25,9 @@ public class LectorDeArchivos implements FuenteDeDatos {
     private String rutaCiudades;
     private String rutaLadrones;
     private String rutaObjetos;
-    private List<Comun> objetosComunes;
-    private List<Valioso> objetosValiosos;
-    private List<MuyValioso> objetosMuyValiosos;
+    private List<Comun> objetosComunes = new ArrayList<Comun>();
+    private List<Valioso> objetosValiosos = new ArrayList<Valioso>();
+    private List<MuyValioso> objetosMuyValiosos = new ArrayList<MuyValioso>();
 
 
     public LectorDeArchivos(Map<String,String> rutas){
@@ -50,18 +50,18 @@ public class LectorDeArchivos implements FuenteDeDatos {
     }
 
     @Override
-    public Comun obtenerObjetosComunes() {
-        return null;
+    public List<Comun> obtenerObjetosComunes() {
+        return objetosComunes;
     }
 
     @Override
-    public Valioso obtenerObjetosValiosos() {
-        return null;
+    public List<Valioso> obtenerObjetosValiosos() {
+        return objetosValiosos;
     }
 
     @Override
-    public MuyValioso obtenerObjetosMuyValiosos() {
-        return null;
+    public List<MuyValioso> obtenerObjetosMuyValiosos() {
+        return objetosMuyValiosos;
     }
 
     @Override
@@ -102,28 +102,31 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
 
 
-    public List<ObjetoRobado> obtenerObjetosRobados(String rutaArchivo) {
-        List<Map<String,?> > objetosLista = lectorDeJson.leerJson(rutaArchivo);
+    public void obtenerObjetosRobados() {
+        System.out.println("entre a obtenerObjetosRobados");
+        List<Map<String,?> > objetosLista = lectorDeJson.leerJson(this.rutaObjetos);
 
-        Map<String,?> objetosMap;
-        List<ObjetoRobado> objetos = new ArrayList<>();
 
-//        for (int i= 0; i < objetosLista.size();i++){
-//            objetosMap = objetosLista.get(i);
-//            ObjetoRobado objeto;
-//
-//            if((objetosMap.get("valor")).equals("Comun")){
-//                objeto = new Comun((String) objetosMap.get("nombre"));
-//            }else if((objetosMap.get("valor")).equals("Valioso")){
-//                objeto = new Valioso((String) objetosMap.get("nombre"));
-//            }else {
-//                objeto = new MuyValioso((String) objetosMap.get("nombre"));
-//            }
-//
-//            objetos.add(objeto);
-//        }
-        return objetos;
+        System.out.println("antes del for");
 
+
+        for (Map<String,?> objetoMap : objetosLista){
+
+            System.out.println("dentro  del for");
+
+            if((objetoMap.get("valor")).equals("Comun")){
+                Comun objetoComun = new Comun((String) objetoMap.get("tesoro"),(String) objetoMap.get("ciudad"));
+                objetosComunes.add(objetoComun);
+            }else if((objetoMap.get("valor")).equals("Valioso")){
+                Valioso objetoValioso = new Valioso((String) objetoMap.get("tesoro"),(String) objetoMap.get("ciudad"));
+                objetosValiosos.add(objetoValioso);
+            }else {
+                MuyValioso objetoMuyValioso = new MuyValioso((String) objetoMap.get("tesoro"),(String) objetoMap.get("ciudad"));
+                objetosMuyValiosos.add(objetoMuyValioso);
+            }
+
+
+        }
     }
 
 

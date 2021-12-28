@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.perifericos;
 
 import edu.fiuba.algo3.modelo.CiudadBuilder;
+import edu.fiuba.algo3.modelo.Comun;
 import edu.fiuba.algo3.modelo.Ladron;
 import edu.fiuba.algo3.modelo.ObjetoRobado;
 import edu.fiuba.algo3.perifericos.LectorDeArchivos;
@@ -41,15 +42,21 @@ public class LectorDeArchivosTest {
         List<Ladron> ladrones = lector.obtenerLadrones();
         System.out.println(ladrones);
     }
-
+    */
+    /*
     @Test
     public void test03seLeenLosObjetosCorrectamente() throws IOException {
         Map<String,String> rutas = setup();
+
+
         LectorDeArchivos lector = new LectorDeArchivos(rutas);
 
 
-        List<ObjetoRobado> objetos = lector.obtenerObjetosRobados("archivos/objetos.json");
-        System.out.println(objetos);
+        lector.obtenerObjetosRobados();
+        List<Comun> comunes = lector.obtenerObjetosComunes();
+        System.out.println(comunes);
+
+
     }
 
      */

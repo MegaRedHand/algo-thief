@@ -9,9 +9,9 @@ public interface FuenteDeDatos {
 
     Computadora getComputadora();
 
-    Comun obtenerObjetosComunes();
-    Valioso obtenerObjetosValiosos();
-    MuyValioso obtenerObjetosMuyValiosos();
+    List<Comun> obtenerObjetosComunes();
+    List<Valioso> obtenerObjetosValiosos();
+    List<MuyValioso> obtenerObjetosMuyValiosos();
 
     List<CiudadBuilder> crearCiudadBuilders();
 
