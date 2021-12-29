@@ -19,19 +19,20 @@ public class LectorDeArchivos implements FuenteDeDatos {
     // ----------------------------------------------------------------------------------------
 
     private Computadora computadora;
-    private LectorJson lectorDeJson = new LectorJson();
-    private String rutaCiudades;
-    private String rutaLadrones;
-    private String rutaObjetos;
-    private List<Comun> objetosComunes = new ArrayList<>();
-    private List<Valioso> objetosValiosos = new ArrayList<>();
-    private List<MuyValioso> objetosMuyValiosos = new ArrayList<>();
+    private final LectorJson lectorDeJson;
+    private final String rutaCiudades;
+    private final String rutaLadrones;
+    private final String rutaObjetos;
+    private final List<Comun> objetosComunes = new ArrayList<>();
+    private final List<Valioso> objetosValiosos = new ArrayList<>();
+    private final List<MuyValioso> objetosMuyValiosos = new ArrayList<>();
 
 
-    public LectorDeArchivos(Map<String, String> rutas){
+    public LectorDeArchivos(Map<String, String> rutas, LectorJson lectorDeJson){
         this.rutaCiudades = rutas.get("ciudades");
         this.rutaLadrones = rutas.get("ladrones");
         this.rutaObjetos = rutas.get("objetos");
+        this.lectorDeJson = lectorDeJson;
     }
 
     @Override
@@ -108,7 +109,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
 
 
-    public void cargarObjetosRobados() {
+    private void cargarObjetosRobados() {
         List<Map<String,?> > objetosLista = lectorDeJson.leerJson(this.rutaObjetos);
 
         for (Map<String,?> objetoMap : objetosLista){

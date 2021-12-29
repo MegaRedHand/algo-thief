@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.Objects;
+
 public abstract class ObjetoRobado {
 
     protected final String nombre;
@@ -18,5 +20,18 @@ public abstract class ObjetoRobado {
 
     public boolean tieneOrigen(String nombreCiudad) {
         return this.nombreCiudadOrigen.equals(nombreCiudad);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ObjetoRobado)) return false;
+        ObjetoRobado that = (ObjetoRobado) o;
+        return largoDeLaRutaDeEscape == that.largoDeLaRutaDeEscape && nombre.equals(that.nombre) && nombreCiudadOrigen.equals(that.nombreCiudadOrigen);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, largoDeLaRutaDeEscape, nombreCiudadOrigen);
     }
 }

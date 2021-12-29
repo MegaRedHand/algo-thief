@@ -11,7 +11,7 @@ public class Computadora {
         this.ladrones = ladrones;
     }
 
-    List<String> ladronesConDescripcion(DescripcionSospechoso descripcion) {
+    public List<String> ladronesConDescripcion(DescripcionSospechoso descripcion) {
         return ladrones.stream().filter(d -> descripcion.coincideCon(d.descripcion())).map(Ladron::getNombre)
                 .collect(Collectors.toList());
     }

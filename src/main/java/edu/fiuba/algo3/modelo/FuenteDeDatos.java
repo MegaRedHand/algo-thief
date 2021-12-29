@@ -15,5 +15,4 @@ public interface FuenteDeDatos {
 
     List<CiudadBuilder> crearCiudadBuilders();
 
-
 }
