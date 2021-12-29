@@ -5,7 +5,11 @@ import edu.fiuba.algo3.modelo.Rango;
 import edu.fiuba.algo3.modelo.Sargento;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class RangoInvestigadorUnitTest {
 
@@ -29,6 +33,17 @@ public class RangoInvestigadorUnitTest {
         Rango rangoActualizado = rango.actualizar(20);
 
         assertEquals(Sargento.class, rangoActualizado.getClass());
+    }
+
+    @Test
+    public void test03RangoInvestigadorGeneraPistasMedias() {
+
+        Rango rango = new Investigador();
+        GeneradorDePistas generadorDePistas = mock(GeneradorDePistas.class);
+
+        rango.generarPistaCon(generadorDePistas, Map.of(), new DescripcionSospechoso());
+
+        verify(generadorDePistas, atLeastOnce()).generarPistaMedia(any(), any());
     }
     
 }

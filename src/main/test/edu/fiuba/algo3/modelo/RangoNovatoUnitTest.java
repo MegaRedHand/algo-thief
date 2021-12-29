@@ -5,7 +5,13 @@ import edu.fiuba.algo3.modelo.Novato;
 import edu.fiuba.algo3.modelo.Rango;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyMap;
+import static org.mockito.Mockito.*;
 
 public class RangoNovatoUnitTest {
 
@@ -29,6 +35,17 @@ public class RangoNovatoUnitTest {
         Rango rangoActualizado = rango.actualizar(5);
 
         assertEquals(DetectiveRango.class, rangoActualizado.getClass());
+    }
+
+    @Test
+    public void test03RangoNovatoGeneraPistasFaciles() {
+
+        Rango rango = new Novato();
+        GeneradorDePistas generadorDePistas = mock(GeneradorDePistas.class);
+
+        rango.generarPistaCon(generadorDePistas, Map.of(), new DescripcionSospechoso());
+
+        verify(generadorDePistas, atLeastOnce()).generarPistaFacil(any(), any());
     }
 
 }
