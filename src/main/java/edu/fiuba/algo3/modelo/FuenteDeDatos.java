@@ -4,9 +4,6 @@ import java.util.List;
 
 public interface FuenteDeDatos {
 
-    @Deprecated
-    Pista obtenerPista(String dificultad, String tipoEdificio);
-
     Computadora getComputadora();
 
     List<Comun> obtenerObjetosComunes();

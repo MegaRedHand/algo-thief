@@ -19,14 +19,14 @@ public class CiudadBuilder {
         this.datosCiudad = datosCiudad;
     }
 
+    public boolean lePertenece(ObjetoRobado objetoRobado) {
+        return objetoRobado.tieneOrigen(nombreCiudad);
+    }
+
     public CiudadBuilder conEdificios(EdificioBuilder... edificioBuilders) {
         Arrays.stream(edificioBuilders).forEach(eb -> eb.deCiudad(this.nombreCiudad));
         this.edificioBuilders.addAll(List.of(edificioBuilders));
         return this;
-    }
-
-    public boolean lePertenece(ObjetoRobado objetoRobado) {
-        return objetoRobado.tieneOrigen(nombreCiudad);
     }
 
     public void conPasajesA(List<CiudadBuilder> adyacentes) {

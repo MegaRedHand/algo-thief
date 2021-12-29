@@ -11,33 +11,14 @@ import java.util.Map;
 
 public class LectorDeArchivos implements FuenteDeDatos {
 
-
-    // --------------------ESTO HAY QUE SACARLO------------------------------------------------
-    static final String RUTA_CIUDADES = "archivos/ciudades.json";
-    static final String RUTA_LADRONES = "archivos/ladrones.json";
-    static final String RUTA_OBJETOS = "archivos/objetos.json";
-    // ----------------------------------------------------------------------------------------
-
+    private final Map<String, LectorJson> lectores;
     private Computadora computadora;
-    private final LectorJson lectorDeJson;
-    private final String rutaCiudades;
-    private final String rutaLadrones;
-    private final String rutaObjetos;
     private final List<Comun> objetosComunes = new ArrayList<>();
     private final List<Valioso> objetosValiosos = new ArrayList<>();
     private final List<MuyValioso> objetosMuyValiosos = new ArrayList<>();
 
-
-    public LectorDeArchivos(Map<String, String> rutas, LectorJson lectorDeJson){
-        this.rutaCiudades = rutas.get("ciudades");
-        this.rutaLadrones = rutas.get("ladrones");
-        this.rutaObjetos = rutas.get("objetos");
-        this.lectorDeJson = lectorDeJson;
-    }
-
-    @Override
-    public Pista obtenerPista(String dificultad, String tipoEdificio) {
-        return new Pista("");
+    public LectorDeArchivos(Map<String, LectorJson> lectores){
+        this.lectores = lectores;
     }
 
     @Override
@@ -74,7 +55,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
     @Override
     public List<CiudadBuilder> crearCiudadBuilders(){
-        List<Map<String,?> > datosCiudades = this.lectorDeJson.leerJson(this.rutaCiudades);
+        List<Map<String,?> > datosCiudades = this.lectores.get("ciudades").leerJson();
         List<CiudadBuilder> listaCiudadesBuilder = new ArrayList<>();
 
         for (Map<String,?> ciudadMap : datosCiudades) {
@@ -84,9 +65,8 @@ public class LectorDeArchivos implements FuenteDeDatos {
         return listaCiudadesBuilder;
     }
 
-
     private List<Ladron> obtenerLadrones() {
-        List<Map<String,?> > ladronesLista = this.lectorDeJson.leerJson(this.rutaLadrones);
+        List<Map<String,?> > ladronesLista = this.lectores.get("ladrones").leerJson();
 
         Map<String,?> ladronMap;
         List<Ladron> ladrones = new ArrayList<>();
@@ -107,10 +87,8 @@ public class LectorDeArchivos implements FuenteDeDatos {
         return ladrones;
     }
 
-
-
     private void cargarObjetosRobados() {
-        List<Map<String,?> > objetosLista = lectorDeJson.leerJson(this.rutaObjetos);
+        List<Map<String,?> > objetosLista = this.lectores.get("objetos").leerJson();
 
         for (Map<String,?> objetoMap : objetosLista){
 
@@ -126,7 +104,6 @@ public class LectorDeArchivos implements FuenteDeDatos {
             }
         }
     }
-
 
 }
 

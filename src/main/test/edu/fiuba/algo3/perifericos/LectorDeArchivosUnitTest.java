@@ -13,12 +13,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class LectorDeArchivosUnitTest {
-
-    private final Map<String, String> rutas = Map.of(
-            "ciudades","archivos/ciudades.json",
-            "ladrones","archivos/ladrones.json",
-            "objetos","archivos/objetos.json"
-    );
     
     private final List<Map<String, ?>> datosCiudades = List.of(
             Map.ofEntries(
@@ -100,8 +94,8 @@ public class LectorDeArchivosUnitTest {
     @Test
     public void test01seLeeLaCiudadCorrectamente() {
         LectorJson lectorStub = mock(LectorJson.class);
-        when(lectorStub.leerJson(rutas.get("ciudades"))).thenReturn(datosCiudades);
-        LectorDeArchivos lector = new LectorDeArchivos(rutas, lectorStub);
+        when(lectorStub.leerJson()).thenReturn(datosCiudades);
+        LectorDeArchivos lector = new LectorDeArchivos(Map.of("ciudades", lectorStub));
 
         List<CiudadBuilder> ciudadBuilders = lector.crearCiudadBuilders();
 
@@ -113,8 +107,8 @@ public class LectorDeArchivosUnitTest {
     @Test
     public void test02seLeeLosLadronesCorrectamente() {
         LectorJson lectorStub = mock(LectorJson.class);
-        when(lectorStub.leerJson(rutas.get("ladrones"))).thenReturn(datosLadrones);
-        LectorDeArchivos lector = new LectorDeArchivos(rutas, lectorStub);
+        when(lectorStub.leerJson()).thenReturn(datosLadrones);
+        LectorDeArchivos lector = new LectorDeArchivos(Map.of("ladrones", lectorStub));
         
         List<Ladron> ladrones = lector.getComputadora().listaDeLadrones();
 
@@ -126,8 +120,8 @@ public class LectorDeArchivosUnitTest {
     @Test
     public void test03seLeenLosObjetosCorrectamente() {
         LectorJson lectorStub = mock(LectorJson.class);
-        when(lectorStub.leerJson(rutas.get("objetos"))).thenReturn(objetosRobados);
-        LectorDeArchivos lector = new LectorDeArchivos(rutas, lectorStub);
+        when(lectorStub.leerJson()).thenReturn(objetosRobados);
+        LectorDeArchivos lector = new LectorDeArchivos(Map.of("objetos", lectorStub));
 
         List<Comun> comunes = List.of(new Comun(
                 objetosRobados.get(0).get("tesoro").toString(),

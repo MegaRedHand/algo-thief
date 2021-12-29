@@ -3,18 +3,11 @@ package edu.fiuba.algo3.modelo;
 public class Ladron {
 
     private final String nombre;
-    private final ObjetoRobado objetoRobado;
     private final DescripcionSospechoso descripcion;
 
-    public Ladron(String nombre, DescripcionSospechoso descripcion, ObjetoRobado objetoRobado) {
-        this.nombre = nombre;
-        this.objetoRobado = objetoRobado;
-        this.descripcion = descripcion;
-    }
 
     public Ladron(String nombre, DescripcionSospechoso descripcion) {
         this.nombre = nombre;
-        this.objetoRobado = new Comun("Ninguno", "Ninguna ciudad");
         this.descripcion = descripcion;
     }
 

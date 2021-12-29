@@ -6,13 +6,21 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
 public class LectorJson {
-    public List<Map<String,?>> leerJson(String rutaArchivo) {
+
+    private final String rutaArchivo;
+
+    public LectorJson(String rutaArchivo) {
+        this.rutaArchivo = rutaArchivo;
+    }
+
+    public List<Map<String,?>> leerJson() {
         List<Map<String,?>> datos = null;
         try {
             Reader archivo = Files.newBufferedReader(Paths.get(rutaArchivo));
@@ -26,4 +34,5 @@ public class LectorJson {
         }
         return datos;
     }
+
 }
