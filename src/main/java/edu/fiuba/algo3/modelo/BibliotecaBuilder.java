@@ -8,7 +8,6 @@ public class BibliotecaBuilder extends EdificioBuilder {
 
     @Override
     protected GeneradorDePistas crearGeneradorDePistas() {
-        // TODO: implementar generadores de pistas para Biblioteca, Puerto, y Aeropuerto
         return new GeneradorDePistasBanco();
     }
 

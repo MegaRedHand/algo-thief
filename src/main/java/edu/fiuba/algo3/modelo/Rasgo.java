@@ -18,4 +18,8 @@ public class Rasgo {
         return this.valor.equals(otroRasgo.valor);
     }
 
+    @Override
+    public String toString() {
+        return valor;
+    }
 }

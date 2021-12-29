@@ -31,7 +31,7 @@ public class Detective {
     public void recibirHeridaDeCuchillo() {
         cronometro.registrarHeridaDeCuchillo(salud);
         // TODO: sería mejor?
-        // salud = new Herido();
+        //  salud = new Herido();
         salud = salud.recibirHeridaDeCuchillo();
     }
 

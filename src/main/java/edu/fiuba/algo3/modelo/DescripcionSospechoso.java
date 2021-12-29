@@ -28,7 +28,12 @@ public class DescripcionSospechoso {
         return this.rasgos.getOrDefault(categoria, new Rasgo(categoria, null));
     }
 
-    public String getVehiculo() {
-        return "Deportivo";
+    public String getPistaVehiculo() {
+        return String.format("El ladrón se fue en un %s.", obtenerRasgo("vehiculo").toString());
     }
+
+    public String getPistaHobby() {
+        return String.format("Al ladrón le gusta el %s.", obtenerRasgo("hobby").toString());
+    }
+
 }
