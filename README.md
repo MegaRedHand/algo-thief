@@ -1,4 +1,4 @@
-![tp2](https://github.com/MegaRedHand/algo-thief/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/MegaRedHand/algo-thief/branch/main/graph/badge.svg)](https://codecov.io/gh/MegaRedHand/algo-thief)
+![tp2](https://github.com/MegaRedHand/algo-thief/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/MegaRedHand/algo-thief/branch/dev-entrega-4/graph/badge.svg)](https://codecov.io/gh/MegaRedHand/algo-thief)
 
 # TP2 Algoritmos 3: Algo-thief
 
