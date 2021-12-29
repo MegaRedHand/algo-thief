@@ -4,9 +4,8 @@ import java.util.Map;
 
 public abstract class EdificioBuilder {
 
-    private String nombreEdificio;
+    private final String nombreEdificio;
     private String nombreCiudad;
-    private Pista pista;
 
     public EdificioBuilder(String nombreEdificio) {
         this.nombreEdificio = nombreEdificio;
@@ -14,10 +13,6 @@ public abstract class EdificioBuilder {
 
     public void deCiudad(String nombreCiudad) {
         this.nombreCiudad = nombreCiudad;
-    }
-
-    public void conPista(Pista pista) {
-        this.pista = pista;
     }
 
     protected GeneradorDePistas getGeneradorDePistas(Map<String, ?> datosSiguienteCiudad) {

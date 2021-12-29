@@ -4,8 +4,8 @@ public class Pista {
 
     private final String descripcion;
 
-    public Pista(String descripcion) {
-        this.descripcion = descripcion;
+    public Pista(String... descripciones) {
+        this.descripcion = String.join(" ", descripciones);
     }
 
     public String descripcion() {

@@ -36,4 +36,16 @@ public class DescripcionSospechoso {
         return String.format("Al ladrón le gusta el %s.", obtenerRasgo("hobby").toString());
     }
 
+    public String getPistaOcupacion() {
+        return String.format("El ladrón es %s.", obtenerRasgo("ocupacion").toString());
+    }
+
+    public String getPistaColorDePelo() {
+        return String.format("El ladrón tiene pelo %s.", obtenerRasgo("colorDelPelo").toString());
+    }
+
+    public String getPistaSenias() {
+        return String.format("El sospechoso %s.", obtenerRasgo("señasParticulares").toString());
+    }
+
 }

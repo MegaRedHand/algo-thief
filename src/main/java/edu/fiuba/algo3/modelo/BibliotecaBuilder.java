@@ -8,7 +8,7 @@ public class BibliotecaBuilder extends EdificioBuilder {
 
     @Override
     protected GeneradorDePistas crearGeneradorDePistas() {
-        return new GeneradorDePistasBanco();
+        return new GeneradorDePistasBiblioteca();
     }
 
 }

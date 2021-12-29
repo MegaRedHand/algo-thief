@@ -36,7 +36,11 @@ public class Escenario {
     }
 
     public boolean detectiveAtraparLadron() {
-        return ladron.seLlama(nombreEnOrdenDeArresto);
+        boolean ganado = ladron.seLlama(nombreEnOrdenDeArresto);
+        if (ganado) {
+            detective.registrarArresto();
+        }
+        return ganado;
     }
 
     public void emitirOrdenDeArresto(String nombre) {

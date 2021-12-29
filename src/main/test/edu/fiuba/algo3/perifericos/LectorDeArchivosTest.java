@@ -40,24 +40,13 @@ public class LectorDeArchivosTest {
     */
 
     @Test
-    public void test03seLeenLosObjetosCorrectamente() throws IOException {
+    public void test03seLeenLosObjetosCorrectamente() {
         Map<String,String> rutas = setup();
-
-        System.out.println(rutas);
-
 
         LectorDeArchivos lector = new LectorDeArchivos(rutas);
 
-
         lector.cargarObjetosRobados();
         List<Comun> comunes = lector.obtenerObjetosComunes();
-        System.out.println(comunes);
-
-
-
-
     }
-
-
 
 }

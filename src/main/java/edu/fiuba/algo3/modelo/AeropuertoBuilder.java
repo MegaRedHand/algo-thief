@@ -8,7 +8,7 @@ public class AeropuertoBuilder extends EdificioBuilder {
 
     @Override
     protected GeneradorDePistas crearGeneradorDePistas() {
-        return new GeneradorDePistasBanco();
+        return new GeneradorDePistasAeropuerto();
     }
 
 }

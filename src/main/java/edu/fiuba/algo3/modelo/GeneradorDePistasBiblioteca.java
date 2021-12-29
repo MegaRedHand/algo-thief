@@ -16,16 +16,16 @@ public class GeneradorDePistasBiblioteca implements GeneradorDePistas{
 
     @Override
     public Pista generarPistaFacil(Map<String, ?> datosCiudad, DescripcionSospechoso descripcion) {
-        return new Pista(String.format("%s %s", getPistaGeografia(datosCiudad), descripcion.getPistaVehiculo()));
+        return new Pista(getPistaGeografia(datosCiudad), descripcion.getPistaSenias());
     }
 
     @Override
     public Pista generarPistaMedia(Map<String, ?> datosCiudad, DescripcionSospechoso descripcion) {
-        return new Pista(String.format("%s %s", getPistaGeografia(datosCiudad), descripcion.getPistaVehiculo()));
+        return new Pista(getPistaGeografia(datosCiudad), descripcion.getPistaSenias());
     }
 
     @Override
     public Pista generarPistaDificil(Map<String, ?> datosCiudad, DescripcionSospechoso descripcion) {
-        return new Pista(String.format("%s %s", getPistaCaracteristicas(datosCiudad), descripcion.getPistaVehiculo()));
+        return new Pista(getPistaCaracteristicas(datosCiudad), descripcion.getPistaSenias());
     }
 }
