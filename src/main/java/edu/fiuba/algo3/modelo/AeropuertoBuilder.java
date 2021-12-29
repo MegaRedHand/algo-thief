@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-public class BancoBuilder extends EdificioBuilder {
+public class AeropuertoBuilder extends EdificioBuilder {
 
-    public BancoBuilder() {
-        super("Banco");
+    public AeropuertoBuilder() {
+        super("Aeropuerto");
     }
 
     @Override

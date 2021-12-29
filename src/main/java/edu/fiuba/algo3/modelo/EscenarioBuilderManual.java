@@ -20,36 +20,20 @@ public class EscenarioBuilderManual implements EscenarioBuilder {
         this.objeto = objeto;
     }
 
-    public void conLadron(String nombre, DescripcionSospechoso descripcion) {
-        ladron = new Ladron(nombre, descripcion, objeto);
+    public void conLadron(Ladron ladron) {
+        this.ladron = ladron;
     }
 
     public void conCiudades(CiudadBuilder... ciudadBuilders) {
         buildersDeCiudades.addAll(List.of(ciudadBuilders));
     }
 
-    public void conCiudades(List<CiudadBuilder> ciudadBuilders) {
-        buildersDeCiudades.addAll(ciudadBuilders);
-    }
-
     public Escenario construirCon(ContadorDeDificultad contador, FuenteDeDatos fuente) {
-        List<Ciudad> rutaDeEscape = buildersDeCiudades.stream().map(b -> b.construirCon(contador.rango(), fuente))
+        List<Ciudad> ciudades = buildersDeCiudades.stream().map(b -> b.construirCon(contador.rango(), ladron.descripcion()))
                 .collect(Collectors.toList());
-        Detective detective = new Detective(cronometro, rutaDeEscape.get(0), contador);
+        Detective detective = new Detective(cronometro, ciudades.get(0), contador);
 
-        return new Escenario(detective, ladron, rutaDeEscape);
-    }
-
-    public void conLadron(Ladron ladron) {
-        this.ladron = ladron;
-    }
-
-    public Escenario construirCon(ContadorDeDificultad contador, DescripcionSospechoso descripcion) {
-        List<Ciudad> rutaDeEscape = buildersDeCiudades.stream().map(b -> b.construirCon(contador.rango(), descripcion))
-                .collect(Collectors.toList());
-        Detective detective = new Detective(cronometro, rutaDeEscape.get(0), contador);
-
-        return new Escenario(detective, ladron, rutaDeEscape);
+        return new Escenario(detective, ladron, ciudades);
     }
 
     @Override

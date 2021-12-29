@@ -19,6 +19,10 @@ public class Algothief {
         this.fuente = fuente;
     }
 
+    public void asignarDetective(ContadorDeDificultad contador) {
+        this.contador = contador;
+    }
+
     public void generarEscenario(EscenarioBuilder builder) {
         escenarioActual = builder.construirCon(contador, fuente);
         cronometro = builder.obtenerCronometro();
@@ -30,10 +34,6 @@ public class Algothief {
 
     public String pistaMasReciente() {
         return ultimaPista.descripcion();
-    }
-
-    public void asignarDetective(ContadorDeDificultad contador) {
-        this.contador = contador;
     }
 
     public void viajar(String nombreCiudad) {

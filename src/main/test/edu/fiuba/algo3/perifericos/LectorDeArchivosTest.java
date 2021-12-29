@@ -1,15 +1,9 @@
 package edu.fiuba.algo3.perifericos;
 
-import edu.fiuba.algo3.modelo.CiudadBuilder;
 import edu.fiuba.algo3.modelo.Comun;
-import edu.fiuba.algo3.modelo.Ladron;
-import edu.fiuba.algo3.modelo.ObjetoRobado;
-import edu.fiuba.algo3.perifericos.LectorDeArchivos;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +49,7 @@ public class LectorDeArchivosTest {
         LectorDeArchivos lector = new LectorDeArchivos(rutas);
 
 
-        lector.obtenerObjetosRobados();
+        lector.cargarObjetosRobados();
         List<Comun> comunes = lector.obtenerObjetosComunes();
         System.out.println(comunes);
 

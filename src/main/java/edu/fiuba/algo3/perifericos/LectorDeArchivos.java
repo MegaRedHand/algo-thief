@@ -18,19 +18,17 @@ public class LectorDeArchivos implements FuenteDeDatos {
     static final String RUTA_OBJETOS = "archivos/objetos.json";
     // ----------------------------------------------------------------------------------------
 
-    private List<Map<String,?>> datosDeCiudades;
-    private List<ObjetoRobado> objetosRobados;
     private Computadora computadora;
     private LectorJson lectorDeJson = new LectorJson();
     private String rutaCiudades;
     private String rutaLadrones;
     private String rutaObjetos;
-    private List<Comun> objetosComunes = new ArrayList<Comun>();
-    private List<Valioso> objetosValiosos = new ArrayList<Valioso>();
-    private List<MuyValioso> objetosMuyValiosos = new ArrayList<MuyValioso>();
+    private List<Comun> objetosComunes = new ArrayList<>();
+    private List<Valioso> objetosValiosos = new ArrayList<>();
+    private List<MuyValioso> objetosMuyValiosos = new ArrayList<>();
 
 
-    public LectorDeArchivos(Map<String,String> rutas){
+    public LectorDeArchivos(Map<String, String> rutas){
         this.rutaCiudades = rutas.get("ciudades");
         this.rutaLadrones = rutas.get("ladrones");
         this.rutaObjetos = rutas.get("objetos");
@@ -51,16 +49,25 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
     @Override
     public List<Comun> obtenerObjetosComunes() {
+        if (objetosComunes.size() == 0) {
+            cargarObjetosRobados();
+        }
         return objetosComunes;
     }
 
     @Override
     public List<Valioso> obtenerObjetosValiosos() {
+        if (objetosValiosos.size() == 0) {
+            cargarObjetosRobados();
+        }
         return objetosValiosos;
     }
 
     @Override
     public List<MuyValioso> obtenerObjetosMuyValiosos() {
+        if (objetosMuyValiosos.size() == 0) {
+            cargarObjetosRobados();
+        }
         return objetosMuyValiosos;
     }
 
@@ -69,8 +76,7 @@ public class LectorDeArchivos implements FuenteDeDatos {
         List<Map<String,?> > datosCiudades = this.lectorDeJson.leerJson(this.rutaCiudades);
         List<CiudadBuilder> listaCiudadesBuilder = new ArrayList<>();
 
-        for (Map<String,?> ciudadMap : datosCiudades){
-
+        for (Map<String,?> ciudadMap : datosCiudades) {
             CiudadBuilder ciudad = new CiudadBuilder(ciudadMap);
             listaCiudadesBuilder.add(ciudad);
         }
@@ -84,16 +90,16 @@ public class LectorDeArchivos implements FuenteDeDatos {
         Map<String,?> ladronMap;
         List<Ladron> ladrones = new ArrayList<>();
 
-        for (int i= 0; i < ladronesLista.size();i++){
-            ladronMap = ladronesLista.get(i);
-            Rasgo sexo = new Rasgo("sexo",(String) ladronMap.get("sexo"));
-            Rasgo hobby = new Rasgo("hobby",(String) ladronMap.get("hobby"));
-            Rasgo cabello = new Rasgo("cabello",(String) ladronMap.get("colorDelPelo"));
-            Rasgo seña = new Rasgo("seña",(String) ladronMap.get("señasParticulares"));
-            Rasgo vehiculo = new Rasgo("vehiculo",(String) ladronMap.get("coche"));
+        for (Map<String, ?> stringMap : ladronesLista) {
+            ladronMap = stringMap;
+            Rasgo sexo = new Rasgo("sexo", ladronMap.get("sexo").toString());
+            Rasgo hobby = new Rasgo("hobby", ladronMap.get("hobby").toString());
+            Rasgo cabello = new Rasgo("cabello", ladronMap.get("colorDelPelo").toString());
+            Rasgo senia = new Rasgo("seña", ladronMap.get("señasParticulares").toString());
+            Rasgo vehiculo = new Rasgo("vehiculo", ladronMap.get("coche").toString());
 
-            DescripcionSospechoso descripcion = new DescripcionSospechoso(sexo,hobby,cabello,seña,vehiculo);
-            Ladron ladron = new Ladron((String) ladronMap.get("nombre"), descripcion);
+            DescripcionSospechoso descripcion = new DescripcionSospechoso(sexo, hobby, cabello, senia, vehiculo);
+            Ladron ladron = new Ladron(ladronMap.get("nombre").toString(), descripcion);
 
             ladrones.add(ladron);
         }
@@ -102,24 +108,21 @@ public class LectorDeArchivos implements FuenteDeDatos {
 
 
 
-    public void obtenerObjetosRobados() {
-
+    public void cargarObjetosRobados() {
         List<Map<String,?> > objetosLista = lectorDeJson.leerJson(this.rutaObjetos);
 
         for (Map<String,?> objetoMap : objetosLista){
 
-            if((objetoMap.get("valor")).equals("Comun")){
-                Comun objetoComun = new Comun((String) objetoMap.get("tesoro"),(String) objetoMap.get("ciudad"));
+            if ((objetoMap.get("valor")).equals("Comun")) {
+                Comun objetoComun = new Comun(objetoMap.get("tesoro").toString(), objetoMap.get("ciudad").toString());
                 objetosComunes.add(objetoComun);
-            }else if((objetoMap.get("valor")).equals("Valioso")){
-                Valioso objetoValioso = new Valioso((String) objetoMap.get("tesoro"),(String) objetoMap.get("ciudad"));
+            } else if ((objetoMap.get("valor")).equals("Valioso")) {
+                Valioso objetoValioso = new Valioso(objetoMap.get("tesoro").toString(), objetoMap.get("ciudad").toString());
                 objetosValiosos.add(objetoValioso);
-            }else {
-                MuyValioso objetoMuyValioso = new MuyValioso((String) objetoMap.get("tesoro"),(String) objetoMap.get("ciudad"));
+            } else {
+                MuyValioso objetoMuyValioso = new MuyValioso(objetoMap.get("tesoro").toString(), objetoMap.get("ciudad").toString());
                 objetosMuyValiosos.add(objetoMuyValioso);
             }
-
-
         }
     }
 

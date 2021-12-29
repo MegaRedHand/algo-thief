@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContadorDeDificultad {
     private int cantidadDeArrestos;
     private Rango rango;
@@ -27,7 +30,14 @@ public class ContadorDeDificultad {
         return rango;
     }
 
-    public ObjetoRobado obtenerObjetosRobados(FuenteDeDatos fuente) {
-        return fuente.obtenerObjetosComunes();
+
+    public List<ObjetoRobado> obtenerObjetosRobados(FuenteDeDatos fuente) {
+        if (cantidadDeArrestos < 7) {
+            return new ArrayList<>(fuente.obtenerObjetosComunes());
+        } else if (cantidadDeArrestos < 14) {
+            return new ArrayList<>(fuente.obtenerObjetosValiosos());
+        }
+        return new ArrayList<>(fuente.obtenerObjetosMuyValiosos());
     }
+
 }

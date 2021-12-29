@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -11,13 +12,38 @@ import static org.mockito.Mockito.when;
 
 public class Entrega2Test {
 
+    Map<String, ?> datosMontreal = Map.of(
+            "ciudad", "Montreal",
+            "moneda", "Dracmas",
+            "geografia", "Montes",
+            "caracteristicas", List.of("Mar Egeo", "Cordillera de Pindo"),
+            "industrias", List.of("Higos", "Olivas"),
+            "etnias", List.of("Plateo" , "Espartanos"),
+            "idiomas", List.of("Griego"),
+            "otros", List.of("República Helénica, Frontera con Yugoslavia"),
+            "latitud", 37.984167,
+            "longitud", 23.728056
+    );
+    Map<String, ?> datosMexico = Map.of(
+            "ciudad", "Mexico",
+            "moneda", "Dinares",
+            "geografia", "Montes",
+            "caracteristicas", List.of("Mar Egeo", "Cordillera de Pindo"),
+            "industrias", List.of("Higos", "Olivas"),
+            "etnias", List.of("Plateo" , "Espartanos"),
+            "idiomas", List.of("Griego"),
+            "otros", List.of("República Helénica, Frontera con Yugoslavia"),
+            "latitud", 33.35,
+            "longitud", 44.416667
+    );
+
     /**
      * Caso de uso 1
      * - Detective sufre una herida de cuchillo.
      * - Detective duerme.
      */
     @Test
-    public void test05DetectiveSufreHeridaDeCuchilloYDuerme() {
+    public void test01DetectiveSufreHeridaDeCuchilloYDuerme() {
 
         Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
@@ -25,7 +51,8 @@ public class Entrega2Test {
         Cronometro cronometro = new Cronometro(7);
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
-        builder.conCiudades(new CiudadBuilder("Mexico"));
+        builder.conLadron(new Ladron("Carmen SanDiego", new DescripcionSospechoso()));
+        builder.conCiudades(new CiudadBuilder(datosMexico));
 
         algothief.generarEscenario(builder);
 
@@ -49,9 +76,10 @@ public class Entrega2Test {
         Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
 
+        builder.conLadron(new Ladron("Carmen SanDiego", new DescripcionSospechoso()));
         builder.conCiudades(
-                new CiudadBuilder("Montreal"),
-                new CiudadBuilder("Mexico")
+                new CiudadBuilder(datosMontreal),
+                new CiudadBuilder(datosMexico)
         );
 
         algothief.generarEscenario(builder);
@@ -90,7 +118,8 @@ public class Entrega2Test {
 
         Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
-        builder.conCiudades(new CiudadBuilder("Montreal"));
+        builder.conLadron(ladron1);
+        builder.conCiudades(new CiudadBuilder(datosMontreal));
 
         algothief.generarEscenario(builder);
 
@@ -114,8 +143,8 @@ public class Entrega2Test {
 
         Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
-        builder.conLadron("Carmen", new DescripcionSospechoso());
-        builder.conCiudades(new CiudadBuilder("Montreal"));
+        builder.conLadron(new Ladron("Carmen", new DescripcionSospechoso()));
+        builder.conCiudades(new CiudadBuilder(Map.of("ciudad", "Montreal")));
 
         algothief.generarEscenario(builder);
 
@@ -139,12 +168,12 @@ public class Entrega2Test {
         FuenteDeDatos fuente = mock(FuenteDeDatos.class);
 
         Ladron ladron1 = new Ladron("Carmen SanDiego", new DescripcionSospechoso(
-                new Rasgo("Sexo", "Femenino"),
-                new Rasgo("Hobby", "Tenis")
+                new Rasgo("sexo", "Femenino"),
+                new Rasgo("hobby", "Tenis")
         ));
         Ladron ladron2 = new Ladron("Lucía", new DescripcionSospechoso(
-                new Rasgo("Sexo", "Femenino"),
-                new Rasgo("Hobby", "Alpinismo")
+                new Rasgo("sexo", "Femenino"),
+                new Rasgo("hobby", "Alpinismo")
         ));
 
         when(fuente.getComputadora()).thenReturn(new Computadora(List.of(ladron1, ladron2)));
@@ -158,31 +187,31 @@ public class Entrega2Test {
         builder.conCronometro(new Cronometro(7));
 
         builder.conObjetoRobado(new Comun("Incan Gold Mask", "Montreal"));
-        builder.conLadron(ladron1.getNombre(), ladron1.descripcion());
+        builder.conLadron(ladron1);
 
         builder.conCiudades(
-                new CiudadBuilder("Montreal").conEdificios(
-                        new EdificioBuilder("Banco Nacional", "banco"),
-                        new EdificioBuilder("Biblioteca de Montreal", "biblioteca")
+                new CiudadBuilder(datosMontreal).conEdificios(
+                        new BancoBuilder(),
+                        new BibliotecaBuilder()
                 ),
-                new CiudadBuilder("Mexico").conEdificios(
-                        new EdificioBuilder("Aeropuerto Nacional", "aeropuerto"),
-                        new EdificioBuilder("Puerto de Mexico", "puerto")
+                new CiudadBuilder(datosMexico).conEdificios(
+                        new AeropuertoBuilder(),
+                        new PuertoBuilder()
                 )
         );
 
         algothief.generarEscenario(builder);
 
-        algothief.visitar("Banco Nacional");
-        algothief.visitar("Banco Nacional");
+        algothief.visitar("Banco de Montreal");
+        algothief.visitar("Banco de Montreal");
         algothief.visitar("Biblioteca de Montreal");
 
         algothief.viajar("Mexico");
-        algothief.visitar("Aeropuerto Nacional");
+        algothief.visitar("Aeropuerto de Mexico");
 
         DescripcionSospechoso descripcion = new DescripcionSospechoso(
-                new Rasgo("Hobby", "Tenis"),
-                new Rasgo("Sexo", "Femenino")
+                new Rasgo("hobby", "Tenis"),
+                new Rasgo("sexo", "Femenino")
         );
         algothief.cargarDatosSospechoso(descripcion);
         algothief.buscarSospechosos();

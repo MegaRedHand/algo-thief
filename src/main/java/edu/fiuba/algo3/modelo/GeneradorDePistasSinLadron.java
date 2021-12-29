@@ -2,22 +2,19 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.Map;
 
-public class GeneradorDePistasBanco implements GeneradorDePistas {
-
+public class GeneradorDePistasSinLadron implements GeneradorDePistas {
     @Override
     public Pista generarPistaFacil(Map<String, ?> datosCiudad, DescripcionSospechoso descripcion) {
-        String templatePista = "La moneda de este país es %s. El ladrón se fue en un %s.";
-        return new Pista(String.format(templatePista, datosCiudad.get("moneda").toString(), descripcion.getVehiculo()));
+        return new Pista("El ladrón no pasó por aquí");
     }
 
     @Override
     public Pista generarPistaMedia(Map<String, ?> datosCiudad, DescripcionSospechoso descripcion) {
-        return new Pista("Esta es una pista media");
+        return new Pista("El ladrón no pasó por aquí");
     }
 
     @Override
     public Pista generarPistaDificil(Map<String, ?> datosCiudad, DescripcionSospechoso descripcion) {
-        return new Pista("Esta es una pista dificil");
+        return new Pista("El ladrón no pasó por aquí");
     }
-
 }

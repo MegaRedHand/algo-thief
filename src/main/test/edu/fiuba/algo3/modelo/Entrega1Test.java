@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,6 +15,36 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class Entrega1Test {
+
+    Map<String, ?> datosMontreal = Map.of(
+            "ciudad", "Montreal",
+            "moneda", "Dracmas",
+            "geografia", "Montes",
+            "caracteristicas", List.of("Mar Egeo", "Cordillera de Pindo"),
+            "industrias", List.of("Higos", "Olivas"),
+            "etnias", List.of("Plateo" , "Espartanos"),
+            "idiomas", List.of("Griego"),
+            "otros", List.of("República Helénica, Frontera con Yugoslavia"),
+            "latitud", 37.984167,
+            "longitud", 23.728056
+    );
+    Map<String, ?> datosMexico = Map.of(
+            "ciudad", "Mexico",
+            "moneda", "Dinares",
+            "geografia", "Montes",
+            "caracteristicas", List.of("Mar Egeo", "Cordillera de Pindo"),
+            "industrias", List.of("Higos", "Olivas"),
+            "etnias", List.of("Plateo" , "Espartanos"),
+            "idiomas", List.of("Griego"),
+            "otros", List.of("República Helénica, Frontera con Yugoslavia"),
+            "latitud", 33.35,
+            "longitud", 44.416667
+    );
+
+    DescripcionSospechoso descripcion = new DescripcionSospechoso(
+            new Rasgo("sexo", "Femenino"),
+            new Rasgo("vehiculo", "Deportivo")
+    );
 
     /**Caso de uso 1
      * - Robaron el tesoro Nacional de Montreal.
@@ -25,8 +57,9 @@ public class Entrega1Test {
     public void test01DetectiveNovatoEmpiezaEnMontrealYAlVisitarBancoDespliegaUnaPista() {
 
         FuenteDeDatos fuente = mock(FuenteDeDatos.class);
-        Pista pista = new Pista("Descripcion de la pista del banco");
-        when(fuente.obtenerPista(anyString(), anyString())).thenReturn(pista);
+
+        Pista pista = new GeneradorDePistasBanco().generarPistaFacil(datosMexico, descripcion);
+
         Algothief algothief = new Algothief(fuente);
 
         algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
@@ -34,18 +67,19 @@ public class Entrega1Test {
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
         builder.conCronometro(new Cronometro(0));
+        builder.conLadron(new Ladron("Carmen SanDiego", descripcion));
 
         builder.conObjetoRobado(new Comun("Tesoro Nacional de Montreal", "Montreal"));
-        builder.conLadron("Sospechoso", new DescripcionSospechoso(new Rasgo("Sexo", "Femenino")));
+        builder.conLadron(new Ladron("Sospechoso", descripcion));
         builder.conCiudades(
-                new CiudadBuilder("Montreal").conEdificios(
-                        new EdificioBuilder("Banco Nacional", "banco")
-                )
+                new CiudadBuilder(Map.of("ciudad", "Montreal")).conEdificios(
+                        new BancoBuilder()
+                ).conPistasPara(new CiudadBuilder(datosMexico))
         );
 
         algothief.generarEscenario(builder);
 
-        algothief.visitar("Banco Nacional");
+        algothief.visitar("Banco de Montreal");
         assertEquals(pista.descripcion(), algothief.pistaMasReciente());
     }
 
@@ -62,11 +96,9 @@ public class Entrega1Test {
 
         FuenteDeDatos fuente = mock(FuenteDeDatos.class);
 
-        Pista pistaBanco = new Pista("Descripcion de la pista del banco");
-        when(fuente.obtenerPista(anyString(), eq("banco"))).thenReturn(pistaBanco);
+        Pista pistaBanco = new GeneradorDePistasBanco().generarPistaFacil(datosMexico, descripcion);
 
-        Pista pistaBiblioteca = new Pista("Descripcion de la pista de la biblioteca");
-        when(fuente.obtenerPista(anyString(), eq("biblioteca"))).thenReturn(pistaBiblioteca);
+        Pista pistaBiblioteca = new GeneradorDePistasBanco().generarPistaFacil(datosMexico, descripcion);
 
         Algothief algothief = new Algothief(fuente);
 
@@ -76,17 +108,18 @@ public class Entrega1Test {
 
         Cronometro cronometro = new Cronometro(7);
         builder.conCronometro(cronometro);
+        builder.conLadron(new Ladron("Carmen SanDiego", descripcion));
 
         builder.conCiudades(
-                new CiudadBuilder("Montreal").conEdificios(
-                        new EdificioBuilder("Banco Nacional", "banco"),
-                        new EdificioBuilder("Biblioteca de Montreal", "biblioteca")
-                )
+                new CiudadBuilder(Map.of("ciudad", "Montreal")).conEdificios(
+                        new BancoBuilder(),
+                        new BibliotecaBuilder()
+                ).conPistasPara(new CiudadBuilder(datosMexico))
         );
 
         algothief.generarEscenario(builder);
 
-        algothief.visitar("Banco Nacional");
+        algothief.visitar("Banco de Montreal");
         String pistaDevueltaBanco = algothief.pistaMasReciente();
 
         algothief.visitar("Biblioteca de Montreal");
@@ -115,10 +148,11 @@ public class Entrega1Test {
 
         Cronometro cronometro = new Cronometro(7);
         builder.conCronometro(cronometro);
+        builder.conLadron(new Ladron("Carmen SanDiego", descripcion));
 
         builder.conCiudades(
-                new CiudadBuilder("Montreal"),
-                new CiudadBuilder("Mexico")
+                new CiudadBuilder(datosMontreal),
+                new CiudadBuilder(datosMexico)
         );
 
         algothief.generarEscenario(builder);
@@ -144,11 +178,9 @@ public class Entrega1Test {
 
         FuenteDeDatos fuente = mock(FuenteDeDatos.class);
 
-        Pista pistaAeropuerto = new Pista("Descripción del aeropuerto");
-        when(fuente.obtenerPista(anyString(), eq("aeropuerto"))).thenReturn(pistaAeropuerto);
+        Pista pistaAeropuerto = new GeneradorDePistasBanco().generarPistaFacil(datosMontreal, descripcion);
 
-        Pista pistaPuerto = new Pista("Descripción del puerto");
-        when(fuente.obtenerPista(anyString(), eq("puerto"))).thenReturn(pistaPuerto);
+        Pista pistaPuerto = new GeneradorDePistasBanco().generarPistaFacil(datosMontreal, descripcion);
 
         Algothief algothief = new Algothief(fuente);
 
@@ -156,16 +188,17 @@ public class Entrega1Test {
 
         Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
+        builder.conLadron(new Ladron("Carmen SanDiego", descripcion));
 
 
-        String nombreAeropuerto = "Aeropuerto Nacional";
+        String nombreAeropuerto = "Aeropuerto de Mexico";
         String nombrePuerto = "Puerto de Mexico";
 
         builder.conCiudades(
-                new CiudadBuilder("Mexico").conEdificios(
-                        new EdificioBuilder(nombreAeropuerto, "aeropuerto"),
-                        new EdificioBuilder(nombrePuerto, "puerto")
-                )
+                new CiudadBuilder(datosMexico).conEdificios(
+                        new AeropuertoBuilder(),
+                        new PuertoBuilder()
+                ).conPistasPara(new CiudadBuilder(datosMontreal))
         );
 
         algothief.generarEscenario(builder);
@@ -202,7 +235,8 @@ public class Entrega1Test {
         Cronometro cronometro = new Cronometro(7);
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
-        builder.conCiudades(new CiudadBuilder("Mexico"));
+        builder.conLadron(new Ladron("Carmen SanDiego", descripcion));
+        builder.conCiudades(new CiudadBuilder(datosMexico));
 
         algothief.generarEscenario(builder);
 

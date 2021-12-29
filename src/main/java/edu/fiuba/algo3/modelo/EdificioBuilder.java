@@ -2,60 +2,36 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.Map;
 
-public class EdificioBuilder {
+public abstract class EdificioBuilder {
 
-    private final String nombreEdificio;
+    private String nombreEdificio;
+    private String nombreCiudad;
     private Pista pista;
-    private String tipoEdificio;
-    private DescripcionSospechoso descripcionLadron;
-    private Map<String, ?> datosSiguienteCiudad;
-    private GeneradorDePistas generador;
-
-    public EdificioBuilder(String nombreEdificio, String tipoEdificio) {
-        this.nombreEdificio = nombreEdificio;
-        this.tipoEdificio = tipoEdificio;
-    }
 
     public EdificioBuilder(String nombreEdificio) {
         this.nombreEdificio = nombreEdificio;
+    }
+
+    public void deCiudad(String nombreCiudad) {
+        this.nombreCiudad = nombreCiudad;
     }
 
     public void conPista(Pista pista) {
         this.pista = pista;
     }
 
-    public Edificio construir() {
-        return new Edificio(nombreEdificio, pista);
-    }
-
-    public Edificio construirCon(Rango rango, FuenteDeDatos fuente) {
-        return new Edificio(nombreEdificio, fuente.obtenerPista(rango.dificultad(), tipoEdificio));
-    }
-
-    public void conPistaPara(DescripcionSospechoso descripcion, Map<String, ?> datosSiguienteCiudad) {
-        this.descripcionLadron = descripcion;
-        this.datosSiguienteCiudad = datosSiguienteCiudad;
-    }
-
-    public void conPistaGeneradaPor(GeneradorDePistas generadorDePistas) {
-        this.generador = generadorDePistas;
-    }
-
-    public Edificio construirCon(Rango rango) {
-        // TODO: podría ser algo como
-        //  pista = rango.generadorDePistas().pistaMoneda(datosSiguienteCiudad).agregar(datosSospechoso).generar()
+    protected GeneradorDePistas getGeneradorDePistas(Map<String, ?> datosSiguienteCiudad) {
         if (datosSiguienteCiudad == null) {
-            pista = new Pista("No hemos visto a ningún sospechoso por aquí.");
-        } else {
-            String vehiculo = descripcionLadron.getVehiculo();
-            String moneda = datosSiguienteCiudad.get("Currency").toString();
-            pista = new Pista(String.format("La moneda del país es %s. El ladrón se fue en un %s.", moneda, vehiculo));
+            return new GeneradorDePistasSinLadron();
         }
-        return new Edificio(nombreEdificio, pista);
+        return crearGeneradorDePistas();
     }
 
-    public Edificio construirCon(Rango rango, DescripcionSospechoso descripcion) {
-        return new Edificio(nombreEdificio, rango.generarPistaCon(generador, datosSiguienteCiudad, descripcion));
+    protected abstract GeneradorDePistas crearGeneradorDePistas();
+
+    public Edificio construirCon(Rango rango, Map<String, ?> datosSiguienteCiudad, DescripcionSospechoso descripcion) {
+        String nombre = String.format("%s de %s", nombreEdificio, nombreCiudad);
+        return new Edificio(nombre, rango.generarPistaCon(getGeneradorDePistas(datosSiguienteCiudad), datosSiguienteCiudad, descripcion));
     }
 
 }

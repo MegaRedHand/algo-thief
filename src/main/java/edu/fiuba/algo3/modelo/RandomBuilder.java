@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 
+import java.lang.reflect.Constructor;
 import java.util.*;
+import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 public class RandomBuilder implements EscenarioBuilder {
@@ -11,11 +13,11 @@ public class RandomBuilder implements EscenarioBuilder {
     public Escenario construirCon(ContadorDeDificultad contador, FuenteDeDatos fuente) {
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
-        List<Ladron> ladrones = fuente.getComputadora().listaDeLadrones();
-        Ladron ladron = ladrones.get(new Random().nextInt(ladrones.size()));
+        Ladron ladron = obtenerLadron(fuente);
         builder.conLadron(ladron);
 
-        ObjetoRobado objetoRobado = contador.obtenerObjetosRobados(fuente);
+        ObjetoRobado objetoRobado = obtenerObjetoRobado(contador, fuente);
+
         builder.conCronometro(cronometro).conObjetoRobado(objetoRobado);
 
         List<CiudadBuilder> ciudadBuilders = generarListaDeCiudadBuilders(fuente, objetoRobado);
@@ -29,7 +31,17 @@ public class RandomBuilder implements EscenarioBuilder {
 
         ciudadBuilders.forEach(this::agregarEdificios);
 
-        return builder.construirCon(contador, ladron.descripcion());
+        return builder.construirCon(contador, fuente);
+    }
+
+    private Ladron obtenerLadron(FuenteDeDatos fuente) {
+        List<Ladron> ladrones = fuente.getComputadora().listaDeLadrones();
+        return ladrones.get(new Random().nextInt(ladrones.size()));
+    }
+
+    private ObjetoRobado obtenerObjetoRobado(ContadorDeDificultad contador, FuenteDeDatos fuente) {
+        List<ObjetoRobado> objetosRobados = contador.obtenerObjetosRobados(fuente);
+        return objetosRobados.get(new Random().nextInt(objetosRobados.size()));
     }
 
     private List<CiudadBuilder> generarListaDeCiudadBuilders(FuenteDeDatos fuente, ObjetoRobado objetoRobado) {
@@ -52,9 +64,21 @@ public class RandomBuilder implements EscenarioBuilder {
     }
 
     private void agregarEdificios(CiudadBuilder ciudadBuilder) {
-        EdificioBuilder edificioBuilder = new EdificioBuilder("Banco");
-        edificioBuilder.conPistaGeneradaPor(new GeneradorDePistasBanco());
-        ciudadBuilder.conEdificios(edificioBuilder);
+        List<Callable<EdificioBuilder>> constructores = new ArrayList<>(List.of(
+                BancoBuilder::new,
+                BibliotecaBuilder::new,
+                PuertoBuilder::new,
+                AeropuertoBuilder::new
+        ));
+        Collections.shuffle(constructores);
+
+        for (int i = 0; i < 3; i++) {
+            try {
+                ciudadBuilder.conEdificios(constructores.get(i).call());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
