@@ -6,7 +6,7 @@ public class Novato extends RangoLineal {
 
 
     public Novato() {
-        super(5, 900, "facil");
+        super(5, 900);
     }
 
     Rango siguiente() {

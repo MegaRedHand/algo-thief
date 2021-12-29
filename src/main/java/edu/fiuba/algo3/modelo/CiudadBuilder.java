@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 
 public class CiudadBuilder {
 
-    private String nombreCiudad;
+    private final String nombreCiudad;
     private final List<EdificioBuilder> edificioBuilders = new ArrayList<>();
     private Map<String, ?> datosSiguienteCiudad;
-    private Map<String, ?> datosCiudad;
+    private final Map<String, ?> datosCiudad;
     private final List<String> adyacentes = new ArrayList<>();
 
     public CiudadBuilder(Map<String, ?> datosCiudad) {
@@ -43,7 +43,11 @@ public class CiudadBuilder {
         List<Edificio> edificiosDeLaCiudad = edificioBuilders.stream()
                 .map(eb -> eb.construirCon(rango, datosSiguienteCiudad, descripcion)).collect(Collectors.toList());
 
-        return new Ciudad(nombreCiudad, edificiosDeLaCiudad, adyacentes);
+        Coordenadas coordenadas = new Coordenadas(
+                Double.parseDouble(datosCiudad.get("latitud").toString()),
+                Double.parseDouble(datosCiudad.get("longitud").toString())
+        );
+        return new Ciudad(nombreCiudad, edificiosDeLaCiudad, adyacentes, coordenadas);
     }
 
 }

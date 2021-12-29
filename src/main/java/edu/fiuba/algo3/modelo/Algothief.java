@@ -72,7 +72,7 @@ public class Algothief {
     }
 
     public boolean juegoAcabado() {
-        return acabado;
+        return acabado || cronometro.seAcaboElTiempo();
     }
 
     public boolean juegoGanado() {

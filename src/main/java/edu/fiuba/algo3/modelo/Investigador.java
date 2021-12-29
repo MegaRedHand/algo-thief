@@ -5,7 +5,7 @@ import java.util.Map;
 public class Investigador extends RangoLineal {
 
     public Investigador() {
-        super(20, 1300, "media");
+        super(20, 1300);
     }
 
     @Override

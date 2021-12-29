@@ -5,7 +5,7 @@ import java.util.Map;
 public class Sargento extends RangoLineal {
 
     public Sargento() {
-        super(20, 1500, "dificil");
+        super(20, 1500);
     }
 
     @Override

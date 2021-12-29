@@ -86,7 +86,16 @@ public class Entrega2Test {
 
         algothief.viajar("Mexico");
 
-        int distanciaEntreCiudades = 3800; // km
+        Coordenadas coordenadasMontreal = new Coordenadas(
+                Double.parseDouble(datosMontreal.get("latitud").toString()),
+                Double.parseDouble(datosMontreal.get("longitud").toString())
+        );
+        Coordenadas coordenadasMexico = new Coordenadas(
+                Double.parseDouble(datosMexico.get("latitud").toString()),
+                Double.parseDouble(datosMexico.get("longitud").toString())
+        );
+
+        int distanciaEntreCiudades = coordenadasMontreal.distanciaA(coordenadasMexico);
         int tiempoEsperado = new Investigador().tiempoDeViaje(distanciaEntreCiudades);
 
         assertEquals(DayOfWeek.MONDAY, cronometro.fechaActual().getDayOfWeek());
@@ -144,7 +153,7 @@ public class Entrega2Test {
         Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
         builder.conLadron(new Ladron("Carmen", new DescripcionSospechoso()));
-        builder.conCiudades(new CiudadBuilder(Map.of("ciudad", "Montreal")));
+        builder.conCiudades(new CiudadBuilder(datosMontreal));
 
         algothief.generarEscenario(builder);
 

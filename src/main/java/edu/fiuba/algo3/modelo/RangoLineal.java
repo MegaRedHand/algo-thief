@@ -4,12 +4,10 @@ public abstract class RangoLineal implements Rango {
 
     private final int arrestosParaActualizar;
     private final int velocidadDeViaje;
-    private final String dificultad;
 
-    protected RangoLineal(int arrestosParaActualizar, int velocidadDeViaje, String dificultad) {
+    protected RangoLineal(int arrestosParaActualizar, int velocidadDeViaje) {
         this.arrestosParaActualizar = arrestosParaActualizar;
         this.velocidadDeViaje = velocidadDeViaje;
-        this.dificultad = dificultad;
     }
 
     @Override
@@ -25,10 +23,5 @@ public abstract class RangoLineal implements Rango {
     }
 
     abstract Rango siguiente();
-
-    @Override
-    public String dificultad() {
-        return dificultad;
-    }
 
 }

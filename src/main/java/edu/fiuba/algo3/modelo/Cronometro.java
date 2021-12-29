@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Cronometro {
 
-    private final int LIMITE_DE_TIEMPO = 6 /*dias*/ * 24 /*horas*/ + 17 /*horas*/;
+    private final static int LIMITE_DE_TIEMPO = 6 /*dias*/ * 24 /*horas*/ + 17 /*horas*/;
     private final Map<Edificio, Integer> visitasPorEdificio = new HashMap<>();
     private int tiempoRegistrado; // porque empieza el lunes a las 7
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("E H:m"); // "Lunes 16:00"
@@ -29,7 +29,7 @@ public class Cronometro {
     }
 
     public void registrarViaje(Rango rango, Ciudad ciudadOrigen, Ciudad ciudadDestino) {
-        tiempoRegistrado += rango.tiempoDeViaje(3800); // ciudadOrigen.distanciaA(ciudadDestino));
+        tiempoRegistrado += rango.tiempoDeViaje(ciudadOrigen.distanciaA(ciudadDestino));
     }
 
     public void registrarDormir() {

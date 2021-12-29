@@ -8,26 +8,25 @@ import java.util.stream.Collectors;
 public class Ciudad {
 
     private final String nombre;
-    private final List<Edificio> edificios;
-    private List<String> adyacentes;
-    //private final DatosDeCiudad datos;
-    //private final HashMap<String, List<String>> datos;
+    private final List<Edificio> edificios = new ArrayList<>();
+    private final List<String> adyacentes = new ArrayList<>();
+    private Coordenadas coordenadas;
 
     public Ciudad(String nombre, Edificio... edificios) {
         this.nombre = nombre;
-        this.edificios = new ArrayList<>(List.of(edificios));
-
+        this.edificios.addAll(List.of(edificios));
     }
 
     public Ciudad(String nombre, List<Edificio> edificios) {
         this.nombre = nombre;
-        this.edificios = new ArrayList<>(edificios);
+        this.edificios.addAll(edificios);
     }
 
-    public Ciudad(String nombre, List<Edificio> edificios, List<String> adyacentes) {
+    public Ciudad(String nombre, List<Edificio> edificios, List<String> adyacentes, Coordenadas coordenadas) {
         this.nombre = nombre;
-        this.edificios = new ArrayList<>(edificios);
-        this.adyacentes = adyacentes;
+        this.edificios.addAll(edificios);
+        this.adyacentes.addAll(adyacentes);
+        this.coordenadas = coordenadas;
     }
 
     public Edificio obtenerEdificio(String nombreEdificio) {
@@ -46,18 +45,7 @@ public class Ciudad {
         return new ArrayList<>(adyacentes);
     }
 
-    /*
-    public void agregarDatosDeCiudad(DatosDeCiudad datosDeCiudad){
-
-        this.datos = datosDeCiudad;
+    public int distanciaA(Ciudad ciudadDestino) {
+        return coordenadas.distanciaA(ciudadDestino.coordenadas);
     }
-
-
-
-    public void agregarDatosDeCiudad(HashMap<String, List<String>> datosDeCiudad){
-
-        this.datos = datosDeCiudad;
-    }
-
-     */
 }

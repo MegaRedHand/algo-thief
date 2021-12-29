@@ -5,7 +5,7 @@ import java.util.Map;
 public class DetectiveRango extends RangoLineal {
 
     public DetectiveRango() {
-        super(10, 1100, "facil");
+        super(10, 1100);
     }
 
     @Override

@@ -72,7 +72,7 @@ public class Entrega1Test {
         builder.conObjetoRobado(new Comun("Tesoro Nacional de Montreal", "Montreal"));
         builder.conLadron(new Ladron("Sospechoso", descripcion));
         builder.conCiudades(
-                new CiudadBuilder(Map.of("ciudad", "Montreal")).conEdificios(
+                new CiudadBuilder(datosMontreal).conEdificios(
                         new BancoBuilder()
                 ).conPistasPara(new CiudadBuilder(datosMexico))
         );
@@ -111,7 +111,7 @@ public class Entrega1Test {
         builder.conLadron(new Ladron("Carmen SanDiego", descripcion));
 
         builder.conCiudades(
-                new CiudadBuilder(Map.of("ciudad", "Montreal")).conEdificios(
+                new CiudadBuilder(datosMontreal).conEdificios(
                         new BancoBuilder(),
                         new BibliotecaBuilder()
                 ).conPistasPara(new CiudadBuilder(datosMexico))
@@ -159,8 +159,17 @@ public class Entrega1Test {
 
         algothief.viajar("Mexico");
 
-        int distanciaEntreCiudades = 3800; // km
-        int tiempoEsperado = new Novato().tiempoDeViaje(distanciaEntreCiudades) /*velocidad novato*/;
+        Coordenadas coordenadasMontreal = new Coordenadas(
+                Double.parseDouble(datosMontreal.get("latitud").toString()),
+                Double.parseDouble(datosMontreal.get("longitud").toString())
+        );
+        Coordenadas coordenadasMexico = new Coordenadas(
+                Double.parseDouble(datosMexico.get("latitud").toString()),
+                Double.parseDouble(datosMexico.get("longitud").toString())
+        );
+
+        int distanciaEntreCiudades = coordenadasMontreal.distanciaA(coordenadasMexico);
+        int tiempoEsperado = new Novato().tiempoDeViaje(distanciaEntreCiudades);
 
         assertEquals(DayOfWeek.MONDAY, cronometro.fechaActual().getDayOfWeek());
         assertEquals(7 + tiempoEsperado, cronometro.fechaActual().getHour());
