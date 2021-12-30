@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@inicio.jpeg" />
+            <Image url="@imagenes/inicio.jpeg" />
          </image>
       </ImageView>
       <Button layoutX="106.0" layoutY="180.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="115.0" text="Iniciar juego" />
