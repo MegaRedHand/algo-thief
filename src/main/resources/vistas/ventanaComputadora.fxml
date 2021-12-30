@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="labelSuperior" alignment="CENTER" prefHeight="76.0" prefWidth="591.0" textFill="#f7f2f2" wrapText="true">
+               <font>
+                  <Font name="Stencil" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="43.0" prefWidth="107.0" text="SEXO:" textAlignment="CENTER" textFill="#eceaea">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="sexo" alignment="CENTER" prefHeight="34.0" prefWidth="431.0">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="43.0" prefWidth="107.0" text="HOBBY:" textAlignment="CENTER" textFill="#eceaea">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="hobby" alignment="CENTER" prefHeight="34.0" prefWidth="431.0">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="43.0" prefWidth="107.0" text="AUTO:" textAlignment="CENTER" textFill="#eceaea">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="auto" alignment="CENTER" prefHeight="34.0" prefWidth="431.0">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="43.0" prefWidth="130.0" text="COLOR DE PELO:" textAlignment="CENTER" textFill="#eceaea">
+               <font>
+                  <Font name="Stencil" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="colorDePelo" alignment="CENTER" prefHeight="34.0" prefWidth="403.0">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <Button fx:id="volverAtras" mnemonicParsing="false" prefHeight="70.0" prefWidth="182.0" style="-fx-background-color: grey;" text="ATRAS" textFill="#f2efef">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="cargarDatos" mnemonicParsing="false" onAction="#cargarDatos" prefHeight="70.0" prefWidth="182.0" style="-fx-background-color: grey;" text="CARGAR DATOS" textFill="#fcf6f6">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+         </padding>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>
