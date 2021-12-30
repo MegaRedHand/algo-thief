@@ -10,9 +10,9 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@imagenes/inicio.jpeg" />
+            <Image url="@../../../../../../../../../../../../Desktop/inicio.jpeg" />
          </image>
       </ImageView>
-      <Button layoutX="106.0" layoutY="180.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="115.0" text="Iniciar juego" />
+      <Button fx:id="inicio" layoutX="106.0" layoutY="180.0" mnemonicParsing="false" onAction="#click" prefHeight="41.0" prefWidth="115.0" text="Iniciar juego" />
    </children>
 </Pane>
