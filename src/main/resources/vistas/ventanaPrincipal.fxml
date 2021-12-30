@@ -7,7 +7,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label prefHeight="145.0" prefWidth="579.0" style="-fx-background-color: black;" textFill="#f2efef" wrapText="true">
+      <Label fx:id="labelDescripcion" prefHeight="145.0" prefWidth="579.0" style="-fx-background-color: black;" textFill="#f2efef" wrapText="true">
          <font>
             <Font name="Stencil" size="14.0" />
          </font>
@@ -15,7 +15,7 @@
       <HBox fx:id="botoneraOpciones" prefHeight="100.0" prefWidth="200.0" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="computadora" mnemonicParsing="false" prefHeight="67.0" prefWidth="187.0" style="-fx-background-color: grey;" text="COMPUTADORA" textFill="#f7f5f5">
+            <Button fx:id="computadora" mnemonicParsing="false" onAction="#computadora" prefHeight="67.0" prefWidth="187.0" style="-fx-background-color: grey;" text="COMPUTADORA" textFill="#f7f5f5">
                <font>
                   <Font name="Stencil" size="18.0" />
                </font>
