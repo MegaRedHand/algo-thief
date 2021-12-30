@@ -1,0 +1,33 @@
+@startuml
+
+package algo3 {
+
+    package modelo {
+        class Algothief
+        interface FuenteDeDatos
+        Algothief .> FuenteDeDatos
+    }
+
+    package controllers {
+        class Controller
+    }
+
+    package perifericos {
+        class LectorDeArchivos implements FuenteDeDatos
+    }
+
+    package vistas {
+        class Vista
+    }
+
+    perifericos ..> modelo
+    controllers ..> modelo
+    vistas ..> controllers
+
+    class Juego
+
+    Juego o-- Algothief
+    Juego ...> LectorDeArchivos
+}
+
+@enduml

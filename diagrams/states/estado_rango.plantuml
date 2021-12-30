@@ -1,0 +1,31 @@
+@startuml
+
+title "Diagrama de estados de los rangos"
+
+
+'state Vivo {
+'    [*] -> Soltero
+'    state Casado
+'    state Viudo
+'}
+'state Muerto
+'
+'[*] -> Vivo
+'
+'Soltero --> Casado : se casa
+'Casado -> Viudo : enviuda
+'Viudo -> Casado : se casa
+'
+'Vivo -> Muerto
+
+state Novato
+state Detective
+state Investigador
+state Sargento
+
+[*] --> Novato: se inicializan los arrestos en 0
+Novato --> Detective: se registran 5 arrestos
+Detective --> Investigador: se registran 10 arrestos
+Investigador --> Sargento: se registran 20 arrestos
+
+@enduml
