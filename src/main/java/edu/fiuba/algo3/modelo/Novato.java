@@ -15,7 +15,6 @@ public class Novato extends RangoLineal {
 
     @Override
     public Pista generarPistaCon(GeneradorDePistas generador, Map<String, ?> datosCiudad, DescripcionSospechoso descripcion) {
-        // TODO: agregar en supuestos
         return generador.generarPistaFacil(datosCiudad, descripcion);
     }
 

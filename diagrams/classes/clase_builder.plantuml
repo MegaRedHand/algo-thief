@@ -40,8 +40,10 @@ interface FuenteDeDatos {
     + crearCiudadBuilders(): CiudadBuilder[*]
     + getComputadora(): Computadora
 }
+
 interface Rango
 abstract class EdificioBuilder
+abstract class ObjetoRobado
 
 EscenarioBuilder .> FuenteDeDatos
 EscenarioBuilderManual "1" o-- "*" CiudadBuilder

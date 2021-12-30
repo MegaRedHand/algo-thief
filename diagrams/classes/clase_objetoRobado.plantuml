@@ -1,0 +1,24 @@
+@startuml
+
+abstract class ObjetoRobado {
+    - nombre: String
+    - nombreCiudadOrigen: String
+    - largoDeLaRutaDeEscape: int
+    # ObjetoRobado(nombre, nombreCiudadOrigen, largoDeLaRutaDeEscape)
+    + largoDeLaRutaDeEscape(): int
+    + tieneOrigen(nombreCiudad): boolean
+}
+
+class Comun extends ObjetoRobado {
+    + Comun(nombre, nombreCiudadOrigen)
+}
+
+class Valioso extends ObjetoRobado {
+    + Valioso(nombre, nombreCiudadOrigen)
+}
+
+class MuyValioso extends ObjetoRobado {
+    + MuyValioso(nombre, nombreCiudadOrigen)
+}
+
+@enduml

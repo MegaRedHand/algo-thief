@@ -5,10 +5,10 @@ import java.util.Objects;
 public abstract class ObjetoRobado {
 
     protected final String nombre;
-    private final int largoDeLaRutaDeEscape;
     private final String nombreCiudadOrigen;
+    private final int largoDeLaRutaDeEscape;
 
-    public ObjetoRobado(String nombre, String nombreCiudadOrigen, int largoDeLaRutaDeEscape) {
+    protected ObjetoRobado(String nombre, String nombreCiudadOrigen, int largoDeLaRutaDeEscape) {
         this.nombre = nombre;
         this.nombreCiudadOrigen = nombreCiudadOrigen;
         this.largoDeLaRutaDeEscape = largoDeLaRutaDeEscape;
