@@ -75,11 +75,12 @@ public class LectorDeArchivos implements FuenteDeDatos {
             ladronMap = stringMap;
             Rasgo sexo = new Rasgo("sexo", ladronMap.get("sexo").toString());
             Rasgo hobby = new Rasgo("hobby", ladronMap.get("hobby").toString());
+            Rasgo ocupacion = new Rasgo("ocupacion", ladronMap.get("ocupacion").toString());
             Rasgo cabello = new Rasgo("cabello", ladronMap.get("colorDelPelo").toString());
             Rasgo senia = new Rasgo("seña", ladronMap.get("señasParticulares").toString());
             Rasgo vehiculo = new Rasgo("vehiculo", ladronMap.get("coche").toString());
 
-            DescripcionSospechoso descripcion = new DescripcionSospechoso(sexo, hobby, cabello, senia, vehiculo);
+            DescripcionSospechoso descripcion = new DescripcionSospechoso(sexo, hobby, cabello, senia, vehiculo, ocupacion);
             Ladron ladron = new Ladron(ladronMap.get("nombre").toString(), descripcion);
 
             ladrones.add(ladron);

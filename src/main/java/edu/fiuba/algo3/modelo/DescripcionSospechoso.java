@@ -41,11 +41,11 @@ public class DescripcionSospechoso {
     }
 
     public String getPistaColorDePelo() {
-        return String.format("El ladrón tiene pelo %s.", obtenerRasgo("colorDelPelo").toString());
+        return String.format("El ladrón tiene pelo %s.", obtenerRasgo("cabello").toString());
     }
 
     public String getPistaSenias() {
-        return String.format("El sospechoso %s.", obtenerRasgo("señasParticulares").toString());
+        return String.format("El sospechoso %s.", obtenerRasgo("seña").toString());
     }
 
 }

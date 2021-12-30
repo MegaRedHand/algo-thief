@@ -1,6 +1,6 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.controllers.MenuInicioController;
+import edu.fiuba.algo3.controlador.MenuInicioController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
