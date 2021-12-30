@@ -91,7 +91,7 @@ public class CronometroUnitTest {
         Ciudad ciudad = mock(Ciudad.class);
         ContadorDeDificultad contador = mock(ContadorDeDificultad.class);
 
-        Detective detective = new Detective(cronometro, ciudad, contador);
+        Policia detective = new Policia(cronometro, ciudad, contador);
 
         detective.recibirHeridaPorArmaDeFuego();
 

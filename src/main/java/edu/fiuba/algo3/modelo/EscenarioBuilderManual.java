@@ -31,7 +31,7 @@ public class EscenarioBuilderManual implements EscenarioBuilder {
     public Escenario construirCon(ContadorDeDificultad contador, FuenteDeDatos fuente) {
         List<Ciudad> ciudades = buildersDeCiudades.stream().map(b -> b.construirCon(contador.rango(), ladron.descripcion()))
                 .collect(Collectors.toList());
-        Detective detective = new Detective(cronometro, ciudades.get(0), contador);
+        Policia detective = new Policia(cronometro, ciudades.get(0), contador);
 
         return new Escenario(detective, ladron, ciudades);
     }

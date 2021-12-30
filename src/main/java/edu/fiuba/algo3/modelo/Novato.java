@@ -10,7 +10,7 @@ public class Novato extends RangoLineal {
     }
 
     Rango siguiente() {
-        return new DetectiveRango();
+        return new Detective();
     }
 
     @Override

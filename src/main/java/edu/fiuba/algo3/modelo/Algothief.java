@@ -8,7 +8,7 @@ public class Algothief {
     private Escenario escenarioActual;
     private Pista ultimaPista;
     private ContadorDeDificultad contador;
-    private final DescripcionSospechoso descripcion = new DescripcionSospechoso();
+    private DescripcionSospechoso descripcion = new DescripcionSospechoso();
     private boolean acabado = false;
     private boolean ganado = false;
     private Cronometro cronometro;
@@ -27,7 +27,7 @@ public class Algothief {
     }
 
     public void visitar(String nombreEdificio) {
-        ultimaPista = escenarioActual.detectiveVisitar(nombreEdificio);
+        ultimaPista = escenarioActual.policiaVisitar(nombreEdificio);
     }
 
     public String pistaMasReciente() {
@@ -35,23 +35,23 @@ public class Algothief {
     }
 
     public void viajar(String nombreCiudad) {
-        escenarioActual.detectiveViajar(nombreCiudad);
+        escenarioActual.policiaViajar(nombreCiudad);
     }
 
     public void recibirHeridaDeCuchillo() {
-        escenarioActual.detectiveRecibirHeridaDeCuchillo();
+        escenarioActual.policiaRecibirHeridaDeCuchillo();
     }
 
     public void recibirHeridaPorArmaDeFuego() {
-        escenarioActual.detectiveRecibirHeridaPorArmaDeFuego();
+        escenarioActual.policiaRecibirHeridaPorArmaDeFuego();
     }
 
     public void dormir() {
-        escenarioActual.detectiveDormir();
+        escenarioActual.policiaDormir();
     }
 
     public void cargarDatosSospechoso(DescripcionSospechoso descripcion) {
-        this.descripcion.agregar(descripcion);
+        this.descripcion = descripcion;
     }
 
     public List<String> buscarSospechosos() {
@@ -65,7 +65,7 @@ public class Algothief {
     }
 
     public void atraparSospechoso() {
-        ganado = escenarioActual.detectiveAtraparLadron();
+        ganado = escenarioActual.policiaAtraparLadron();
         acabado = true;
     }
 

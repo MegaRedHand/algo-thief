@@ -2,33 +2,33 @@
 
 class Ladron {
     - nombre: String
-    + Ladron(nombre, descripcion, objetoRobado)
     + Ladron(nombre, descripcion)
     + descripcion(): DescripcionSospechoso
     + getNombre(): String
     + seLlama(nombre): boolean
 }
 
-abstract class ObjetoRobado
-
-class Comun extends ObjetoRobado
-class Valioso extends ObjetoRobado
-class MuyValioso extends ObjetoRobado
-
 class DescripcionSospechoso {
     + DescripcionSospechoso(rasgos)
     + coincideCon(descripcion): boolean
     + agregar(rasgos)
     + agregar(descripcion)
+    + getPistaVehiculo(): String
+    + getPistaHobby(): String
+    + getPistaOcupacion(): String
+    + getPistaColorDePelo(): String
+    + getPistaSenias(): String
 }
 
 class Rasgo {
+    - categoria: String
+    - valor: String
     + Rasgo(categoria, valor)
     + categoria(): String
-    + coincideCon(rasgo): boolean
+    + igualA(rasgo): boolean
+    + toString(): String
 }
 
-Ladron "1" o-- "1" ObjetoRobado
 Ladron "1" o-- "1" DescripcionSospechoso
 DescripcionSospechoso "1" o-- "*" Rasgo
 

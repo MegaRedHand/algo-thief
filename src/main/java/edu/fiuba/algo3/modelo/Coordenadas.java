@@ -22,7 +22,7 @@ public class Coordenadas {
     d = R.c
      *
      */
-    public int distanciaA(Coordenadas coordenadasDestino) {
+    public double distanciaA(Coordenadas coordenadasDestino) {
 
         final int R = 6371; // Radius of the earth
 
@@ -32,9 +32,8 @@ public class Coordenadas {
                 Math.cos(toRad(this.latitud)) * Math.cos(toRad(coordenadasDestino.latitud)) *
                         Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        double distance = R * c;
 
-        return Double.valueOf(distance).intValue();
+        return R * c;
     }
 
     private double toRad(double value) {

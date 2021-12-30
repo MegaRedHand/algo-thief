@@ -3,28 +3,29 @@
 class AlgoThief {
     + AlgoThief(fuenteDeDatos)
     + generarEscenario(builder)
-    + visitar(nombreEdificio)
-    + pistaMasReciente() : String
     + asignarDetective(contadorDeDificultad)
+    + visitar(nombreEdificio)
+    + viajar(nombreCiudad)
     + recibirHeridaDeCuchillo()
+    + recibirHeridaPorArmaDeFuego()
     + dormir()
     + cargarDatosSospechoso(descripcionSospechoso)
     + buscarSospechosos() : List<String>
     + atraparSospechoso()
+    + pistaMasReciente() : String
     + juegoAcabado() : boolean
     + juegoTerminado() : boolean
 }
 
+AlgoThief "1" --> "1" FuenteDeDatos
 AlgoThief "1" --> "0..1" Escenario
 AlgoThief "1" --> "0..1" Pista
-AlgoThief "1" --> "1" FuenteDeDatos
 AlgoThief "1" --> "0..1" ContadorDeDificultad
 AlgoThief "1" --> "0..1" DescripcionSospechoso
-AlgoThief ..> Builder
+AlgoThief "1" --> "0..1" Cronometro
+AlgoThief ..> EscenarioBuilder
 
-interface Builder
-interface FuenteDeDatos {
-    + listaDeLadrones(): List<Ladron>
-}
+interface EscenarioBuilder
+interface FuenteDeDatos
 
 @enduml

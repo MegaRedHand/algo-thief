@@ -1,19 +1,47 @@
 @startuml
 
-class Detective {
-    + Detective(cronometro, ciudad, contadorDeDificultad)
+class Policia {
+    - ciudadActual: ciudad
+    + Policia(cronometro, ciudad, contadorDeDificultad)
     + visitar(nombreEdificio): Pista
     + viajar(ciudad: Ciudad)
     + recibirHeridaDeCuchillo()
+    + recibirHeridaPorArmaDeFuego()
     + dormir()
+    + edificiosVisitables(): String[*]
+    + ciudadesVisitables(): String[*]
 }
 
 class Cronometro {
-    + restar(horas: int)
-    + tiempo(): int
+    - visitasPorEdificio: Map<Edificio, Integer>
+    - tiempoRegistrado: int
+    + Cronometro(tiempoInicial)
+    + registrarVisita(edificio)
+    + registrarViaje(rango, ciudadOrigen, ciudadDestino)
+    + registrarDormir()
+    + registrarHeridaDeCuchillo(salud)
+    + registrarHeridaPorArmaDeFuego()
+    + fechaActual(): LocalDateTime
+    + seAcaboElTiempo(): boolean
 }
 
-Detective "1" -> "1" Cronometro
+interface Salud {
+    + {abstract} tiempoDeRecuperacion(): int
+    + {abstract} recibirHeridaDeCuchillo(): Salud
+}
+
+class Saludable implements Salud {
+    + tiempoDeRecuperacion(): int
+    + recibirHeridaDeCuchillo(): Salud
+}
+class Herido implements Salud {
+    + tiempoDeRecuperacion(): int
+    + recibirHeridaDeCuchillo(): Salud
+}
+
+Policia "1" --> "1" Cronometro
+Policia "1" --> "1" ContadorDeDificultad
+Policia "1" --> "1" Salud
 
 
 @enduml

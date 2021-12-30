@@ -1,0 +1,52 @@
+@startuml
+
+abstract class EdificioBuilder {
+    - nombreEdificio: String
+    - nombreCiudad: String
+    # EdificioBuilder(nombreEdificio)
+    + deCiudad(nombreCiudad)
+    # {abstract} crearGeneradorDePistas(): GeneradorDePistas
+    + construirCon(rango, datosSiguienteCiudad, descripcionSospechoso): Edificio
+}
+
+class BancoBuilder {
+    + BancoBuilder()
+    # crearGeneradorDePistas(): GeneradorDePistas
+}
+class BibliotecaBuilder {
+    + BibliotecaBuilder()
+    # crearGeneradorDePistas(): GeneradorDePistas
+}
+class AeropuertoBuilder {
+    + AeropuertoBuilder()
+    # crearGeneradorDePistas(): GeneradorDePistas
+}
+class PuertoBuilder {
+    + PuertoBuilder()
+    # crearGeneradorDePistas(): GeneradorDePistas
+}
+
+EdificioBuilder <|-- BancoBuilder
+EdificioBuilder <|-- BibliotecaBuilder
+EdificioBuilder <|-- AeropuertoBuilder
+EdificioBuilder <|-- PuertoBuilder
+
+interface GeneradorDePistas {
+    + {abstract} generarPistaFacil(datosCiudad, descripcionSospechoso): Pista
+    + {abstract} generarPistaMedia(datosCiudad, descripcionSospechoso): Pista
+    + {abstract} generarPistaDificil(datosCiudad, descripcionSospechoso): Pista
+}
+GeneradorDePistas <|.up. GeneradorDePistasBanco
+GeneradorDePistas <|.up. GeneradorDePistasBiblioteca
+GeneradorDePistas <|.up. GeneradorDePistasAeropuerto
+GeneradorDePistas <|.up. GeneradorDePistasPuerto
+
+
+EdificioBuilder ..> GeneradorDePistas
+
+BancoBuilder ..> GeneradorDePistasBanco
+BibliotecaBuilder ..> GeneradorDePistasBiblioteca
+AeropuertoBuilder ..> GeneradorDePistasAeropuerto
+PuertoBuilder ..> GeneradorDePistasPuerto
+
+@enduml

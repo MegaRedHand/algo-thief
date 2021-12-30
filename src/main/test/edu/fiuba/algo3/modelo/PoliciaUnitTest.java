@@ -8,7 +8,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class DetectiveUnitTest {
+public class PoliciaUnitTest {
 
     @Test
     public void test01DetectiveVisitaEdificioDevuelvePistaCorrecta() {
@@ -22,7 +22,7 @@ public class DetectiveUnitTest {
         when(ciudad.obtenerEdificio("nombreEdificio")).thenReturn(edificio);
         when(edificio.obtenerPista()).thenReturn(pista);
 
-        Detective detective = new Detective(cronometro, ciudad, contador);
+        Policia detective = new Policia(cronometro, ciudad, contador);
 
         Pista pistaDevuelta = detective.visitar("nombreEdificio");
 
@@ -36,7 +36,7 @@ public class DetectiveUnitTest {
         Ciudad ciudad = mock(Ciudad.class);
         ContadorDeDificultad contador = mock(ContadorDeDificultad.class);
 
-        Detective detective = new Detective(cronometro, ciudad, contador);
+        Policia detective = new Policia(cronometro, ciudad, contador);
 
         detective.recibirHeridaDeCuchillo();
 
@@ -78,7 +78,7 @@ public class DetectiveUnitTest {
         when(ciudadOrigen.edificiosVisitables()).thenReturn(edificiosCiudadOrigen);
         when(ciudadDestino.edificiosVisitables()).thenReturn(edificiosCiudadDestino);
 
-        Detective detective = new Detective(cronometro, ciudadOrigen, contador);
+        Policia detective = new Policia(cronometro, ciudadOrigen, contador);
 
         detective.viajar(ciudadDestino);
 

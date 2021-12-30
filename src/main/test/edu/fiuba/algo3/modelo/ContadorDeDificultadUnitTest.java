@@ -14,7 +14,7 @@ public class ContadorDeDificultadUnitTest {
         Rango rangoMock = mock(Rango.class);
         when(rangoMock.actualizar(anyInt())).thenReturn(rangoMock);
 
-        ContadorDeDificultad contador = new ContadorDeDificultad(rangoMock);
+        ContadorDeDificultad contador = new ContadorDeDificultad(rangoMock, 0);
 
         contador.registrarArresto();
 
@@ -27,7 +27,7 @@ public class ContadorDeDificultadUnitTest {
         Rango rangoMock = mock(Rango.class);
         when(rangoMock.actualizar(anyInt())).thenReturn(rangoMock);
 
-        ContadorDeDificultad contador = new ContadorDeDificultad(rangoMock);
+        ContadorDeDificultad contador = new ContadorDeDificultad(rangoMock, 0);
 
         for (int i = 0; i < 3; i++) {
             contador.registrarArresto();

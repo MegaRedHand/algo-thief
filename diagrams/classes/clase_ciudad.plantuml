@@ -1,19 +1,36 @@
 @startuml
 
 class Ciudad {
-    + Ciudad(nombreCiudad, edificios)
-    + buscarEdificio(nombre: String): Edificio
+    - nombresAdyacentes: String[*]
+    + Ciudad(nombreCiudad, edificios, nombresAdyacentes, coordenadas)
+    + obtenerEdificio(nombre: String): Edificio
     + es(nombreCiudad): boolean
+    + distanciaA(ciudadDestino: Ciudad): int
+    + edificiosVisitables(): String[*]
+    + ciudadesVisitables(): String[*]
+}
+
+class Coordenadas {
+    - latitud: double
+    - longitud: double
+    + Coordenadas(latitud, longitud)
+    + distanciaA(coordenadasDestino): double
 }
 
 class Edificio {
     + Edificio(nombreEdificio, pista)
     + obtenerPista(): Pista
     + es(nombreEdificio): boolean
+    + toString(): String
 }
 
-abstract class Pista
+class Pista {
+    - descripcion: String
+    + Pista(descripciones: String[*])
+    + descripcion(): String
+}
 
+Ciudad "1" o-- "1" Coordenadas
 Ciudad "1" --> "*" Edificio
 Edificio "1" --> "1" Pista
 

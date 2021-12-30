@@ -7,7 +7,7 @@ public abstract class EdificioBuilder {
     private final String nombreEdificio;
     private String nombreCiudad;
 
-    public EdificioBuilder(String nombreEdificio) {
+    protected EdificioBuilder(String nombreEdificio) {
         this.nombreEdificio = nombreEdificio;
     }
 
@@ -15,7 +15,7 @@ public abstract class EdificioBuilder {
         this.nombreCiudad = nombreCiudad;
     }
 
-    protected GeneradorDePistas getGeneradorDePistas(Map<String, ?> datosSiguienteCiudad) {
+    private GeneradorDePistas getGeneradorDePistas(Map<String, ?> datosSiguienteCiudad) {
         if (datosSiguienteCiudad == null) {
             return new GeneradorDePistasSinLadron();
         }

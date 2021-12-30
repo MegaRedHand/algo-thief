@@ -1,12 +1,13 @@
 @startuml
 
-class Detective {
+class Policia {
     + registrarArresto()
 }
 
 interface Rango {
-    + {abstract} tiempoDeViaje(distanciaEnKms: int): int
     + {abstract} actualizar(cantidadDeArrestos: int): Rango
+    + {abstract} tiempoDeViaje(distanciaEnKms: int): int
+    + {abstract} generarPistaCon(generadorDePista, datosDeCiudad, descripcionSospechoso): Pista
 }
 
 abstract class RangoLineal implements Rango {
@@ -15,39 +16,50 @@ abstract class RangoLineal implements Rango {
     # RangoLineal(arrestosParaActualizar, velocidadDeViaje)
     + tiempoDeViaje(distanciaEnKms: int): int
     + actualizar(cantidadDeArrestos: int): Rango
-    - {abstract} siguiente()
+    - {abstract} siguiente(): Rango
 }
 
 class Novato extends RangoLineal {
     + Novato()
-    - siguiente()
+    + generarPistaCon(gen, datos, descripcion): Pista
+    - siguiente(): Rango
 }
-class RangoDetective extends RangoLineal {
-    + RangoDetective()
-    - siguiente()
+class Detective extends RangoLineal {
+    + Detective()
+    + generarPistaCon(gen, datos, descripcion): Pista
+    - siguiente(): Rango
 }
 class Investigador extends RangoLineal {
     + Investigador()
-    - siguiente()
+    + generarPistaCon(gen, datos, descripcion): Pista
+    - siguiente(): Rango
 }
 class Sargento extends RangoLineal {
     + Sargento()
-    - siguiente()
+    + generarPistaCon(gen, datos, descripcion): Pista
+    - siguiente(): Rango
 }
 
 class ContadorDeDificultad {
     - cantidadDeArrestos : int
     + ContadorDeDificultad(rangoInicial, arrestos)
-    + ContadorDeDificultad(rangoInicial)
     + registrarArresto()
     + arrestos(): int
     + rango(): Rango
+    + obtenerObjetosRobados(fuenteDeDatos): ObjetosRobados[*]
 }
 
-Detective "1" o-- "1" ContadorDeDificultad
+interface FuenteDeDatos {
+    + obtenerObjetosComunes(): Comun[*]
+    + obtenerObjetosValiosos(): Valiosos[*]
+    + obtenerObjetosMuyValiosos(): MuyValiosos[*]
+}
+
+ContadorDeDificultad .> FuenteDeDatos
+Policia "1" o-- "1" ContadorDeDificultad
 ContadorDeDificultad "1" o-- "1" Rango
-Novato::siguiente .> RangoDetective::RangoDetective
-RangoDetective::siguiente .> Investigador::Investigador
+Novato::siguiente .> Detective::Detective
+Detective::siguiente .> Investigador::Investigador
 Investigador::siguiente .> Sargento::Sargento
 
 @enduml

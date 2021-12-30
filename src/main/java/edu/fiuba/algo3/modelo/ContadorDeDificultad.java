@@ -12,11 +12,6 @@ public class ContadorDeDificultad {
         this.rango = rangoInicial.actualizar(cantidadDeArrestos);
     }
 
-    public ContadorDeDificultad(Rango rangoInicial) {
-        this.cantidadDeArrestos = 0;
-        this.rango = rangoInicial.actualizar(0);
-    }
-
     public void registrarArresto() {
         ++this.cantidadDeArrestos;
         this.rango = rango.actualizar(cantidadDeArrestos);

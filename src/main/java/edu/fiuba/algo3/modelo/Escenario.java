@@ -4,41 +4,41 @@ import java.util.List;
 
 public class Escenario {
 
-    private final Detective detective;
+    private final Policia policia;
     private final Ladron ladron;
     private final List<Ciudad> ciudades;
     private String nombreEnOrdenDeArresto;
 
-    public Escenario(Detective detective, Ladron ladron, List<Ciudad> ciudades) {
-        this.detective = detective;
+    public Escenario(Policia policia, Ladron ladron, List<Ciudad> ciudades) {
+        this.policia = policia;
         this.ladron = ladron;
         this.ciudades = ciudades;
     }
 
-    public Pista detectiveVisitar(String nombreEdificio) {
-        return detective.visitar(nombreEdificio);
+    public Pista policiaVisitar(String nombreEdificio) {
+        return policia.visitar(nombreEdificio);
     }
 
-    public void detectiveViajar(String nombreCiudad) {
-        detective.viajar(ciudades.stream().filter(c -> c.es(nombreCiudad)).findAny().orElseThrow());
+    public void policiaViajar(String nombreCiudad) {
+        policia.viajar(ciudades.stream().filter(c -> c.es(nombreCiudad)).findAny().orElseThrow());
     }
 
-    public void detectiveRecibirHeridaDeCuchillo() {
-        detective.recibirHeridaDeCuchillo();
+    public void policiaRecibirHeridaDeCuchillo() {
+        policia.recibirHeridaDeCuchillo();
     }
 
-    public void detectiveRecibirHeridaPorArmaDeFuego() {
-        detective.recibirHeridaPorArmaDeFuego();
+    public void policiaRecibirHeridaPorArmaDeFuego() {
+        policia.recibirHeridaPorArmaDeFuego();
     }
 
-    public void detectiveDormir() {
-        detective.dormir();
+    public void policiaDormir() {
+        policia.dormir();
     }
 
-    public boolean detectiveAtraparLadron() {
+    public boolean policiaAtraparLadron() {
         boolean ganado = ladron.seLlama(nombreEnOrdenDeArresto);
         if (ganado) {
-            detective.registrarArresto();
+            policia.registrarArresto();
         }
         return ganado;
     }
@@ -48,11 +48,11 @@ public class Escenario {
     }
 
     public List<String> edificiosVisitables() {
-        return detective.edificiosVisitables();
+        return policia.edificiosVisitables();
     }
 
     public List<String> ciudadesVisitables() {
-        return detective.ciudadesVisitables();
+        return policia.ciudadesVisitables();
     }
 
 }

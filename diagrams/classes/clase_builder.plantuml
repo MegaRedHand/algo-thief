@@ -1,27 +1,56 @@
 @startuml
 
-interface Builder {
-    + {abstract} construirCon(contadorDeDificultad)
+interface EscenarioBuilder {
+    + {abstract} construirCon(contadorDeDificultad, fuenteDeDatos): Escenario
+    + {abstract} obtenerCronometro(): Cronometro
 }
 
-class EscenarioBuilder implements Builder {
-    + EscenarioBuilder() : this
-    + conCronometro(cronometro) : this
-    + conObjetoRobado(nombre) : this
-    + conLadron(nombre, descripcion) : this
-    + conCiudad(nombre) : CiudadBuilder
-    + construirCon(contadorDeDificultad) : Escenario
+class RandomBuilder implements EscenarioBuilder {
+    - cronometro: Cronometro
+    + construirCon(contadorDeDificultad, fuenteDeDatos): Escenario
+    + obtenerCronometro(): Cronometro
+}
+
+class EscenarioBuilderManual implements EscenarioBuilder {
+    - cronometro: Cronometro
+    - ladron: Ladron
+    - objetoRobado: ObjetoRobado
+    + EscenarioBuilderManual()
+    + conCronometro(cronometro): this
+    + conObjetoRobado(nombre)
+    + conLadron(ladron)
+    + conCiudad(ciudadBuilders: CiudadBuilder[*])
+    + construirCon(contadorDeDificultad, fuenteDeDatos) : Escenario
+    + obtenerCronometro(): Cronometro
 }
 
 class CiudadBuilder {
-    + CiudadBuilder(nombreCiudad)
-    + conEdificios(nombresDeEdificios) : this
-    + construir() : Ciudad
+    - datosCiudad: Map<String, ?>
+    - datosSiguienteCiudad: Map<String, ?>
+    - adyacentes: String[*]
+    + CiudadBuilder(datosCiudad)
+    + lePertenece(objetoRobado): boolean
+    + conEdificios(edificioBuilders: EdificioBuilder[*]): this
+    + conPasajesA(buildersAdyacentes: CiudadBuilders[*])
+    + conPistasPara(builderSiguienteCiudad: CiudadBuilder): this
+    + construirCon(rango, descripcionSospechoso) : Ciudad
 }
 
-EscenarioBuilder "1" o-- "*" CiudadBuilder
-EscenarioBuilder .> Escenario
+interface FuenteDeDatos {
+    + crearCiudadBuilders(): CiudadBuilder[*]
+    + getComputadora(): Computadora
+}
+interface Rango
+abstract class EdificioBuilder
+
+EscenarioBuilder .> FuenteDeDatos
+EscenarioBuilderManual "1" o-- "*" CiudadBuilder
+EscenarioBuilderManual .> Escenario
 CiudadBuilder .> Ciudad
+CiudadBuilder ..> ObjetoRobado
 Edificio <. CiudadBuilder
+Rango <.. CiudadBuilder
+DescripcionSospechoso <.. CiudadBuilder
+CiudadBuilder "1" o-- "*" EdificioBuilder
 
 @enduml

@@ -183,7 +183,7 @@ public class Entrega1Test {
                 Double.parseDouble(datosMexico.get("longitud").toString())
         );
 
-        int distanciaEntreCiudades = coordenadasMontreal.distanciaA(coordenadasMexico);
+        int distanciaEntreCiudades = Double.valueOf(coordenadasMontreal.distanciaA(coordenadasMexico)).intValue();
         int tiempoEsperado = new Novato().tiempoDeViaje(distanciaEntreCiudades);
 
         assertEquals(DayOfWeek.MONDAY, cronometro.fechaActual().getDayOfWeek());
