@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.text.Font?>
 
 <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="197.0" style="-fx-background-color: grey;" textFill="#f7f5f5" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+=======
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<Button mnemonicParsing="false" prefHeight="67.0" prefWidth="141.0" style="-fx-background-color: grey;" textFill="#f7f5f5" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+>>>>>>> 830264f7baa327f9bffddbcd95b5af647e392eff
     <font>
         <Font name="Stencil" size="18.0" />
     </font>

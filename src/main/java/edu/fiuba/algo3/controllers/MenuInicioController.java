@@ -28,21 +28,23 @@ public class MenuInicioController {
         VBox root = null;
         try {
             FXMLLoader loader = new FXMLLoader(url);
-            loader.setController(new MenuInicioController(app));
+            loader.setController(new VentanaPrincipalController(app));
             root = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<String> nombresEdificios = Juego.getInstance().edificiosVisitables();
 
         HBox botonera = ((HBox) root.lookup("#botoneraOpciones"));
 
         URL urlBoton = getClass().getResource("/vistas/botonEdificio.fxml");
+
+        List<String> nombresEdificios = Juego.getInstance().edificiosVisitables();
+
         for (String nombre: nombresEdificios) {
+
             Button boton = null;
             try {
                 FXMLLoader loader = new FXMLLoader(urlBoton);
-                loader.setController(new MenuInicioController(app));
                 boton = loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
