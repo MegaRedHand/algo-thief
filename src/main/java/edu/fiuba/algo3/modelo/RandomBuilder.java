@@ -16,11 +16,21 @@ public class RandomBuilder implements EscenarioBuilder {
         Ladron ladron = obtenerLadron(fuente);
         builder.conLadron(ladron);
 
-        ObjetoRobado objetoRobado = obtenerObjetoRobado(contador, fuente);
+        ObjetoRobado objetoRobado;
+        List<CiudadBuilder> ciudadBuilders;
 
+        while (true) {
+            try {
+                objetoRobado = obtenerObjetoRobado(contador, fuente);
+
+                ciudadBuilders = generarListaDeCiudadBuilders(fuente, objetoRobado);
+            } catch (NoSuchElementException e) {
+                continue;
+            }
+            break;
+        }
         builder.conCronometro(cronometro).conObjetoRobado(objetoRobado);
-
-        List<CiudadBuilder> ciudadBuilders = generarListaDeCiudadBuilders(fuente, objetoRobado);
+        builder.conCiudades(ciudadBuilders.toArray(new CiudadBuilder[0]));
 
         List<CiudadBuilder> rutaDeEscape = new ArrayList<>(ciudadBuilders.subList(
                 0, objetoRobado.largoDeLaRutaDeEscape()));

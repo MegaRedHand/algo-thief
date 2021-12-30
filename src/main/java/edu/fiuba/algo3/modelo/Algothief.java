@@ -75,4 +75,7 @@ public class Algothief {
         return ganado;
     }
 
+    public List<String> edificiosVisitables() {
+        return escenarioActual.edificiosVisitables();
+    }
 }

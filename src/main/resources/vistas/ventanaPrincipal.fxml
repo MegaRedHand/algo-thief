@@ -1,52 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="11.0" layoutY="14.0" prefHeight="145.0" prefWidth="579.0" style="-fx-background-color: black;" textFill="#f2efef" wrapText="true">
+      <Label prefHeight="145.0" prefWidth="579.0" style="-fx-background-color: black;" textFill="#f2efef" wrapText="true">
          <font>
             <Font name="Stencil" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="visitarEdificio" layoutX="205.0" layoutY="319.0" mnemonicParsing="false" onAction="#click" prefHeight="67.0" prefWidth="153.0" style="-fx-background-color: grey;" text="VISITAR" textFill="#f7f5f5">
-         <font>
-            <Font name="Stencil" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="computadora" layoutX="403.0" layoutY="319.0" mnemonicParsing="false" onAction="#click" prefHeight="67.0" prefWidth="187.0" style="-fx-background-color: grey;" text="COMPUTADORA" textFill="#f7f5f5">
-         <font>
-            <Font name="Stencil" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="viajarAOtraCiudad" layoutX="22.0" layoutY="319.0" mnemonicParsing="false" onAction="#click" prefHeight="67.0" prefWidth="134.0" style="-fx-background-color: grey;" text="VIAJAR" textFill="#f7f5f5">
-         <font>
-            <Font name="Stencil" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="botonDos" layoutX="174.0" layoutY="190.0" mnemonicParsing="false" onAction="#click" prefHeight="67.0" prefWidth="115.0" style="-fx-background-color: grey;" textFill="#f7f5f5">
-         <font>
-            <Font name="Stencil" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="botonUno" layoutX="22.0" layoutY="190.0" mnemonicParsing="false" onAction="#click" prefHeight="67.0" prefWidth="115.0" style="-fx-background-color: grey;" textFill="#f7f5f5">
-         <font>
-            <Font name="Stencil" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="botonCuatro" layoutX="471.0" layoutY="190.0" mnemonicParsing="false" onAction="#click" prefHeight="67.0" prefWidth="115.0" style="-fx-background-color: grey;" textFill="#f7f5f5">
-         <font>
-            <Font name="Stencil" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="botonTres" layoutX="318.0" layoutY="190.0" mnemonicParsing="false" onAction="#click" prefHeight="67.0" prefWidth="115.0" style="-fx-background-color: grey;" textFill="#f7f5f5">
-         <font>
-            <Font name="Stencil" size="18.0" />
-         </font>
-      </Button>
+      <HBox fx:id="botoneraOpciones" prefHeight="100.0" prefWidth="200.0" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="computadora" mnemonicParsing="false" prefHeight="67.0" prefWidth="187.0" style="-fx-background-color: grey;" text="COMPUTADORA" textFill="#f7f5f5">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="viajarAOtraCiudad" mnemonicParsing="false" prefHeight="67.0" prefWidth="134.0" style="-fx-background-color: grey;" text="VIAJAR" textFill="#f7f5f5">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="visitarEdificio" mnemonicParsing="false" prefHeight="67.0" prefWidth="153.0" style="-fx-background-color: grey;" text="VISITAR" textFill="#f7f5f5">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
-</Pane>
+</VBox>

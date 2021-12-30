@@ -1,23 +1,42 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.controllers.MenuInicioController;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
 
+    private Stage stage;
+
     @Override
     public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+        this.stage = stage;
+        URL url = getClass().getResource("/vistas/ventanaInicio.fxml");
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(url);
+            loader.setController(new MenuInicioController(this));
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
+        loadScene(root);
+    }
+
+    public void loadScene(Parent parent) {
+        Scene scene = new Scene(parent, 600, 400);
+
+        stage.setTitle("AlgoThief");
         stage.setScene(scene);
         stage.show();
     }

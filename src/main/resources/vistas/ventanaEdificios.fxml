@@ -42,27 +42,27 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: black;" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="botonBanco" layoutX="95.0" layoutY="116.0" mnemonicParsing="false" onAction="#click" prefHeight="82.0" prefWidth="127.0" style="-fx-background-color: grey;" text="BANCO" textFill="#f7eded">
+            <Label fx:id="labelDescripcion" layoutX="95.0" layoutY="116.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="127.0" style="-fx-background-color: grey;" text="BANCO" textFill="#f7eded">
                <font>
                   <Font name="Stencil" size="18.0" />
                </font>
-            </Button>
+            </Label>
             <Label layoutX="89.0" layoutY="26.0" prefHeight="49.0" prefWidth="462.0" text="                        Edificios" textAlignment="CENTER" textFill="#f4eded">
                <font>
                   <Font name="Stencil" size="27.0" />
                </font>
             </Label>
-            <Button fx:id="botonPuerto" layoutX="431.0" layoutY="116.0" mnemonicParsing="false" onAction="#click" prefHeight="82.0" prefWidth="127.0" style="-fx-background-color: grey;" text="PUERTO" textFill="#f7eded">
+            <Button fx:id="botonPuerto" layoutX="431.0" layoutY="116.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="127.0" style="-fx-background-color: grey;" text="PUERTO" textFill="#f7eded">
                <font>
                   <Font name="Stencil" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="botonAeropuerto" layoutX="89.0" layoutY="252.0" mnemonicParsing="false" onAction="#click" prefHeight="82.0" prefWidth="127.0" style="-fx-background-color: grey;" text="AEROPUERTO" textFill="#f7eded">
+            <Button fx:id="botonAeropuerto" layoutX="89.0" layoutY="252.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="127.0" style="-fx-background-color: grey;" text="AEROPUERTO" textFill="#f7eded">
                <font>
                   <Font name="Stencil" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="botonBiblioteca" layoutX="431.0" layoutY="243.0" mnemonicParsing="false" onAction="#click" prefHeight="82.0" prefWidth="127.0" style="-fx-background-color: grey;" text="BIBLIOTECA" textFill="#f7eded">
+            <Button fx:id="botonBiblioteca" layoutX="431.0" layoutY="243.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="127.0" style="-fx-background-color: grey;" text="BIBLIOTECA" textFill="#f7eded">
                <font>
                   <Font name="Stencil" size="18.0" />
                </font>

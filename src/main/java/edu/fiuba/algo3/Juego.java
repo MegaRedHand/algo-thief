@@ -8,6 +8,7 @@ import edu.fiuba.algo3.perifericos.LectorDeArchivos;
 import edu.fiuba.algo3.perifericos.LectorJson;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 
 public class Juego {
@@ -17,12 +18,13 @@ public class Juego {
 
     private Juego() {
         URL pathCiudades = getClass().getResource("/datos/ciudades.json");
-        URL pathLadrones = getClass().getResource("/datos/ciudades.json");
-        URL pathObjetos = getClass().getResource("/datos/ciudades.json");
+        URL pathLadrones = getClass().getResource("/datos/ladrones.json");
+        URL pathObjetos = getClass().getResource("/datos/objetos.json");
+
         Map<String, LectorJson> lectores = Map.of(
-                "ciudades", new LectorJson(pathCiudades.toString()),
-                "ladrones", new LectorJson(pathLadrones.toString()),
-                "objetos", new LectorJson(pathObjetos.toString())
+                "ciudades", new LectorJson(pathCiudades.getPath()),
+                "ladrones", new LectorJson(pathLadrones.getPath()),
+                "objetos", new LectorJson(pathObjetos.getPath())
         );
         algothief = new Algothief(new LectorDeArchivos(lectores));
         algothief.asignarPolicia(new ContadorDeDificultad(new Novato(), 0));
@@ -36,4 +38,19 @@ public class Juego {
         algothief.generarEscenario(new RandomBuilder());
     }
 
+    public void visitar(String nombreEdificio) {
+        algothief.visitar(nombreEdificio);
+    }
+
+    public void viajar(String nombreCiudad) {
+        algothief.viajar(nombreCiudad);
+    }
+
+    public List<String> edificiosVisitables() {
+        return algothief.edificiosVisitables();
+    }
+
+    public String ultimaPista() {
+        return algothief.pistaMasReciente();
+    }
 }
