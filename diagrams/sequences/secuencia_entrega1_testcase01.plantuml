@@ -6,24 +6,22 @@ participant ":Testcase" as testcase
 participant "algothief:Algothief" as algothief
 participant "escenario:Escenario" as escenario
 participant "cronometro\n:Cronometro" as cron
-participant ":Detective" as detective
+participant ":Policia" as policia
 participant "ciudad: Ciudad" as ciudad
 participant "banco:Edificio" as banco
-participant "pista:Facil" as pista
+participant "pista:Pista" as pista
 
 
 activate testcase
-testcase -> algothief++: visitar("Banco Nacional")
-    algothief -> escenario++: detectiveVisitar("Banco Nacional")
-        escenario -> detective++: visitar("Banco Nacional")
-            detective -> ciudad++: obtenerEdificio("Banco Nacional")
+testcase -> algothief++: visitar("Banco de Montreal")
+    algothief -> escenario++: detectiveVisitar("Banco de Montreal")
+        escenario -> policia++: visitar("Banco de Montreal")
+            policia -> ciudad++: obtenerEdificio("Banco de Montreal")
                 return banco
-            detective -> detective++: visitar(banco)
-                detective -> detective: registrarVisita(banco)
-                detective -> detective++: tiempoDeVisita(banco)
-                    return min(3, 1)
-                detective -> cron: restar(1)
-                detective -> banco++: obtenerPista()
+            policia -> policia++: visitar(banco)
+                policia -> cron++: registrarVisita(banco)
+                    cron -> cron--: restar(3)
+                policia -> banco++: obtenerPista()
                     return pista
                 return pista
             return pista
@@ -35,7 +33,7 @@ testcase -> algothief++: pistaMasReciente()
         return descripcionDeLaPista
     return descripcionDeLaPista
 
-testcase -> testcase++: assertEquals("Descripción de la pista", descripcionDeLaPista)
+testcase -> testcase++: assertEquals(descripcionEsperada, descripcionDeLaPista)
 deactivate testcase
 
 @enduml

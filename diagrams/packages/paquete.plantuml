@@ -10,6 +10,7 @@ package algo3 {
 
     package controllers {
         class Controller
+        class Juego
     }
 
     package perifericos {
@@ -21,10 +22,9 @@ package algo3 {
     }
 
     perifericos ..> modelo
-    controllers ..> modelo
+    Juego ..> modelo
     vistas ..> controllers
 
-    class Juego
 
     Juego o-- Algothief
     Juego ...> LectorDeArchivos

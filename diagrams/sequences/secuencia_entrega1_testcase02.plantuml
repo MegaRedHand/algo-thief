@@ -8,27 +8,29 @@ participant "cronometro\n:Cronometro" as cron
 participant "pistaBanco:Facil" as pistaBanco
 participant "pistaBiblioteca:Facil" as pistaBiblioteca
 participant "escenario:Escenario" as escenario
-participant ":Detective" as detective
+participant ":Policia" as policia
+participant "fecha:LocalDateTime" as fecha
 
 
 activate testcase
-testcase -> algothief++: visitar("Banco Nacional")
-    algothief -> escenario++: detectiveVisitar("Banco Nacional")
-        escenario -> detective++: visitar("Banco Nacional")
+testcase -> algothief++: visitar("Banco de Montreal")
+    algothief -> escenario++: detectiveVisitar("Banco de Montreal")
+        escenario -> policia++: visitar("Banco de Montreal")
             return pistaBanco
         return pistaBanco
     deactivate algothief
 
 
+
 testcase -> algothief++: pistaMasReciente()
     algothief -> pistaBanco++: descripcion()
-        return "Descripción de la pista Banco"
-    return descripcionBanco := "Descripción de la pista Banco"
+        return descripcionPistaBanco
+    return descripcionPistaBanco
 
 
 testcase -> algothief++: visitar("Biblioteca de Montreal")
     algothief -> escenario++: detectiveVisitar("Biblioteca de Montreal")
-        escenario -> detective++: visitar("Biblioteca de Montreal")
+        escenario -> policia++: visitar("Biblioteca de Montreal")
             return pistaBiblioteca
         return pistaBiblioteca
     deactivate algothief
@@ -36,21 +38,29 @@ testcase -> algothief++: visitar("Biblioteca de Montreal")
 
 testcase -> algothief++: pistaMasReciente()
     algothief -> pistaBiblioteca++: descripcion()
-        return "Descripción de la pista pistaBiblioteca"
-    return descripcionBiblioteca := "Descripción de la pista pistaBiblioteca"
+        return descripcionPistaBiblioteca
+    return descripcionPistaBiblioteca
 
 
-testcase -> cron: tiempo()
-    activate cron
-    return tiempo
+testcase -> cron++: fechaActual()
+    return fecha
 
-testcase -> testcase++: assertEquals("Descripción de la pista Banco", pistaBanco)
+testcase -> fecha++: getDayOfWeek()
+    return diaDeLaSemana
+
+testcase -> fecha++: getHour()
+    return hora
+
+testcase -> testcase++: assertEquals(descripcionEsperadaBanco, descripcionPistaBanco)
 deactivate testcase
 
-testcase -> testcase++: assertEquals("Descripción de la pista Biblioteca", pistaBiblioteca)
+testcase -> testcase++: assertEquals(descripcionEsperadaBiblioteca, descripcionPistaBiblioteca)
 deactivate testcase
 
-testcase -> testcase++: assertEquals(2, tiempo)
+testcase -> testcase++: assertEquals(lunes, diaDeLaSemana)
+deactivate testcase
+
+testcase -> testcase++: assertEquals(9, hora)
 deactivate testcase
 
 @enduml

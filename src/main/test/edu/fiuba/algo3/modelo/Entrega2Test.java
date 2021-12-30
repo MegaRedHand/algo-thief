@@ -61,7 +61,7 @@ public class Entrega2Test {
     public void test01DetectiveSufreHeridaDeCuchilloYDuerme() {
 
         Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
-        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Novato(), 0));
 
         Cronometro cronometro = new Cronometro(7);
 
@@ -86,7 +86,7 @@ public class Entrega2Test {
     public void test02DetectiveInvestigadorTomaCasoYViajaDeMontrealAMexico() {
 
         Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
-        algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Investigador(), 10));
 
         Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
@@ -138,7 +138,7 @@ public class Entrega2Test {
         when(fuente.getComputadora()).thenReturn(new Computadora(List.of(ladron1, ladron2)));
 
         Algothief algothief = new Algothief(fuente);
-        algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Investigador(), 10));
 
         Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
@@ -163,7 +163,7 @@ public class Entrega2Test {
     public void test04DetectiveIntentaAtraparAlSospechosoSinLaOrdenDeArrestoEmitida() {
 
         Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
-        algothief.asignarDetective(new ContadorDeDificultad(new Investigador(), 10));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Investigador(), 10));
 
         Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
@@ -204,7 +204,7 @@ public class Entrega2Test {
 
         Algothief algothief = new Algothief(fuente);
 
-        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Detective(), 6));
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
@@ -238,7 +238,8 @@ public class Entrega2Test {
                 new Rasgo("sexo", "Femenino")
         );
         algothief.cargarDatosSospechoso(descripcion);
-        algothief.buscarSospechosos();
+        String nombre = algothief.buscarSospechosos().get(0);
+        algothief.emitirOrdenDeArresto(nombre);
 
         algothief.atraparSospechoso();
 

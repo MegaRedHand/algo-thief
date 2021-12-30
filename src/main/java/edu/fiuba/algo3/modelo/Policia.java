@@ -17,9 +17,9 @@ public class Policia {
         this.contador = contador;
     }
 
-    public void viajar(Ciudad ciudad) {
-        cronometro.registrarViaje(contador.rango(), ciudadActual, ciudad);
-        ciudadActual = ciudad;
+    public void viajar(Ciudad ciudadDestino) {
+        cronometro.registrarViaje(contador.rango(), ciudadActual, ciudadDestino);
+        ciudadActual = ciudadDestino;
     }
 
     public void recibirHeridaDeCuchillo() {

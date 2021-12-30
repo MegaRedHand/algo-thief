@@ -5,39 +5,57 @@ title "Caso de uso 5 de la entrega 1\n y caso de uso 1 de la entrega 2"
 participant ":Testcase1" as testcase
 participant ":Algothief" as algothief
 participant ":Escenario" as escenario
-participant ":Detective" as detective
+participant ":Policia" as policia
 participant ":Cronometro" as cronometro
+participant "saludable:Saludable" as saludable
+participant "herido:Herido" as herido
+participant "fecha\n:LocalDateTime" as fecha
 
 activate testcase
 testcase -> algothief: recibirHeridaDeCuchillo()
     activate algothief
-    algothief -> escenario: detectiveRecibirHeridaDeCuchillo()
+    algothief -> escenario: policiaRecibirHeridaDeCuchillo()
         activate escenario
-        escenario -> detective: recibirHeridaDeCuchillo()
-            activate detective
-            detective -> cronometro: restar(2)
-            deactivate detective
+        escenario -> policia: recibirHeridaDeCuchillo()
+            activate policia
+            policia -> cronometro++: registrarHeridaDeCuchillo(saludable)
+                cronometro -> saludable++: tiempoDeRecuperacion()
+                    return 2
+                cronometro -> cronometro: restar(2)
+                deactivate
+            policia -> saludable++: recibirHeridaDeCuchillo()
+                saludable ->> herido**: <<create>>\n Herido()
+                return salud := herido
+            deactivate policia
         deactivate escenario
     deactivate algothief
 
-testcase -> algothief: recibirHeridaDeCuchillo()
+testcase -> algothief: dormir()
     activate algothief
-    algothief -> escenario: detectiveDormir()
+    algothief -> escenario: policiaDormir()
         activate escenario
-        escenario -> detective: dormir()
-            activate detective
-            detective -> cronometro: restar(8)
-            deactivate detective
+        escenario -> policia: dormir()
+            activate policia
+            policia -> cronometro++: registrarDormir()
+                cronometro -> cronometro--: restar(8)
+            deactivate policia
         deactivate escenario
     deactivate algothief
 
-testcase -> cronometro: tiempo()
-    activate cronometro
-    return horas
+testcase -> cronometro++: fechaActual()
+    return fecha
 
-testcase -> testcase: assertEquals(10, horas)
-activate testcase
-deactivate testcase
+testcase -> fecha++: getDayOfWeek()
+    return diaDeLaSemana
+
+testcase -> fecha++: getHour()
+    return hora
+
+testcase -> testcase++: assertEquals(lunes, diaDeLaSemana)
+deactivate
+
+testcase -> testcase++: assertEquals(17, hora)
+deactivate
 
 @enduml
 

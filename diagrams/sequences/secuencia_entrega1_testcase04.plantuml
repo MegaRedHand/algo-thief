@@ -4,32 +4,32 @@ title "Caso de uso 4 de la entrega 1"
 
 participant ":Testcase" as testcase
 participant ":Algothief" as algothief
+participant "escenario:Escenario" as escenario
+participant ":Policia" as policia
 participant ":Cronometro" as cronometro
+participant "mexico:Ciudad" as ciudad
+participant "aeropuerto:Edificio" as aeropuerto
+
 
 
 activate testcase
 loop 3 veces
-    testcase -> algothief++: visitar("Banco Nacional")
-        algothief -> escenario++: detectiveVisitar("Banco Nacional")
-            escenario -> detective++: visitar("Banco Nacional")
-                detective -> ciudad++: obtenerEdificio("Banco Nacional")
-                    return banco
-                detective -> detective++: visitar(banco)
-                    detective -> detective: registrarVisita(banco)
+    testcase -> algothief++: visitar("Aeropuerto de Mexico")
+        algothief -> escenario++: policiaVisitar("Aeropuerto de Mexico")
+            escenario -> policia++: visitar("Aeropuerto de Mexico")
+                policia -> ciudad++: obtenerEdificio("Aeropuerto de Mexico")
+                    return aeropuerto
+                policia -> policia++: visitar(aeropuerto)
+                    policia -> cronometro++: registrarVisita(aeropuerto)
                     alt primera visita
-                        detective -> detective++: tiempoDeVisita(banco)
-                        return min(3, 1)
-                    detective -> cron: restar(1)
+                        cronometro -> cronometro: restar(1)
                     else segunda visita
-                        detective -> detective++: tiempoDeVisita(banco)
-                        return min(3, 2)
-                    detective -> cron: restar(2)
+                        cronometro -> cronometro: restar(2)
                     else tercera visita
-                        detective -> detective++: tiempoDeVisita(banco)
-                        return min(3, 3)
-                    detective -> cron: restar(3)
+                        cronometro -> cronometro: restar(3)
                     end alt
-                    detective -> banco++: obtenerPista()
+                    deactivate
+                    policia -> aeropuerto++: obtenerPista()
                         return pista
                     return pista
                 return pista
@@ -37,25 +37,29 @@ loop 3 veces
         deactivate algothief
 end loop
 testcase -> algothief++: pistaMasReciente()
-    return descripcionAeropuerto := "Descripción de la pista Aeropuerto"
+    return descripcionPistaAeropuerto
 
 loop 55 veces
     testcase -> algothief: visitar("Puerto de Mexico")
 end loop
 testcase -> algothief++: pistaMasReciente()
-    return descripcionPuerto := "Descripción de la pista Puerto"
+    return descripcionPistaPuerto
 
+testcase -> algothief++: juegoAcabado()
+    return true
+testcase -> algothief++: juegoGanado()
+    return false
 
-testcase -> cronometro++: tiempo()
-    return horas
-
-testcase -> testcase++: assertEquals("Descripción de la pista Aeropuerto", descripcionAeropuerto)
+testcase -> testcase++: assertEquals(descripcionEsperadaAeropuerto, descripcionPistaAeropuerto)
 deactivate testcase
 
-testcase -> testcase++: assertEquals("Descripción de la pista Puerto", descripcionPuerto)
+testcase -> testcase++: assertEquals(descripcionEsperadaPuerto, descripcionPistaPuerto)
 deactivate testcase
 
-testcase -> testcase++: assertEquals(4, horas)
+testcase -> testcase++: assertTrue(juegoAcabado)
+deactivate testcase
+
+testcase -> testcase++: assertFalse(juegoGanado)
 deactivate testcase
 
 @enduml

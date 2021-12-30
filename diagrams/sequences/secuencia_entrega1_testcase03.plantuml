@@ -4,29 +4,48 @@ title "Caso de uso 3 de la entrega 1"
 
 participant ":Testcase" as testcase
 participant ":Algothief" as algothief
-participant ":Cronometro" as cronometro
 participant ":Escenario" as escenario
-participant ":Detective" as detective
+participant ":Policia" as policia
+participant ":Cronometro" as cronometro
 participant ":ContadorDeArrestos" as contador
 participant "rango:Novato" as rango
+participant "fecha:LocalDateTime" as fecha
+participant "montreal:Ciudad" as montreal
+participant "coordenadasMontreal\n:Coordenadas" as coordenadasMontreal
+participant ":Cronometro" as cron
 
 activate testcase
 testcase -> algothief++: viajar("Mexico")
-    algothief -> escenario++: detectiveViajar("Mexico")
-        escenario -> detective++: viajar(mexico)
-            detective -> contador++: rango()
+    algothief -> escenario++: policiaViajar("Mexico")
+        escenario -> policia++: viajar(mexico)
+            policia -> contador++: rango()
                 return rango
-            detective -> rango++: tiempoDeViaje(3800)
-                return 3800 / 900
-            detective -> cronometro: restar(4)
-            return
-        return
-    return
+            policia -> cronometro++: registrarViaje(rango, montreal, mexico)
+                cronometro -> montreal++: distanciaA(mexico)
+                    montreal -> coordenadasMontreal++: distanciaA(coordenadasMexico)
+                        return distancia
+                    return distancia
+                cronometro -> rango++: tiempoDeViaje(distancia)
+                    return tiempo := distancia / 900
+                cronometro -> cronometro--: restar(tiempo)
+            deactivate
+        deactivate
+    deactivate
 
-testcase -> cronometro++: tiempo()
-    return horas
+testcase -> cron++: fechaActual()
+    return fecha
 
-testcase -> testcase++: assertEquals(4, horas)
-deactivate testcase
+testcase -> fecha++: getDayOfWeek()
+    return diaDeLaSemana
+
+testcase -> fecha++: getHour()
+    return hora
+
+testcase -> testcase++: assertEquals(lunes, diaDeLaSemana)
+deactivate
+
+testcase -> testcase++: assertEquals(tiempoDeViaje, hora)
+deactivate
+
 
 @enduml

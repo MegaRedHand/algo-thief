@@ -5,56 +5,62 @@ title "Caso de uso 5 de la entrega 2"
 participant ":Testcase" as testcase
 participant ":Algothief" as algothief
 
-participant ":Ladron" as ladron
-participant ":Escenario" as escenario
+participant "computadora\n:Computadora" as computadora
 participant "fuente\n:FuenteDeDatos" as fuente
 
 participant "ladron1:Ladron" as ladron1
 participant "ladron2:Ladron" as ladron2
+participant "descripcion\n:DescripcionSospechoso" as descripcion
+
+participant ":Escenario" as escenario
+participant ":Policia" as policia
+participant ":Ladron" as ladron
+participant ":Contador" as contador
+participant ":Detective" as rango
 
 activate testcase
-testcase -> algothief: visitar("Banco Nacional")
-testcase -> algothief: visitar("Banco Nacional")
+testcase -> algothief: visitar("Banco de Montreal")
+testcase -> algothief: visitar("Banco de Montreal")
 testcase -> algothief: visitar("Biblioteca de Montreal")
 
 testcase -> algothief: viajar("Mexico")
-testcase -> algothief: visitar("Aeropuerto Nacional")
+testcase -> algothief: visitar("Aeropuerto de Mexico")
 
 testcase -> algothief: cargarDatosSospechoso(descripcion)
-    activate algothief
-    algothief -> descripcion: agregar(descripcion)
-    deactivate algothief
 
-testcase -> algothief: buscarSospechosos()
-    activate algothief
-    algothief -> fuente: listaDeLadrones()
-        activate fuente
-        return ladrones
-    algothief -> ladron1: descripcion()
-            activate ladron1
+testcase -> algothief++: buscarSospechosos()
+    algothief -> fuente++: getComputadora()
+        return computadora
+    algothief -> computadora++: ladronesConDescripcion(descripcion)
+        computadora -> ladron1++: descripcion()
             return descripcionLadron1
-    algothief -> descripcion: coincideCon(descripcionLadron1)
-        activate descripcion
-        return true
-    algothief -> ladron1: getNombre()
-        activate ladron1
-        return "Carmen SanDiego"
-    algothief -> ladron2: descripcion()
-        activate ladron2
-        return descripcionLadron2
-    algothief -> descripcion: coincideCon(descripcionLadron2)
-        activate descripcion
-        return false
-    algothief -> escenario: emitirOrdenDeArresto("Carmen SanDiego")
-    return "Carmen SanDiego"
+        computadora -> descripcion++: coincideCon(descripcionLadron1)
+            return true
+        computadora -> ladron1++: getNombre()
+            return "Carmen SanDiego"
+        computadora -> ladron2++: descripcion()
+            return descripcionLadron2
+        computadora -> descripcion++: coincideCon(descripcionLadron2)
+            return false
+        return ["Carmen SanDiego"]
+    return ["Carmen SanDiego"]
+
+testcase -> algothief++: emitirOrdenDeArresto("Carmen SanDiego")
+    algothief -> escenario--: emitirOrdenDeArresto("Carmen SanDiego")
 
 testcase -> algothief: atraparSospechoso()
     activate algothief
-    algothief -> escenario: detectiveAtraparLadron()
+    algothief -> escenario: policiaAtraparLadron()
         activate escenario
         escenario -> ladron: seLlama("Carmen SanDiego")
             activate ladron
             return true
+        escenario -> policia++: registrarArresto()
+            policia -> contador++: registrarArresto()
+                contador -> rango++: actualizar(7)
+                    return self
+                deactivate
+            deactivate
         return true
     deactivate algothief
 

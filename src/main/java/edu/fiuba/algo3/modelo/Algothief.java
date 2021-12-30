@@ -17,7 +17,7 @@ public class Algothief {
         this.fuente = fuente;
     }
 
-    public void asignarDetective(ContadorDeDificultad contador) {
+    public void asignarPolicia(ContadorDeDificultad contador) {
         this.contador = contador;
     }
 
@@ -55,13 +55,11 @@ public class Algothief {
     }
 
     public List<String> buscarSospechosos() {
-        List<String> nombres = fuente.getComputadora().ladronesConDescripcion(descripcion);
+        return fuente.getComputadora().ladronesConDescripcion(descripcion);
+    }
 
-        if (nombres.size() == 1) {
-            escenarioActual.emitirOrdenDeArresto(nombres.get(0));
-        }
-
-        return nombres;
+    public void emitirOrdenDeArresto(String nombre) {
+        escenarioActual.emitirOrdenDeArresto(nombre);
     }
 
     public void atraparSospechoso() {

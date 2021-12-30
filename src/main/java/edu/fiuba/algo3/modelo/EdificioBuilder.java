@@ -26,7 +26,8 @@ public abstract class EdificioBuilder {
 
     public Edificio construirCon(Rango rango, Map<String, ?> datosSiguienteCiudad, DescripcionSospechoso descripcion) {
         String nombre = String.format("%s de %s", nombreEdificio, nombreCiudad);
-        return new Edificio(nombre, rango.generarPistaCon(getGeneradorDePistas(datosSiguienteCiudad), datosSiguienteCiudad, descripcion));
+        Pista pista = rango.generarPistaCon(getGeneradorDePistas(datosSiguienteCiudad), datosSiguienteCiudad, descripcion);
+        return new Edificio(nombre, pista);
     }
 
 }

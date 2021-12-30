@@ -3,17 +3,13 @@ package edu.fiuba.algo3.modelo;
 import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
 import static java.util.Map.entry;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class Entrega1Test {
 
@@ -77,7 +73,7 @@ public class Entrega1Test {
 
         Algothief algothief = new Algothief(fuente);
 
-        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Novato(), 0));
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
@@ -117,7 +113,7 @@ public class Entrega1Test {
 
         Algothief algothief = new Algothief(fuente);
 
-        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Novato(), 0));
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
@@ -157,7 +153,7 @@ public class Entrega1Test {
 
         Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
 
-        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Novato(), 0));
 
         EscenarioBuilderManual builder = new EscenarioBuilderManual();
 
@@ -208,7 +204,7 @@ public class Entrega1Test {
 
         Algothief algothief = new Algothief(fuente);
 
-        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Novato(), 0));
 
         Cronometro cronometro = new Cronometro(7);
         EscenarioBuilderManual builder = new EscenarioBuilderManual().conCronometro(cronometro);
@@ -240,9 +236,8 @@ public class Entrega1Test {
         assertEquals(pistaAeropuerto.descripcion(), pistaDevueltaAeropuerto);
         assertEquals(pistaPuerto.descripcion(), algothief.pistaMasReciente());
 
-        assertEquals(DayOfWeek.MONDAY, cronometro.fechaActual().getDayOfWeek());
-        assertEquals(7, cronometro.fechaActual().getHour());
-        assertTrue(cronometro.seAcaboElTiempo());
+        assertTrue(algothief.juegoAcabado());
+        assertFalse(algothief.juegoGanado());
     }
 
     /**Caso de uso 5
@@ -253,7 +248,7 @@ public class Entrega1Test {
     public void test05DetectiveSufreHeridaDeCuchilloYDuerme() {
 
         Algothief algothief = new Algothief(mock(FuenteDeDatos.class));
-        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Novato(), 0));
 
         Cronometro cronometro = new Cronometro(7);
 

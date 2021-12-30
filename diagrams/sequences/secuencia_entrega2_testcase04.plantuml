@@ -12,7 +12,7 @@ participant ":Ladron" as ladron
 activate testcase
 testcase -> algothief: atraparSospechoso()
     activate algothief
-    algothief -> escenario: detectiveAtraparLadron()
+    algothief -> escenario: policiaAtraparLadron()
         activate escenario
         escenario -> ladron: seLlama(null)
             activate ladron

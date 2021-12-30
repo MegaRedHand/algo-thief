@@ -3,11 +3,10 @@
 title "Caso de uso 3 de la entrega 2"
 
 participant ":Testcase" as testcase
-participant "descripcion\n:DescripcionSospechoso" as descripcion
 participant ":Algothief" as algothief
-participant ":DescripcionSospechoso" as descripcionAT
+participant "computadora\n:Computadora" as computadora
 participant ":Ladron" as ladron
-participant ":Escenario" as escenario
+participant "descripcion\n:DescripcionSospechoso" as descripcion
 participant "fuente:FuenteDeDatos" as fuente
 participant "hobby:Rasgo" as hobby
 participant "sexo:Rasgo" as sexo
@@ -16,24 +15,22 @@ activate testcase
 testcase ->> hobby**: <<create>>\nRasgo("Hobby", "Tenis")
 testcase ->> sexo**: <<create>>\nRasgo("Sexo", "Femenino")
 testcase ->> descripcion**: <<create>>\nDescripcionSospechoso(hobby, sexo)
-testcase -> algothief++: cargarDatosSospechoso(descripcion)
-    algothief -> descripcionAT++: agregar(descripcion)
-        return
-    return
+testcase -> algothief: cargarDatosSospechoso(descripcion)
 
 testcase -> algothief++: buscarSospechosos()
-    algothief -> fuente++: listaDeLadrones()
-        return ladrones
-    loop por cada ladron
-        algothief -> ladron++: descripcion()
-            return descripcionLadron
-        algothief -> descripcionAT++: coincideCon(descripcionLadron)
-            return coincide
-    end loop
-    algothief -> escenario: emitirOrdenDeArresto("Carmen SanDiego")
-    return "Carmen SanDiego"
+    algothief -> fuente++: getComputadora()
+        return computadora
+    algothief -> computadora++: ladronesConDescripcion(descripcion)
+        loop por cada ladron
+            computadora -> ladron++: descripcion()
+                return descripcionLadron
+            computadora -> descripcion++: coincideCon(descripcionLadron)
+                return coincide
+        end loop
+        return ["Carmen SanDiego"]
+    return ["Carmen SanDiego"]
 
-testcase -> testcase: assertEquals("Carmen SanDiego", "Carmen SanDiego")
+testcase -> testcase: assertEquals(["Carmen SanDiego"], nombresDevueltos)
 activate testcase
 deactivate testcase
 

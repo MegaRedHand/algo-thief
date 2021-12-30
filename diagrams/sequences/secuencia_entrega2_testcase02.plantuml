@@ -4,36 +4,48 @@ title "Caso de uso 2 de la entrega 2"
 
 participant ":Testcase" as testcase
 participant ":Algothief" as algothief
-participant ":Cronometro" as cronometro
 participant ":Escenario" as escenario
-participant ":Detective" as detective
+participant ":Policia" as policia
+participant ":Cronometro" as cronometro
 participant ":ContadorDeArrestos" as contador
 participant "rango:Investigador" as rango
+participant "fecha:LocalDateTime" as fecha
+participant "montreal:Ciudad" as montreal
+participant "coordenadasMontreal\n:Coordenadas" as coordenadasMontreal
+participant ":Cronometro" as cron
 
 activate testcase
-testcase -> algothief: viajar("Mexico")
-    activate algothief
-    algothief -> escenario: detectiveViajar("Mexico")
-        activate escenario
-        escenario -> detective: viajar(mexico)
-            activate detective
-            detective -> contador: rango()
-                activate contador
+testcase -> algothief++: viajar("Mexico")
+    algothief -> escenario++: policiaViajar("Mexico")
+        escenario -> policia++: viajar(mexico)
+            policia -> contador++: rango()
                 return rango
-            detective -> rango: tiempoDeViaje(3800)
-                activate rango
-                return 3800 / 1100
-            detective -> cronometro: restar(3)
-            return
-        return
-    return
+            policia -> cronometro++: registrarViaje(rango, montreal, mexico)
+                cronometro -> montreal++: distanciaA(mexico)
+                    montreal -> coordenadasMontreal++: distanciaA(coordenadasMexico)
+                        return distancia
+                    return distancia
+                cronometro -> rango++: tiempoDeViaje(distancia)
+                    return tiempo := distancia / 1300
+                cronometro -> cronometro--: restar(tiempo)
+            deactivate
+        deactivate
+    deactivate
 
-testcase -> cronometro: tiempo()
-    activate cronometro
-    return horas
+testcase -> cron++: fechaActual()
+    return fecha
 
-testcase -> testcase: assertEquals(3, horas)
-activate testcase
-deactivate testcase
+testcase -> fecha++: getDayOfWeek()
+    return diaDeLaSemana
+
+testcase -> fecha++: getHour()
+    return hora
+
+testcase -> testcase++: assertEquals(lunes, diaDeLaSemana)
+deactivate
+
+testcase -> testcase++: assertEquals(tiempoDeViaje, hora)
+deactivate
+
 
 @enduml

@@ -2,26 +2,20 @@
 
 'autonumber
 
-title "Detective visita un edificio"
+title "Policia visita un edificio"
 
-participant ":Detective" as detective
+participant ":Policia" as policia
 participant "ciudadActual:Ciudad" as ciudad
 participant ":Cronometro" as cron
 participant "edificio:Edificio" as edificio
 
--> detective: visitar(nombreEdificio)
-activate detective
-detective -> ciudad: obtenerEdificio(nombreEdificio)
-    activate ciudad
+-> policia++: visitar(nombreEdificio)
+policia -> ciudad++: obtenerEdificio(nombreEdificio)
     return edificio
-detective -> detective: visitar(edificio)
-    activate detective
-    detective -> detective: registrarVisita(edificio)
-    detective -> detective++: tiempoDeVisita(edificio)
-        return tiempo := min(3, cantidadDeVisitas)
-    detective -> cron: restar(tiempo)
-    detective -> edificio: obtenerPista()
-        activate edificio
+policia -> policia++: visitar(edificio)
+    policia -> cron++: registrarVisita(edificio)
+        cron -> cron--: restar(tiempo)
+    policia -> edificio++: obtenerPista()
         return pista
     return pista
 return pista

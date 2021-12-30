@@ -2,22 +2,6 @@
 
 title "Diagrama de estados de los rangos"
 
-
-'state Vivo {
-'    [*] -> Soltero
-'    state Casado
-'    state Viudo
-'}
-'state Muerto
-'
-'[*] -> Vivo
-'
-'Soltero --> Casado : se casa
-'Casado -> Viudo : enviuda
-'Viudo -> Casado : se casa
-'
-'Vivo -> Muerto
-
 state Novato
 state Detective
 state Investigador

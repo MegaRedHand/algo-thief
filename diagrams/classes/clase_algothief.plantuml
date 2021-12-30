@@ -3,7 +3,7 @@
 class AlgoThief {
     + AlgoThief(fuenteDeDatos)
     + generarEscenario(builder)
-    + asignarDetective(contadorDeDificultad)
+    + asignarPolicia(contadorDeDificultad)
     + visitar(nombreEdificio)
     + viajar(nombreCiudad)
     + recibirHeridaDeCuchillo()
@@ -11,6 +11,7 @@ class AlgoThief {
     + dormir()
     + cargarDatosSospechoso(descripcionSospechoso)
     + buscarSospechosos() : List<String>
+    + emitirOrdenDeArresto(nombre)
     + atraparSospechoso()
     + pistaMasReciente() : String
     + juegoAcabado() : boolean

@@ -6,68 +6,90 @@ participant ":Testcase" as testcase
 participant "fuenteStub\n:FuenteDeDatos" as fuente
 participant ":Algothief" as algothief
 
-participant "escenarioBuilder\n:EscenarioBuilder" as escenarioBuilder
+participant "escenarioBuilder\n:EscenarioBuilderManual" as escenarioBuilder
 participant "cronometro\n:Cronometro" as cron
-participant "ciudadBuilder\n:CiudadBuilder" as ciudadBuilder
+participant "montrealBuilder\n:CiudadBuilder" as montrealBuilder
+participant "mexicoBuilder\n:CiudadBuilder" as mexicoBuilder
 
-participant ":Detective" as detective
-participant "escenario:Escenario" as escenario
-
+participant "bancoBuilder:BancoBuilder" as bancoBuilder
 participant "novato:Novato" as novato
+participant "generadorDePistas\n:GeneradorDePistasBanco" as generadorDePistas
+
 participant "contador\n:ContadorDeDificultad" as contDificultad
+participant "descripcion\n:DescripcionSospechoso" as descripcion
+participant "pista:Pista" as pista
+participant "banco:Edificio" as banco
+participant "coordenadas\n:Coordenadas" as coordenadas
+participant "ciudad: Ciudad" as ciudad
+participant ":Policia" as policia
+participant "escenario:Escenario" as escenario
 participant "objeto:Comun" as objeto
 participant "rasgo:Rasgo" as rasgo
-participant "descripcion\n:DescripcionSospechoso" as descripcion
 participant ":Ladron" as ladron
-participant "pista:Facil" as pista
-participant "banco:Edificio" as banco
-participant "ciudad: Ciudad" as ciudad
-
 
 
 activate testcase
 testcase ->> fuente**: <<create>>\n FuenteDeDatos()
-testcase ->> algothief**: <<create>>\n Algothief(fuente)
-
+testcase ->> algothief**: <<create>>\n Algothief(fuenteStub)
 
 testcase ->> novato**: <<create>>\n Novato()
-testcase ->> contDificultad**: <<create>>\n ContadorDeDificultad(novato,0)
+testcase ->> contDificultad**: <<create>>\n ContadorDeDificultad(novato, cantidadInicialDeArrestos)
 
-testcase -> algothief: asignarDetective(contador)
+testcase -> algothief: asignarPolicia(contador)
 
 testcase ->> escenarioBuilder**: <<create>>\n EscenarioBuilder()
 
-testcase ->> cron**: <<create>>\n Cronometro()
+testcase ->> cron**: <<create>>\n Cronometro(7)
 testcase -> escenarioBuilder++: conCronometro(cronometro)
     return escenarioBuilder
 
-testcase ->> objeto**: <<create>>\n Comun("Tesoro Nacional de Montreal")
+testcase ->> objeto**: <<create>>\n Comun("Tesoro Nacional de Montreal", "Montreal")
 testcase -> escenarioBuilder++: conObjetoRobado(objeto)
     return escenarioBuilder
 
 testcase ->> rasgo**: <<create>>\n Rasgo("Sexo","Femenino")
 testcase ->> descripcion**: <<create>>\n DescripcionSospechoso(rasgo)
-testcase -> escenarioBuilder++: conLadron("Sospechoso",descripcion)
-    escenarioBuilder ->> ladron**: <<create>>\n Ladron("nombre",descripcion)
-    return escenarioBuilder
+testcase ->> ladron**: <<create>>\n Ladron("Carmen SanDiego", descripcion)
+testcase -> escenarioBuilder: conLadron(ladron)
 
-testcase -> escenarioBuilder++: conCiudad("Montreal")
-    escenarioBuilder ->> ciudadBuilder**: <<create>>\n CiudadBuilder("Montreal")
-    return ciudadBuilder
+testcase -> escenarioBuilder: conCiudades(ciudadBuilder)
 
-testcase -> ciudadBuilder++: conEdificios("Banco Nacional")
-    return ciudadBuilder
+testcase ->> bancoBuilder**: <<create>>\n BancoBuilder()
+activate bancoBuilder
+    bancoBuilder ->> generadorDePistas**: <<create>>\n GeneradorDePistasBanco()
+    deactivate bancoBuilder
+
+testcase ->> mexicoBuilder**: CiudadBuilder(datosMexico)
+testcase ->> montrealBuilder**: CiudadBuilder(datosMontreal)
+
+testcase -> montrealBuilder++: conEdificios(bancoBuilder)
+    montrealBuilder -> bancoBuilder: deCiudad("Montreal")
+    return montrealBuilder
+
+testcase -> montrealBuilder: conPistasPara(mexicoBuilder)
 
 testcase -> algothief++: generarEscenario(escenarioBuilder)
-    algothief -> escenarioBuilder++: construirCon(contador)
-        escenarioBuilder -> ciudadBuilder++: construir()
-            ciudadBuilder ->> pista**: <<create>>\n Facil("Descripcion Pista")
-            ciudadBuilder ->> banco**: <<create>>\n Edificio("Banco Nacional", pista)
-            ciudadBuilder ->> ciudad**: <<create>>\n Ciudad("Montreal", banco)
+    algothief -> escenarioBuilder++: construirCon(contador, fuenteStub)
+        escenarioBuilder -> contDificultad++: rango()
+            return novato
+        escenarioBuilder -> montrealBuilder++: construirCon(novato, descripcion)
+            montrealBuilder -> bancoBuilder++: construirCon(novato, datosMexico, descripcion)
+                bancoBuilder -> novato++: generarPistaCon(generadorDePistas, datosMexico, descripcion)
+                    novato -> generadorDePistas++: generarPistaFacil(datosMexico, descripcion)
+                        generadorDePistas -> descripcion++: getPistaVehiculo()
+                            return vehiculoLadron
+                        generadorDePistas ->> pista**: <<create>>\n Pista(monedaCiudad, vehiculoLadron)
+                        return pista
+                    return pista
+                bancoBuilder ->> banco**: <<create>>\n Edificio("Banco de Montreal", pista)
+            montrealBuilder ->> coordenadas**: <<create>>\n Coordenadas(latitudMontreal, longitudMontreal)
+            montrealBuilder ->> ciudad**: <<create>>\n Ciudad("Montreal", [banco], ["Mexico"], coordenadas)
             return ciudad
-        escenarioBuilder ->> detective**: <<create>>\n Detective(cronometro, ciudad, contador)
-        escenarioBuilder ->> escenario**: <<create>>\n Escenario(detective, ladron, ciudad)
+        escenarioBuilder ->> policia**: <<create>>\n Policia(cronometro, ciudad, contador)
+        escenarioBuilder ->> escenario**: <<create>>\n Escenario(policia, ladron, [ciudad])
         return escenario
-        deactivate algothief
+    algothief -> escenarioBuilder++: obtenerCronometro()
+        return cronometro
+    deactivate algothief
 
 @enduml

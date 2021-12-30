@@ -10,7 +10,7 @@ public class Cronometro {
 
     private final static int LIMITE_DE_TIEMPO = 6 /*dias*/ * 24 /*horas*/ + 17 /*horas*/;
     private final Map<Edificio, Integer> visitasPorEdificio = new HashMap<>();
-    private int tiempoRegistrado; // porque empieza el lunes a las 7
+    private int tiempoRegistrado = 0; // porque empieza el lunes a las 7
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("E H:m"); // "Lunes 16:00"
     // fecha.format(FORMATTER);
 
@@ -19,29 +19,33 @@ public class Cronometro {
      * @param tiempoInicial la cantidad de horas que se le adicionan al cronometro inicialmente
      */
     public Cronometro(int tiempoInicial) {
-        tiempoRegistrado = tiempoInicial;
+        this.restar(tiempoInicial);
+    }
+
+    private void restar(int horasPasadas) {
+        tiempoRegistrado += horasPasadas;
     }
 
     public void registrarVisita(Edificio edificio) {
         int cantidadDeVisitas = visitasPorEdificio.getOrDefault(edificio, 0) + 1;
-        tiempoRegistrado += Integer.min(cantidadDeVisitas, 3);
+        this.restar(Integer.min(cantidadDeVisitas, 3));
         visitasPorEdificio.put(edificio, cantidadDeVisitas);
     }
 
     public void registrarViaje(Rango rango, Ciudad ciudadOrigen, Ciudad ciudadDestino) {
-        tiempoRegistrado += rango.tiempoDeViaje(ciudadOrigen.distanciaA(ciudadDestino));
+        this.restar(rango.tiempoDeViaje(ciudadOrigen.distanciaA(ciudadDestino)));
     }
 
     public void registrarDormir() {
-        tiempoRegistrado += 8;
+        this.restar(8);
     }
 
     public void registrarHeridaDeCuchillo(Salud salud) {
-        tiempoRegistrado += salud.tiempoDeRecuperacion();
+        this.restar(salud.tiempoDeRecuperacion());
     }
 
     public void registrarHeridaPorArmaDeFuego() {
-        tiempoRegistrado += 4;
+        this.restar(4);
     }
 
     public LocalDateTime fechaActual() {

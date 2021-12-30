@@ -25,7 +25,7 @@ public class Juego {
                 "objetos", new LectorJson(pathObjetos.toString())
         );
         algothief = new Algothief(new LectorDeArchivos(lectores));
-        algothief.asignarDetective(new ContadorDeDificultad(new Novato(), 0));
+        algothief.asignarPolicia(new ContadorDeDificultad(new Novato(), 0));
     }
 
     public static Juego getInstance() {
