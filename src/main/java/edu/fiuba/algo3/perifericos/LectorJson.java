@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.net.URL;
@@ -21,18 +22,12 @@ public class LectorJson {
     }
 
     public List<Map<String,?>> leerJson() {
-        List<Map<String,?>> datos = null;
-        try {
-            Reader archivo = Files.newBufferedReader(Paths.get(rutaArchivo));
-            Gson gson = new Gson();
+        Reader archivo = new InputStreamReader(getClass().getResourceAsStream(rutaArchivo));
+        Gson gson = new Gson();
 
-            final Type tipoListaDatos = new TypeToken<List<Map<?,?> >>(){}.getType();
-            datos = gson.fromJson(archivo, tipoListaDatos);
+        final Type tipoListaDatos = new TypeToken<List<Map<?,?> >>(){}.getType();
 
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return datos;
+        return gson.fromJson(archivo, tipoListaDatos);
     }
 
 }

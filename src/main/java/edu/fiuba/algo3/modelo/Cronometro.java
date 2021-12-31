@@ -10,8 +10,8 @@ public class Cronometro {
 
     private final static int LIMITE_DE_TIEMPO = 6 /*dias*/ * 24 /*horas*/ + 17 /*horas*/;
     private final Map<Edificio, Integer> visitasPorEdificio = new HashMap<>();
-    private int tiempoRegistrado = 0; // porque empieza el lunes a las 7
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("E H:m"); // "Lunes 16:00"
+    private int tiempoRegistrado = 0;
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("E H:m"); // "Mon 16:00"
     // fecha.format(FORMATTER);
 
     /**

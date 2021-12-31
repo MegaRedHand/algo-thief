@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 public class RandomBuilder implements EscenarioBuilder {
-    Cronometro cronometro = new Cronometro(0);
+    Cronometro cronometro = new Cronometro(7);
 
     @Override
     public Escenario construirCon(ContadorDeDificultad contador, FuenteDeDatos fuente) {

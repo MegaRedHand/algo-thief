@@ -18,14 +18,10 @@ public class Juego {
     private App app;
 
     private Juego() {
-        URL pathCiudades = SystemInfo.getResourceURL("/datos/ciudades.json");
-        URL pathLadrones = SystemInfo.getResourceURL("/datos/ladrones.json");
-        URL pathObjetos = SystemInfo.getResourceURL("/datos/objetos.json");
-
         Map<String, LectorJson> lectores = Map.of(
-                "ciudades", new LectorJson(pathCiudades.getPath()),
-                "ladrones", new LectorJson(pathLadrones.getPath()),
-                "objetos", new LectorJson(pathObjetos.getPath())
+                "ciudades", new LectorJson("/datos/ciudades.json"),
+                "ladrones", new LectorJson("/datos/ladrones.json"),
+                "objetos", new LectorJson("/datos/objetos.json")
         );
         algothief = new Algothief(new LectorDeArchivos(lectores));
         algothief.asignarPolicia(new ContadorDeDificultad(new Novato(), 0));
