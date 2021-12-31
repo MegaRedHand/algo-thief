@@ -13,24 +13,23 @@ import static org.mockito.Mockito.mock;
 
 public class Entrega1Test {
 
-    // los datos son de Atenas en realidad
     private final Map<String, ?> datosMontreal = Map.ofEntries(
             entry("ciudad", "Montreal"),
-            entry("colorBandera", List.of("Azul" , "Blanco")),
-            entry("moneda", "Dracmas"),
-            entry("geografia", "Montes"),
-            entry("caracteristicas", List.of("Mar Egeo", "Cordillera de Pindo")),
-            entry("industrias", List.of("Higos", "Olivas")),
-            entry("animales", List.of("Cabra montesa blanca")),
-            entry("etnias", List.of("Plateo" , "Espartanos")),
-            entry("idiomas", List.of("Griego")),
-            entry("arte", "Estatua de Zeus"),
+            entry("colorBandera", List.of("Rojo", "Blanco")),
+            entry("moneda", "Dolar"),
+            entry("geografia", "Tundra"),
+            entry("caracteristicas", List.of("Gaspe Peninsula", "Lake Mistassini", "Montgomery Falls", "Prince Edward Island", "Yukon")),
+            entry("industrias", List.of("Textil")),
+            entry("animales", List.of("Alce")),
+            entry("etnias", List.of("Canadiense")),
+            entry("idiomas", List.of("Inglés", "Francés")),
+            entry("arte", "Monumento a George-Étienne Cartier"),
             entry("religion", "Cristianismo"),
             entry("representante", "Primer Ministro"),
-            entry("otros", List.of("República Helénica, Frontera con Yugoslavia")),
-            entry("latitud", 37.984167),
-            entry("longitud", 23.728056),
-            entry("descripcion", "La historia de Atenas se extiende más de tres mil años, lo que la convierte en una de las ciudades habitadas más antiguas. Durante la época clásica de Grecia, fue una poderosa ciudad-estado que nació junto con el desarrollo de la navegación marítima del puerto de El Pireo y que tuvo un papel fundamental en el desarrollo de la democracia. También fue un centro cultural donde vivieron muchos de los grandes artistas, escritores y filósofos de la Antigüedad. Estas contribuciones de Atenas al pensamiento de su época tuvieron una gran influencia en el desarrollo de Grecia, de Roma y de la cultura occidental.")
+            entry("otros", List.of("Era una colonia frances")),
+            entry("latitud", 45.508889),
+            entry("longitud", -73.561667),
+            entry("descripcion", "Good ol' Canada")
     );
     // los datos son de Baghdad en realidad
     private final Map<String, ?> datosMexico = Map.ofEntries(

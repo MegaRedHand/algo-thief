@@ -148,7 +148,7 @@
         "colorBandera": ["Rojo", "Blanco"],
         "moneda": "Lira",
         "geografia": "Mediterraneo",
-        "caracteristicas": ["Mar negro, Monte Arafat"],
+        "caracteristicas": ["Mar negro", "Monte Arafat"],
         "industrias": ["Textil"],
         "animales": ["Gato"],
         "etnias": ["Hititas"],
@@ -156,10 +156,28 @@
         "arte": "Bienal de Estambul",
         "religion": "Islam",
         "representante": "Presidente",
-        "otros": ["Imperio Bizantino, Constantinopla"],
+        "otros": ["Imperio Bizantino", "Constantinopla"],
         "latitud": 41.01,
         "longitud": 28.960278,
         "descripcion": "Antiguamente conocida como Bizancio y Constantinopla, es la ciudad más poblada de Turquía y el centro histórico, cultural y económico del país. Es una ciudad transcontinental, ubicada en el estrecho del Bósforo, que separa Europa y Asia, entre el mar de Mármara y el mar Negro."
+    },
+    {
+        "ciudad": "Montreal",
+        "colorBandera": ["Rojo", "Blanco"],
+        "moneda": "Dolar",
+        "geografia": "Tundra",
+        "caracteristicas": ["Gaspe Peninsula", "Lake Mistassini", "Montgomery Falls", "Prince Edward Island", "Yukon"],
+        "industrias": ["Textil"],
+        "animales": ["Alce"],
+        "etnias": ["Canadiense"],
+        "idiomas": ["Inglés", "Francés"],
+        "arte": "Monumento a George-Étienne Cartier",
+        "religion": "Cristianismo",
+        "representante": "Primer Ministro",
+        "otros": ["Era una colonia frances"],
+        "latitud": 45.508889,
+        "longitud": -73.561667,
+        "descripcion": "Good ol' Canada"
     }
 ]
 
