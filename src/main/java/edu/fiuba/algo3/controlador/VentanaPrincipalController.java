@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.vista.VistaPrincipal;
+import edu.fiuba.algo3.vista.VistaVisitar;
 
 public class VentanaPrincipalController {
     private final VistaPrincipal vistaPrincipal;
@@ -18,7 +19,7 @@ public class VentanaPrincipalController {
     }
 
     public void visitar() {
-        System.out.println("visitar");
+        vistaPrincipal.agregar(new VistaVisitar());
     }
 
 }

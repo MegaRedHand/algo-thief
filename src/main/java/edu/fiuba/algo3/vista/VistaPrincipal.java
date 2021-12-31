@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.App;
+import edu.fiuba.algo3.SystemInfo;
 import edu.fiuba.algo3.controlador.VentanaPrincipalController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -15,7 +16,7 @@ public class VistaPrincipal {
     private VBox root = null;
 
     public VistaPrincipal(App app) {
-        URL url = getClass().getResource("/vistas/ventanaPrincipal.fxml");
+        URL url = SystemInfo.getResourceURL("/vistas/ventanaPrincipal.fxml");
         try {
             FXMLLoader loader = new FXMLLoader(url);
             loader.setController(new VentanaPrincipalController(this));

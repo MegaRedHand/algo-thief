@@ -17,9 +17,9 @@ public class Juego {
     private static final Juego singleton = new Juego();
 
     private Juego() {
-        URL pathCiudades = getClass().getResource("/datos/ciudades.json");
-        URL pathLadrones = getClass().getResource("/datos/ladrones.json");
-        URL pathObjetos = getClass().getResource("/datos/objetos.json");
+        URL pathCiudades = SystemInfo.getResourceURL("/datos/ciudades.json");
+        URL pathLadrones = SystemInfo.getResourceURL("/datos/ladrones.json");
+        URL pathObjetos = SystemInfo.getResourceURL("/datos/objetos.json");
 
         Map<String, LectorJson> lectores = Map.of(
                 "ciudades", new LectorJson(pathCiudades.getPath()),

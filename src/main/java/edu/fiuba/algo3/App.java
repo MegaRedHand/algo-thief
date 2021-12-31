@@ -20,7 +20,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         this.stage = stage;
-        URL url = getClass().getResource("/vistas/ventanaInicio.fxml");
+        URL url = SystemInfo.getResourceURL("/vistas/ventanaInicio.fxml");
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(url);
