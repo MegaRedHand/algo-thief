@@ -21,7 +21,7 @@ public class DescripcionSospechoso {
     }
 
     public void agregar(Rasgo... rasgos) {
-        Stream.of(rasgos).forEach(r -> this.rasgos.put(r.categoria(), r));
+        Stream.of(rasgos).filter(r -> !r.toString().equals("")).forEach(r -> this.rasgos.put(r.categoria(), r));
     }
 
     private Rasgo obtenerRasgo(String categoria) {

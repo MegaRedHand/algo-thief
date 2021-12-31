@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,19 @@ public class Policia {
     }
 
     public Pista visitar(String nombreEdificio) {
+        if (ciudadActual.esCiudadFinal()) {
+            List<String> nombresEdificios = edificiosVisitables();
+            Collections.shuffle(nombresEdificios);
+            if (nombresEdificios.get(0).equals(nombreEdificio)) {
+                return new Pista("Lograste atrapar al ladrón.");
+            } else if (nombresEdificios.get(1).equals(nombreEdificio)) {
+                recibirHeridaDeCuchillo();
+                return new Pista("Recibiste una herida de cuchillo.");
+            } else {
+                recibirHeridaPorArmaDeFuego();
+                return new Pista("Recibiste una herida por arma de fuego.");
+            }
+        }
         return this.visitar(ciudadActual.obtenerEdificio(nombreEdificio));
     }
 

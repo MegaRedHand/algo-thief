@@ -20,6 +20,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         this.stage = stage;
+        Juego.getInstance().asignarApp(this);
         URL url = SystemInfo.getResourceURL("/vistas/ventanaInicio.fxml");
         Parent root = null;
         try {

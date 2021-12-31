@@ -28,6 +28,9 @@ public class Algothief {
 
     public void visitar(String nombreEdificio) {
         ultimaPista = escenarioActual.policiaVisitar(nombreEdificio);
+        if (ultimaPista.descripcion().equals("Lograste atrapar al ladrón.")) {
+            atraparSospechoso();
+        }
     }
 
     public String pistaMasReciente() {
@@ -59,12 +62,17 @@ public class Algothief {
     }
 
     public void emitirOrdenDeArresto(String nombre) {
+        cronometro.registrarEmisionDeOrdenDeArresto();
         escenarioActual.emitirOrdenDeArresto(nombre);
     }
 
     public void atraparSospechoso() {
         ganado = escenarioActual.policiaAtraparLadron();
         acabado = true;
+    }
+
+    public boolean seAcaboElTiempo() {
+        return cronometro.seAcaboElTiempo();
     }
 
     public boolean juegoAcabado() {
@@ -77,5 +85,13 @@ public class Algothief {
 
     public List<String> edificiosVisitables() {
         return escenarioActual.edificiosVisitables();
+    }
+
+    public List<String> ciudadesVisitables() {
+        return escenarioActual.ciudadesVisitables();
+    }
+
+    public String fechaActual() {
+        return Cronometro.FORMATTER.format(cronometro.fechaActual());
     }
 }

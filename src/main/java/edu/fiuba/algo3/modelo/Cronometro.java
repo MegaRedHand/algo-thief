@@ -59,4 +59,7 @@ public class Cronometro {
         return tiempoRegistrado >= LIMITE_DE_TIEMPO;
     }
 
+    public void registrarEmisionDeOrdenDeArresto() {
+        restar(3);
+    }
 }

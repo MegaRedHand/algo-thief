@@ -56,12 +56,12 @@
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="43.0" prefWidth="107.0" text="AUTO:" textAlignment="CENTER" textFill="#eceaea">
+            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="43.0" prefWidth="107.0" text="VEHICULO:" textAlignment="CENTER" textFill="#eceaea">
                <font>
                   <Font name="Stencil" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="auto" alignment="CENTER" prefHeight="34.0" prefWidth="431.0">
+            <TextField fx:id="vehiculo" alignment="CENTER" prefHeight="34.0" prefWidth="431.0">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>
@@ -78,7 +78,7 @@
                   <Font name="Stencil" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="colorDePelo" alignment="CENTER" prefHeight="34.0" prefWidth="403.0">
+            <TextField fx:id="cabello" alignment="CENTER" prefHeight="34.0" prefWidth="403.0">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>
@@ -90,7 +90,7 @@
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
          <children>
-            <Button fx:id="volverAtras" mnemonicParsing="false" prefHeight="70.0" prefWidth="182.0" style="-fx-background-color: grey;" text="ATRAS" textFill="#f2efef">
+            <Button fx:id="volverAtras" mnemonicParsing="false" onAction="#volverAtras" prefHeight="70.0" prefWidth="182.0" style="-fx-background-color: grey;" text="ATRAS" textFill="#f2efef">
                <font>
                   <Font name="Stencil" size="18.0" />
                </font>
@@ -98,7 +98,7 @@
                   <Insets left="50.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="cargarDatos" mnemonicParsing="false" onAction="#cargarDatos" prefHeight="70.0" prefWidth="182.0" style="-fx-background-color: grey;" text="CARGAR DATOS" textFill="#fcf6f6">
+            <Button fx:id="buscar" mnemonicParsing="false" onAction="#buscar" prefHeight="70.0" prefWidth="182.0" style="-fx-background-color: grey;" text="BUSCAR" textFill="#fcf6f6">
                <font>
                   <Font name="Stencil" size="18.0" />
                </font>

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.Locale;
+
 public class Rasgo {
 
     private final String categoria;
@@ -15,7 +17,7 @@ public class Rasgo {
     }
 
     public boolean igualA(Rasgo otroRasgo) {
-        return this.valor.equals(otroRasgo.valor);
+        return this.valor.toLowerCase(Locale.ROOT).equals(otroRasgo.valor.toLowerCase(Locale.ROOT));
     }
 
     @Override

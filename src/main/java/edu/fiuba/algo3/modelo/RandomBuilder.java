@@ -40,6 +40,7 @@ public class RandomBuilder implements EscenarioBuilder {
         agregarAdyacentesACiudades(ciudadesNoVisitadas, rutaDeEscape);
 
         ciudadBuilders.forEach(this::agregarEdificios);
+        rutaDeEscape.get(rutaDeEscape.size() - 1).conLadron(ladron);
 
         return builder.construirCon(contador, fuente);
     }
@@ -67,7 +68,6 @@ public class RandomBuilder implements EscenarioBuilder {
         for (int i = 0; i < rutaDeEscape.size() - 1; i++) {
             List<CiudadBuilder> adyacentes = new ArrayList<>(ciudadesNoVisitadas.subList(0, 2));
             ciudadesNoVisitadas.removeAll(adyacentes);
-            adyacentes.add(rutaDeEscape.get(i + 1));
             rutaDeEscape.get(i).conPasajesA(adyacentes);
             rutaDeEscape.get(i).conPistasPara(rutaDeEscape.get(i + 1));
         }

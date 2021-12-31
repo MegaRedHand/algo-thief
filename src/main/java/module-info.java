@@ -5,4 +5,5 @@ module edu.fiuba.algo3 {
     exports edu.fiuba.algo3;
     exports edu.fiuba.algo3.perifericos;
     exports edu.fiuba.algo3.controlador;
+    exports edu.fiuba.algo3.vista;
 }

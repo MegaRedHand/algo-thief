@@ -17,8 +17,7 @@ public class BotonEdificioController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        Juego.getInstance().visitar(nombreEdificio);
-        label.setText(Juego.getInstance().ultimaPista());
+        Juego.getInstance().visitar(nombreEdificio, label);
     }
 
 }

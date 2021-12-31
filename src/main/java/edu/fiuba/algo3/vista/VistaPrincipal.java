@@ -19,7 +19,7 @@ public class VistaPrincipal {
         URL url = SystemInfo.getResourceURL("/vistas/ventanaPrincipal.fxml");
         try {
             FXMLLoader loader = new FXMLLoader(url);
-            loader.setController(new VentanaPrincipalController(this));
+            loader.setController(new VentanaPrincipalController(app, this));
             root = loader.load();
         } catch (IOException e) {
             e.printStackTrace();

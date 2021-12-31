@@ -13,6 +13,7 @@ public class CiudadBuilder {
     private Map<String, ?> datosSiguienteCiudad;
     private final Map<String, ?> datosCiudad;
     private final List<String> adyacentes = new ArrayList<>();
+    private Ladron ladron = null;
 
     public CiudadBuilder(Map<String, ?> datosCiudad) {
         this.nombreCiudad = datosCiudad.get("ciudad").toString();
@@ -30,24 +31,32 @@ public class CiudadBuilder {
     }
 
     public void conPasajesA(List<CiudadBuilder> adyacentes) {
-        List<String> nombresAdyacentes = adyacentes.stream().map(cb -> cb.datosCiudad.get("ciudad").toString()).collect(Collectors.toList());
-        this.adyacentes.addAll(nombresAdyacentes);
+        adyacentes.forEach(this::agregarAdyacente);
+        adyacentes.forEach(cb -> cb.agregarAdyacente(this));
+    }
+
+    private void agregarAdyacente(CiudadBuilder ciudadBuilder) {
+        this.adyacentes.add(ciudadBuilder.datosCiudad.get("ciudad").toString());
     }
 
     public CiudadBuilder conPistasPara(CiudadBuilder builderSiguienteCiudad) {
         this.datosSiguienteCiudad = builderSiguienteCiudad.datosCiudad;
+        agregarAdyacente(builderSiguienteCiudad);
         return this;
+    }
+
+    public void conLadron(Ladron ladron) {
+        this.ladron = ladron;
     }
 
     public Ciudad construirCon(Rango rango, DescripcionSospechoso descripcion) {
         List<Edificio> edificiosDeLaCiudad = edificioBuilders.stream()
                 .map(eb -> eb.construirCon(rango, datosSiguienteCiudad, descripcion)).collect(Collectors.toList());
-
         Coordenadas coordenadas = new Coordenadas(
                 Double.parseDouble(datosCiudad.get("latitud").toString()),
                 Double.parseDouble(datosCiudad.get("longitud").toString())
         );
-        return new Ciudad(nombreCiudad, edificiosDeLaCiudad, adyacentes, coordenadas);
+        return new Ciudad(nombreCiudad, edificiosDeLaCiudad, adyacentes, coordenadas, ladron);
     }
 
 }

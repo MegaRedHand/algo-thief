@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="6.0" layoutY="6.0" prefHeight="389.0" prefWidth="588.0" style="-fx-background-color: BLACK;">
+         <children>
+            <Label contentDisplay="CENTER" layoutX="224.0" layoutY="28.0" text="GAME OVER" textAlignment="CENTER" textFill="#fcf9f9">
+               <font>
+                  <Font name="Stencil" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="resultado" layoutX="34.0" layoutY="86.0" prefHeight="139.0" prefWidth="526.0" textFill="#f7f3f3" wrapText="true">
+               <font>
+                  <Font name="Stencil" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="continuar" layoutX="210.0" layoutY="310.0" mnemonicParsing="false" onAction="#continuar" prefHeight="57.0" prefWidth="180.0" style="-fx-background-color: grey;" text="CONTINUAR" textFill="#f7f5f5">
+               <font>
+                  <Font name="Stencil" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</Pane>
