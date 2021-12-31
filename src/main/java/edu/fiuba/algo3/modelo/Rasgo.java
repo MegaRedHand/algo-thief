@@ -9,6 +9,7 @@ public class Rasgo {
 
     public Rasgo(String categoria, String valor) {
         this.categoria = categoria;
+
         this.valor = valor;
     }
 

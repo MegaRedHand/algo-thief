@@ -25,7 +25,7 @@ public class DescripcionSospechoso {
     }
 
     private Rasgo obtenerRasgo(String categoria) {
-        return this.rasgos.getOrDefault(categoria, new Rasgo(categoria, null));
+        return this.rasgos.getOrDefault(categoria, new Rasgo(categoria, ""));
     }
 
     public String getPistaVehiculo() {
