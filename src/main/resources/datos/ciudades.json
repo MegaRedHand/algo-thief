@@ -178,6 +178,24 @@
         "latitud": 45.508889,
         "longitud": -73.561667,
         "descripcion": "Good ol' Canada"
+    },
+    {
+        "ciudad": "Ciudad de Mexico",
+        "colorBandera": ["Rojo", "Blanco","Verde"],
+        "moneda": "Peso mexicano",
+        "geografia": "Sierras",
+        "caracteristicas": ["Palacio de Bellas Artes"],
+        "industrias": ["Maquillaje"],
+        "animales": ["Monstruo Gila"],
+        "etnias": ["Aztecs", "Mayas", "Toltecs"],
+        "idiomas": ["Español"],
+        "arte": "Joyería Yucateca",
+        "religion": "Catolica",
+        "representante": "Jefe de Gobierno",
+        "otros": [" Museo del Templo Mayor, Museo Soumaya"],
+        "latitud": 19.419444,
+        "longitud": -99.145556,
+        "descripcion": "La Ciudad de México es la capital de México.Es una de las entidades federativas que, junto a treinta y un estados, conforman ese país.Asimismo es sede de los Poderes de la Unión.Está dividida en dieciséis demarcaciones territoriales."
     }
 ]
 
