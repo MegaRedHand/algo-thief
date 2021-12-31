@@ -56,6 +56,7 @@ public class Juego {
     }
 
     public void comenzarJuego() {
+        algothief.reset();
         algothief.generarEscenario(new RandomBuilder());
     }
 

@@ -94,4 +94,9 @@ public class Algothief {
     public String fechaActual() {
         return Cronometro.FORMATTER.format(cronometro.fechaActual());
     }
+
+    public void reset() {
+        acabado = false;
+    }
+
 }
