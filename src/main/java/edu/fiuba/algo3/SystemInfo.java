@@ -14,6 +14,6 @@ public class SystemInfo {
     }
 
     public static URL getResourceURL(String path) {
-        return SystemInfo.class.getResource(Paths.get(path).toString());
+        return SystemInfo.class.getResource(Paths.get(Paths.get(path).toUri()).toString());
     }
 }
