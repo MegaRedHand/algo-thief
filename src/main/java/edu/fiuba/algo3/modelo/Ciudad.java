@@ -10,14 +10,7 @@ public class Ciudad {
     private final List<Edificio> edificios = new ArrayList<>();
     private final List<String> nombresAdyacentes = new ArrayList<>();
     private final Ladron ladron;
-    private Coordenadas coordenadas;
-
-    public Ciudad(String nombre, Edificio... edificios) {
-        // TODO: eliminar
-        this.nombre = nombre;
-        this.edificios.addAll(List.of(edificios));
-        ladron = null;
-    }
+    private final Coordenadas coordenadas;
 
     public Ciudad(String nombre, List<Edificio> edificios, List<String> nombresAdyacentes, Coordenadas coordenadas, Ladron ladron) {
         this.nombre = nombre;

@@ -7,7 +7,6 @@ import edu.fiuba.algo3.vista.VistaComputadora;
 import edu.fiuba.algo3.vista.VistaFinalPartida;
 import javafx.scene.control.Label;
 
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
 

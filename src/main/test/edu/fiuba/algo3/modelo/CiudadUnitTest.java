@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CiudadUnitTest {
@@ -19,7 +21,8 @@ public class CiudadUnitTest {
 
         Edificio edificio = new Edificio(nombreEdificio, new Pista("desc"));
 
-        Ciudad ciudad = new Ciudad(nombreCiudad, edificio);
+        Ciudad ciudad = new Ciudad(nombreCiudad, List.of(edificio), List.of(),
+                new Coordenadas(0.0, 0.0), new Ladron("", new DescripcionSospechoso()));
 
         assertEquals(edificio, ciudad.obtenerEdificio(nombreEdificio));
     }
@@ -34,7 +37,8 @@ public class CiudadUnitTest {
         Edificio edificioEsperado = new Edificio(nombreEsperado, new Pista("desc"));
         Edificio edificio2 = new Edificio("Edificio 2", new Pista("desc"));
 
-        Ciudad ciudad = new Ciudad(nombreCiudad, edificio1, edificioEsperado, edificio2);
+        Ciudad ciudad = new Ciudad(nombreCiudad, List.of(edificio1, edificioEsperado, edificio2), List.of(),
+                new Coordenadas(0.0, 0.0), new Ladron("", new DescripcionSospechoso()));
 
         assertEquals(edificioEsperado, ciudad.obtenerEdificio(nombreEsperado));
     }
