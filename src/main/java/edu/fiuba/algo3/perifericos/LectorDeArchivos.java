@@ -8,6 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 
+/*
+
+hay que unirlo con los otros lectores y modificar todos los metodos de esta clase
+
+ */
+
+
+
 
 public class LectorDeArchivos implements FuenteDeDatos {
 
